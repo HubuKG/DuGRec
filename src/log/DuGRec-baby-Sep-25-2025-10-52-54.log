@@ -1,0 +1,2328 @@
+Thu 25 Sep 2025 10:52:54 INFO ██Server: 	autodl-container-90ec41be83-b0cf8414
+Thu 25 Sep 2025 10:52:54 INFO ██Dir: 	/root/autodl-tmp/DuCoRec/src
+
+Thu 25 Sep 2025 10:52:54 INFO 
+gpu_id=0
+use_gpu=True
+seed=[999]
+data_path=../data/
+inter_splitting_label=x_label
+filter_out_cod_start_users=True
+is_multimodal_model=True
+checkpoint_dir=saved
+save_recommended_topk=True
+recommend_topk=recommend_topk/
+embedding_size=64
+epochs=1000
+stopping_step=40
+train_batch_size=2048
+learner=adam
+learning_rate=0.0001
+learning_rate_scheduler=[1.0, 50]
+eval_step=1
+training_neg_sample_num=1
+use_neg_sampling=True
+use_full_sampling=False
+NEG_PREFIX=neg__
+USER_ID_FIELD=userID
+ITEM_ID_FIELD=itemID
+TIME_FIELD=timestamp
+field_separator=	
+metrics=['Recall', 'NDCG']
+topk=[10, 20]
+valid_metric=Recall@20
+eval_batch_size=4096
+use_raw_features=False
+max_txt_len=32
+max_img_size=256
+vocab_size=30522
+type_vocab_size=2
+hidden_size=4
+pad_token_id=0
+max_position_embeddings=512
+layer_norm_eps=1e-12
+hidden_dropout_prob=0.1
+end2end=False
+hyper_parameters=['reg_weight', 'weight_decay', 'decay_weight', 'alpha_item_co', 'clu_lambda', 'cli_lambda', 'gpert_lambda', 'lambda_spec', 'seed']
+inter_file_name=baby.inter
+vision_feature_file=image_feat.npy
+text_feature_file=text_feat.npy
+user_graph_dict_file=user_graph_dict.npy
+feat_embed_dim=64
+n_mm_layers=1
+n_layers=2
+knn_k=10
+mm_image_weight=0.1
+aggr_mode=add
+weight_size=[64]
+lambda_coeff=0.9
+lambda_spec=[0.1]
+dct_keep_ratio=0.2
+beta_lf=0.6
+beta_hf=0.2
+beta_mix=0.2
+spec_gate_tau=1
+enable_spec_gate=False
+enable_residual=False
+decay_base=0.95
+decay_weight=[0.9, 0.99]
+weight_decay=[0.0001]
+item_co_topk=10
+alpha_item_co=[0.2]
+cui_topk=10
+cui_theta=0.1
+cui_gamma=0.1
+gpert_mask_p=0.2
+n_ui_layers=3
+reg_weight=[0.001]
+dropout=0.1
+clu_lambda=[0.0001]
+cli_lambda=[1e-05]
+gpert_lambda=[0.0001]
+model=DuGRec
+dataset=baby
+valid_metric_bigger=True
+device=cuda
+
+
+Thu 25 Sep 2025 10:52:54 INFO baby
+The number of users: 19445
+Average actions of users: 8.269066598097197
+The number of items: 7050
+Average actions of items: 22.807375886524824
+The number of inters: 160792
+The sparsity of the dataset: 99.8827082752043%
+Thu 25 Sep 2025 10:52:54 INFO 
+====Training====
+baby
+The number of users: 19445
+Average actions of users: 6.096734379017742
+The number of items: 7047
+Average actions of items: 16.82290336313325
+The number of inters: 118551
+The sparsity of the dataset: 99.9134846831415%
+Thu 25 Sep 2025 10:52:54 INFO 
+====Validation====
+baby
+The number of users: 19445
+Average actions of users: 1.0572897917202366
+The number of items: 5483
+Average actions of items: 3.749589640707642
+The number of inters: 20559
+The sparsity of the dataset: 99.98071694707788%
+Thu 25 Sep 2025 10:52:54 INFO 
+====Testing====
+baby
+The number of users: 19445
+Average actions of users: 1.1150424273592183
+The number of items: 5549
+Average actions of items: 3.907370697422959
+The number of inters: 21682
+The sparsity of the dataset: 99.97990552482683%
+Thu 25 Sep 2025 10:52:58 INFO 
+
+=================================
+
+
+Thu 25 Sep 2025 10:52:58 INFO =========1/2: Parameters:['reg_weight', 'weight_decay', 'decay_weight', 'alpha_item_co', 'clu_lambda', 'cli_lambda', 'gpert_lambda', 'lambda_spec', 'seed']=(0.001, 0.0001, 0.9, 0.2, 0.0001, 1e-05, 0.0001, 0.1, 999)=======
+Thu 25 Sep 2025 10:52:59 INFO DuGRec(
+  (mod_item_proj): Linear(in_features=192, out_features=64, bias=False)
+  (id_item_proj): Identity()
+  (image_embedding): Embedding(7050, 4096)
+  (v_MLP): Linear(in_features=4096, out_features=256, bias=True)
+  (v_MLP_1): Linear(in_features=256, out_features=64, bias=False)
+  (text_embedding): Embedding(7050, 384)
+  (t_MLP): Linear(in_features=384, out_features=256, bias=True)
+  (t_MLP_1): Linear(in_features=256, out_features=64, bias=False)
+  (s_MLP): Linear(in_features=4480, out_features=256, bias=True)
+  (s_MLP_1): Linear(in_features=256, out_features=64, bias=False)
+  (u_proj_v): Linear(in_features=64, out_features=64, bias=False)
+  (u_proj_t): Linear(in_features=64, out_features=64, bias=False)
+  (u_proj_s): Linear(in_features=64, out_features=64, bias=False)
+  (i_proj_v): Linear(in_features=64, out_features=64, bias=False)
+  (i_proj_t): Linear(in_features=64, out_features=64, bias=False)
+  (i_proj_s): Linear(in_features=64, out_features=64, bias=False)
+)
+Trainable parameters: 37697984
+Thu 25 Sep 2025 10:53:01 INFO epoch 0 training [time: 2.22s, train loss: 26.0051]
+Thu 25 Sep 2025 10:53:04 INFO epoch 0 evaluating [time: 1.13s, valid_score: 0.054300]
+Thu 25 Sep 2025 10:53:04 INFO valid result: 
+recall@10: 0.0343    recall@20: 0.0543    ndcg@10: 0.0186    ndcg@20: 0.0237    
+Thu 25 Sep 2025 10:53:04 INFO test result: 
+recall@10: 0.0359    recall@20: 0.0554    ndcg@10: 0.0196    ndcg@20: 0.0246    
+Thu 25 Sep 2025 10:53:04 INFO ██ DuGRec--Best validation results updated!!!
+Thu 25 Sep 2025 10:53:06 INFO epoch 1 training [time: 2.33s, train loss: 20.5874]
+Thu 25 Sep 2025 10:53:09 INFO epoch 1 evaluating [time: 1.53s, valid_score: 0.067200]
+Thu 25 Sep 2025 10:53:09 INFO valid result: 
+recall@10: 0.0419    recall@20: 0.0672    ndcg@10: 0.0229    ndcg@20: 0.0294    
+Thu 25 Sep 2025 10:53:09 INFO test result: 
+recall@10: 0.0441    recall@20: 0.0690    ndcg@10: 0.0243    ndcg@20: 0.0306    
+Thu 25 Sep 2025 10:53:09 INFO ██ DuGRec--Best validation results updated!!!
+Thu 25 Sep 2025 10:53:12 INFO epoch 2 training [time: 2.28s, train loss: 17.1403]
+Thu 25 Sep 2025 10:53:15 INFO epoch 2 evaluating [time: 1.53s, valid_score: 0.073000]
+Thu 25 Sep 2025 10:53:15 INFO valid result: 
+recall@10: 0.0454    recall@20: 0.0730    ndcg@10: 0.0245    ndcg@20: 0.0316    
+Thu 25 Sep 2025 10:53:15 INFO test result: 
+recall@10: 0.0483    recall@20: 0.0751    ndcg@10: 0.0263    ndcg@20: 0.0331    
+Thu 25 Sep 2025 10:53:15 INFO ██ DuGRec--Best validation results updated!!!
+Thu 25 Sep 2025 10:53:17 INFO epoch 3 training [time: 2.38s, train loss: 15.0763]
+Thu 25 Sep 2025 10:53:20 INFO epoch 3 evaluating [time: 1.76s, valid_score: 0.076000]
+Thu 25 Sep 2025 10:53:20 INFO valid result: 
+recall@10: 0.0479    recall@20: 0.0760    ndcg@10: 0.0257    ndcg@20: 0.0329    
+Thu 25 Sep 2025 10:53:20 INFO test result: 
+recall@10: 0.0510    recall@20: 0.0801    ndcg@10: 0.0275    ndcg@20: 0.0349    
+Thu 25 Sep 2025 10:53:20 INFO ██ DuGRec--Best validation results updated!!!
+Thu 25 Sep 2025 10:53:22 INFO epoch 4 training [time: 2.02s, train loss: 13.5412]
+Thu 25 Sep 2025 10:53:25 INFO epoch 4 evaluating [time: 1.54s, valid_score: 0.078500]
+Thu 25 Sep 2025 10:53:25 INFO valid result: 
+recall@10: 0.0498    recall@20: 0.0785    ndcg@10: 0.0264    ndcg@20: 0.0337    
+Thu 25 Sep 2025 10:53:25 INFO test result: 
+recall@10: 0.0527    recall@20: 0.0812    ndcg@10: 0.0281    ndcg@20: 0.0354    
+Thu 25 Sep 2025 10:53:25 INFO ██ DuGRec--Best validation results updated!!!
+Thu 25 Sep 2025 10:53:27 INFO epoch 5 training [time: 2.07s, train loss: 12.2956]
+Thu 25 Sep 2025 10:53:31 INFO epoch 5 evaluating [time: 1.55s, valid_score: 0.081600]
+Thu 25 Sep 2025 10:53:31 INFO valid result: 
+recall@10: 0.0520    recall@20: 0.0816    ndcg@10: 0.0274    ndcg@20: 0.0349    
+Thu 25 Sep 2025 10:53:31 INFO test result: 
+recall@10: 0.0539    recall@20: 0.0831    ndcg@10: 0.0285    ndcg@20: 0.0360    
+Thu 25 Sep 2025 10:53:31 INFO ██ DuGRec--Best validation results updated!!!
+Thu 25 Sep 2025 10:53:33 INFO epoch 6 training [time: 2.33s, train loss: 11.2997]
+Thu 25 Sep 2025 10:53:36 INFO epoch 6 evaluating [time: 1.54s, valid_score: 0.081500]
+Thu 25 Sep 2025 10:53:36 INFO valid result: 
+recall@10: 0.0523    recall@20: 0.0815    ndcg@10: 0.0277    ndcg@20: 0.0351    
+Thu 25 Sep 2025 10:53:36 INFO test result: 
+recall@10: 0.0546    recall@20: 0.0850    ndcg@10: 0.0289    ndcg@20: 0.0367    
+Thu 25 Sep 2025 10:53:38 INFO epoch 7 training [time: 2.03s, train loss: 10.5971]
+Thu 25 Sep 2025 10:53:41 INFO epoch 7 evaluating [time: 1.53s, valid_score: 0.084400]
+Thu 25 Sep 2025 10:53:41 INFO valid result: 
+recall@10: 0.0526    recall@20: 0.0844    ndcg@10: 0.0280    ndcg@20: 0.0361    
+Thu 25 Sep 2025 10:53:41 INFO test result: 
+recall@10: 0.0558    recall@20: 0.0861    ndcg@10: 0.0297    ndcg@20: 0.0375    
+Thu 25 Sep 2025 10:53:41 INFO ██ DuGRec--Best validation results updated!!!
+Thu 25 Sep 2025 10:53:43 INFO epoch 8 training [time: 2.30s, train loss: 9.8508]
+Thu 25 Sep 2025 10:53:47 INFO epoch 8 evaluating [time: 1.66s, valid_score: 0.081700]
+Thu 25 Sep 2025 10:53:47 INFO valid result: 
+recall@10: 0.0539    recall@20: 0.0817    ndcg@10: 0.0287    ndcg@20: 0.0358    
+Thu 25 Sep 2025 10:53:47 INFO test result: 
+recall@10: 0.0566    recall@20: 0.0875    ndcg@10: 0.0300    ndcg@20: 0.0379    
+Thu 25 Sep 2025 10:53:49 INFO epoch 9 training [time: 2.22s, train loss: 9.2667]
+Thu 25 Sep 2025 10:53:52 INFO epoch 9 evaluating [time: 1.57s, valid_score: 0.084800]
+Thu 25 Sep 2025 10:53:52 INFO valid result: 
+recall@10: 0.0549    recall@20: 0.0848    ndcg@10: 0.0292    ndcg@20: 0.0367    
+Thu 25 Sep 2025 10:53:52 INFO test result: 
+recall@10: 0.0568    recall@20: 0.0889    ndcg@10: 0.0306    ndcg@20: 0.0388    
+Thu 25 Sep 2025 10:53:52 INFO ██ DuGRec--Best validation results updated!!!
+Thu 25 Sep 2025 10:53:54 INFO epoch 10 training [time: 2.00s, train loss: 8.7349]
+Thu 25 Sep 2025 10:53:57 INFO epoch 10 evaluating [time: 1.66s, valid_score: 0.085600]
+Thu 25 Sep 2025 10:53:57 INFO valid result: 
+recall@10: 0.0551    recall@20: 0.0856    ndcg@10: 0.0294    ndcg@20: 0.0371    
+Thu 25 Sep 2025 10:53:57 INFO test result: 
+recall@10: 0.0567    recall@20: 0.0903    ndcg@10: 0.0309    ndcg@20: 0.0395    
+Thu 25 Sep 2025 10:53:57 INFO ██ DuGRec--Best validation results updated!!!
+Thu 25 Sep 2025 10:53:59 INFO epoch 11 training [time: 2.01s, train loss: 8.3382]
+Thu 25 Sep 2025 10:54:02 INFO epoch 11 evaluating [time: 1.57s, valid_score: 0.087700]
+Thu 25 Sep 2025 10:54:02 INFO valid result: 
+recall@10: 0.0563    recall@20: 0.0877    ndcg@10: 0.0299    ndcg@20: 0.0378    
+Thu 25 Sep 2025 10:54:02 INFO test result: 
+recall@10: 0.0571    recall@20: 0.0916    ndcg@10: 0.0307    ndcg@20: 0.0395    
+Thu 25 Sep 2025 10:54:02 INFO ██ DuGRec--Best validation results updated!!!
+Thu 25 Sep 2025 10:54:04 INFO epoch 12 training [time: 2.01s, train loss: 7.9585]
+Thu 25 Sep 2025 10:54:08 INFO epoch 12 evaluating [time: 1.53s, valid_score: 0.088000]
+Thu 25 Sep 2025 10:54:08 INFO valid result: 
+recall@10: 0.0566    recall@20: 0.0880    ndcg@10: 0.0302    ndcg@20: 0.0382    
+Thu 25 Sep 2025 10:54:08 INFO test result: 
+recall@10: 0.0579    recall@20: 0.0927    ndcg@10: 0.0314    ndcg@20: 0.0404    
+Thu 25 Sep 2025 10:54:08 INFO ██ DuGRec--Best validation results updated!!!
+Thu 25 Sep 2025 10:54:10 INFO epoch 13 training [time: 2.14s, train loss: 7.6101]
+Thu 25 Sep 2025 10:54:13 INFO epoch 13 evaluating [time: 1.54s, valid_score: 0.089200]
+Thu 25 Sep 2025 10:54:13 INFO valid result: 
+recall@10: 0.0568    recall@20: 0.0892    ndcg@10: 0.0304    ndcg@20: 0.0386    
+Thu 25 Sep 2025 10:54:13 INFO test result: 
+recall@10: 0.0583    recall@20: 0.0932    ndcg@10: 0.0318    ndcg@20: 0.0407    
+Thu 25 Sep 2025 10:54:13 INFO ██ DuGRec--Best validation results updated!!!
+Thu 25 Sep 2025 10:54:15 INFO epoch 14 training [time: 2.29s, train loss: 7.2934]
+Thu 25 Sep 2025 10:54:18 INFO epoch 14 evaluating [time: 1.59s, valid_score: 0.090500]
+Thu 25 Sep 2025 10:54:18 INFO valid result: 
+recall@10: 0.0580    recall@20: 0.0905    ndcg@10: 0.0309    ndcg@20: 0.0392    
+Thu 25 Sep 2025 10:54:18 INFO test result: 
+recall@10: 0.0594    recall@20: 0.0935    ndcg@10: 0.0322    ndcg@20: 0.0409    
+Thu 25 Sep 2025 10:54:18 INFO ██ DuGRec--Best validation results updated!!!
+Thu 25 Sep 2025 10:54:20 INFO epoch 15 training [time: 2.31s, train loss: 6.9598]
+Thu 25 Sep 2025 10:54:24 INFO epoch 15 evaluating [time: 1.79s, valid_score: 0.090500]
+Thu 25 Sep 2025 10:54:24 INFO valid result: 
+recall@10: 0.0579    recall@20: 0.0905    ndcg@10: 0.0312    ndcg@20: 0.0395    
+Thu 25 Sep 2025 10:54:24 INFO test result: 
+recall@10: 0.0593    recall@20: 0.0948    ndcg@10: 0.0320    ndcg@20: 0.0411    
+Thu 25 Sep 2025 10:54:26 INFO epoch 16 training [time: 2.02s, train loss: 6.7764]
+Thu 25 Sep 2025 10:54:29 INFO epoch 16 evaluating [time: 1.53s, valid_score: 0.091800]
+Thu 25 Sep 2025 10:54:29 INFO valid result: 
+recall@10: 0.0589    recall@20: 0.0918    ndcg@10: 0.0318    ndcg@20: 0.0401    
+Thu 25 Sep 2025 10:54:29 INFO test result: 
+recall@10: 0.0606    recall@20: 0.0962    ndcg@10: 0.0326    ndcg@20: 0.0417    
+Thu 25 Sep 2025 10:54:29 INFO ██ DuGRec--Best validation results updated!!!
+Thu 25 Sep 2025 10:54:31 INFO epoch 17 training [time: 2.05s, train loss: 6.5274]
+Thu 25 Sep 2025 10:54:34 INFO epoch 17 evaluating [time: 1.53s, valid_score: 0.092300]
+Thu 25 Sep 2025 10:54:34 INFO valid result: 
+recall@10: 0.0590    recall@20: 0.0923    ndcg@10: 0.0318    ndcg@20: 0.0403    
+Thu 25 Sep 2025 10:54:34 INFO test result: 
+recall@10: 0.0599    recall@20: 0.0967    ndcg@10: 0.0328    ndcg@20: 0.0423    
+Thu 25 Sep 2025 10:54:34 INFO ██ DuGRec--Best validation results updated!!!
+Thu 25 Sep 2025 10:54:36 INFO epoch 18 training [time: 2.04s, train loss: 6.3442]
+Thu 25 Sep 2025 10:54:39 INFO epoch 18 evaluating [time: 1.55s, valid_score: 0.094100]
+Thu 25 Sep 2025 10:54:39 INFO valid result: 
+recall@10: 0.0594    recall@20: 0.0941    ndcg@10: 0.0319    ndcg@20: 0.0407    
+Thu 25 Sep 2025 10:54:39 INFO test result: 
+recall@10: 0.0612    recall@20: 0.0974    ndcg@10: 0.0332    ndcg@20: 0.0424    
+Thu 25 Sep 2025 10:54:39 INFO ██ DuGRec--Best validation results updated!!!
+Thu 25 Sep 2025 10:54:41 INFO epoch 19 training [time: 2.21s, train loss: 6.1316]
+Thu 25 Sep 2025 10:54:45 INFO epoch 19 evaluating [time: 1.53s, valid_score: 0.093000]
+Thu 25 Sep 2025 10:54:45 INFO valid result: 
+recall@10: 0.0599    recall@20: 0.0930    ndcg@10: 0.0321    ndcg@20: 0.0405    
+Thu 25 Sep 2025 10:54:45 INFO test result: 
+recall@10: 0.0613    recall@20: 0.0975    ndcg@10: 0.0335    ndcg@20: 0.0428    
+Thu 25 Sep 2025 10:54:47 INFO epoch 20 training [time: 1.99s, train loss: 5.9333]
+Thu 25 Sep 2025 10:54:50 INFO epoch 20 evaluating [time: 1.67s, valid_score: 0.095000]
+Thu 25 Sep 2025 10:54:50 INFO valid result: 
+recall@10: 0.0611    recall@20: 0.0950    ndcg@10: 0.0327    ndcg@20: 0.0413    
+Thu 25 Sep 2025 10:54:50 INFO test result: 
+recall@10: 0.0617    recall@20: 0.0971    ndcg@10: 0.0334    ndcg@20: 0.0425    
+Thu 25 Sep 2025 10:54:50 INFO ██ DuGRec--Best validation results updated!!!
+Thu 25 Sep 2025 10:54:52 INFO epoch 21 training [time: 2.03s, train loss: 5.8299]
+Thu 25 Sep 2025 10:54:55 INFO epoch 21 evaluating [time: 1.53s, valid_score: 0.094000]
+Thu 25 Sep 2025 10:54:55 INFO valid result: 
+recall@10: 0.0605    recall@20: 0.0940    ndcg@10: 0.0327    ndcg@20: 0.0412    
+Thu 25 Sep 2025 10:54:55 INFO test result: 
+recall@10: 0.0620    recall@20: 0.0977    ndcg@10: 0.0337    ndcg@20: 0.0429    
+Thu 25 Sep 2025 10:54:57 INFO epoch 22 training [time: 2.15s, train loss: 5.6686]
+Thu 25 Sep 2025 10:55:00 INFO epoch 22 evaluating [time: 1.53s, valid_score: 0.094400]
+Thu 25 Sep 2025 10:55:00 INFO valid result: 
+recall@10: 0.0613    recall@20: 0.0944    ndcg@10: 0.0331    ndcg@20: 0.0415    
+Thu 25 Sep 2025 10:55:00 INFO test result: 
+recall@10: 0.0622    recall@20: 0.0987    ndcg@10: 0.0338    ndcg@20: 0.0432    
+Thu 25 Sep 2025 10:55:02 INFO epoch 23 training [time: 2.02s, train loss: 5.4652]
+Thu 25 Sep 2025 10:55:05 INFO epoch 23 evaluating [time: 1.55s, valid_score: 0.094600]
+Thu 25 Sep 2025 10:55:05 INFO valid result: 
+recall@10: 0.0608    recall@20: 0.0946    ndcg@10: 0.0332    ndcg@20: 0.0418    
+Thu 25 Sep 2025 10:55:05 INFO test result: 
+recall@10: 0.0629    recall@20: 0.0991    ndcg@10: 0.0340    ndcg@20: 0.0433    
+Thu 25 Sep 2025 10:55:07 INFO epoch 24 training [time: 2.10s, train loss: 5.3678]
+Thu 25 Sep 2025 10:55:10 INFO epoch 24 evaluating [time: 1.53s, valid_score: 0.094900]
+Thu 25 Sep 2025 10:55:10 INFO valid result: 
+recall@10: 0.0619    recall@20: 0.0949    ndcg@10: 0.0335    ndcg@20: 0.0419    
+Thu 25 Sep 2025 10:55:10 INFO test result: 
+recall@10: 0.0629    recall@20: 0.0997    ndcg@10: 0.0342    ndcg@20: 0.0437    
+Thu 25 Sep 2025 10:55:12 INFO epoch 25 training [time: 2.17s, train loss: 5.2413]
+Thu 25 Sep 2025 10:55:16 INFO epoch 25 evaluating [time: 1.63s, valid_score: 0.096500]
+Thu 25 Sep 2025 10:55:16 INFO valid result: 
+recall@10: 0.0621    recall@20: 0.0965    ndcg@10: 0.0335    ndcg@20: 0.0423    
+Thu 25 Sep 2025 10:55:16 INFO test result: 
+recall@10: 0.0630    recall@20: 0.1003    ndcg@10: 0.0344    ndcg@20: 0.0440    
+Thu 25 Sep 2025 10:55:16 INFO ██ DuGRec--Best validation results updated!!!
+Thu 25 Sep 2025 10:55:18 INFO epoch 26 training [time: 2.20s, train loss: 5.1679]
+Thu 25 Sep 2025 10:55:21 INFO epoch 26 evaluating [time: 1.53s, valid_score: 0.097000]
+Thu 25 Sep 2025 10:55:21 INFO valid result: 
+recall@10: 0.0627    recall@20: 0.0970    ndcg@10: 0.0340    ndcg@20: 0.0427    
+Thu 25 Sep 2025 10:55:21 INFO test result: 
+recall@10: 0.0638    recall@20: 0.1008    ndcg@10: 0.0348    ndcg@20: 0.0443    
+Thu 25 Sep 2025 10:55:21 INFO ██ DuGRec--Best validation results updated!!!
+Thu 25 Sep 2025 10:55:23 INFO epoch 27 training [time: 2.05s, train loss: 5.0676]
+Thu 25 Sep 2025 10:55:26 INFO epoch 27 evaluating [time: 1.62s, valid_score: 0.096400]
+Thu 25 Sep 2025 10:55:26 INFO valid result: 
+recall@10: 0.0627    recall@20: 0.0964    ndcg@10: 0.0335    ndcg@20: 0.0421    
+Thu 25 Sep 2025 10:55:26 INFO test result: 
+recall@10: 0.0642    recall@20: 0.1009    ndcg@10: 0.0351    ndcg@20: 0.0445    
+Thu 25 Sep 2025 10:55:28 INFO epoch 28 training [time: 2.35s, train loss: 4.9721]
+Thu 25 Sep 2025 10:55:32 INFO epoch 28 evaluating [time: 1.57s, valid_score: 0.097600]
+Thu 25 Sep 2025 10:55:32 INFO valid result: 
+recall@10: 0.0636    recall@20: 0.0976    ndcg@10: 0.0340    ndcg@20: 0.0427    
+Thu 25 Sep 2025 10:55:32 INFO test result: 
+recall@10: 0.0658    recall@20: 0.1016    ndcg@10: 0.0355    ndcg@20: 0.0447    
+Thu 25 Sep 2025 10:55:32 INFO ██ DuGRec--Best validation results updated!!!
+Thu 25 Sep 2025 10:55:34 INFO epoch 29 training [time: 2.31s, train loss: 4.9018]
+Thu 25 Sep 2025 10:55:37 INFO epoch 29 evaluating [time: 1.53s, valid_score: 0.097600]
+Thu 25 Sep 2025 10:55:37 INFO valid result: 
+recall@10: 0.0636    recall@20: 0.0976    ndcg@10: 0.0342    ndcg@20: 0.0428    
+Thu 25 Sep 2025 10:55:37 INFO test result: 
+recall@10: 0.0651    recall@20: 0.1020    ndcg@10: 0.0355    ndcg@20: 0.0450    
+Thu 25 Sep 2025 10:55:39 INFO epoch 30 training [time: 2.25s, train loss: 4.8564]
+Thu 25 Sep 2025 10:55:42 INFO epoch 30 evaluating [time: 1.52s, valid_score: 0.097700]
+Thu 25 Sep 2025 10:55:42 INFO valid result: 
+recall@10: 0.0643    recall@20: 0.0977    ndcg@10: 0.0343    ndcg@20: 0.0428    
+Thu 25 Sep 2025 10:55:42 INFO test result: 
+recall@10: 0.0648    recall@20: 0.1022    ndcg@10: 0.0354    ndcg@20: 0.0450    
+Thu 25 Sep 2025 10:55:42 INFO ██ DuGRec--Best validation results updated!!!
+Thu 25 Sep 2025 10:55:45 INFO epoch 31 training [time: 2.34s, train loss: 4.7262]
+Thu 25 Sep 2025 10:55:48 INFO epoch 31 evaluating [time: 1.52s, valid_score: 0.098600]
+Thu 25 Sep 2025 10:55:48 INFO valid result: 
+recall@10: 0.0651    recall@20: 0.0986    ndcg@10: 0.0348    ndcg@20: 0.0433    
+Thu 25 Sep 2025 10:55:48 INFO test result: 
+recall@10: 0.0662    recall@20: 0.1030    ndcg@10: 0.0359    ndcg@20: 0.0453    
+Thu 25 Sep 2025 10:55:48 INFO ██ DuGRec--Best validation results updated!!!
+Thu 25 Sep 2025 10:55:50 INFO epoch 32 training [time: 2.16s, train loss: 4.6187]
+Thu 25 Sep 2025 10:55:53 INFO epoch 32 evaluating [time: 1.63s, valid_score: 0.099000]
+Thu 25 Sep 2025 10:55:53 INFO valid result: 
+recall@10: 0.0646    recall@20: 0.0990    ndcg@10: 0.0344    ndcg@20: 0.0431    
+Thu 25 Sep 2025 10:55:53 INFO test result: 
+recall@10: 0.0661    recall@20: 0.1022    ndcg@10: 0.0357    ndcg@20: 0.0450    
+Thu 25 Sep 2025 10:55:53 INFO ██ DuGRec--Best validation results updated!!!
+Thu 25 Sep 2025 10:55:55 INFO epoch 33 training [time: 2.18s, train loss: 4.5916]
+Thu 25 Sep 2025 10:55:58 INFO epoch 33 evaluating [time: 1.53s, valid_score: 0.098400]
+Thu 25 Sep 2025 10:55:58 INFO valid result: 
+recall@10: 0.0653    recall@20: 0.0984    ndcg@10: 0.0347    ndcg@20: 0.0431    
+Thu 25 Sep 2025 10:55:58 INFO test result: 
+recall@10: 0.0659    recall@20: 0.1039    ndcg@10: 0.0361    ndcg@20: 0.0459    
+Thu 25 Sep 2025 10:56:00 INFO epoch 34 training [time: 1.88s, train loss: 4.5632]
+Thu 25 Sep 2025 10:56:03 INFO epoch 34 evaluating [time: 1.52s, valid_score: 0.099900]
+Thu 25 Sep 2025 10:56:03 INFO valid result: 
+recall@10: 0.0656    recall@20: 0.0999    ndcg@10: 0.0355    ndcg@20: 0.0442    
+Thu 25 Sep 2025 10:56:03 INFO test result: 
+recall@10: 0.0660    recall@20: 0.1036    ndcg@10: 0.0362    ndcg@20: 0.0459    
+Thu 25 Sep 2025 10:56:03 INFO ██ DuGRec--Best validation results updated!!!
+Thu 25 Sep 2025 10:56:05 INFO epoch 35 training [time: 1.95s, train loss: 4.4937]
+Thu 25 Sep 2025 10:56:08 INFO epoch 35 evaluating [time: 1.53s, valid_score: 0.099500]
+Thu 25 Sep 2025 10:56:08 INFO valid result: 
+recall@10: 0.0654    recall@20: 0.0995    ndcg@10: 0.0354    ndcg@20: 0.0440    
+Thu 25 Sep 2025 10:56:08 INFO test result: 
+recall@10: 0.0666    recall@20: 0.1050    ndcg@10: 0.0363    ndcg@20: 0.0462    
+Thu 25 Sep 2025 10:56:10 INFO epoch 36 training [time: 1.90s, train loss: 4.4428]
+Thu 25 Sep 2025 10:56:13 INFO epoch 36 evaluating [time: 1.52s, valid_score: 0.099400]
+Thu 25 Sep 2025 10:56:13 INFO valid result: 
+recall@10: 0.0650    recall@20: 0.0994    ndcg@10: 0.0349    ndcg@20: 0.0437    
+Thu 25 Sep 2025 10:56:13 INFO test result: 
+recall@10: 0.0672    recall@20: 0.1055    ndcg@10: 0.0364    ndcg@20: 0.0463    
+Thu 25 Sep 2025 10:56:15 INFO epoch 37 training [time: 2.10s, train loss: 4.3451]
+Thu 25 Sep 2025 10:56:19 INFO epoch 37 evaluating [time: 1.78s, valid_score: 0.098100]
+Thu 25 Sep 2025 10:56:19 INFO valid result: 
+recall@10: 0.0652    recall@20: 0.0981    ndcg@10: 0.0352    ndcg@20: 0.0436    
+Thu 25 Sep 2025 10:56:19 INFO test result: 
+recall@10: 0.0670    recall@20: 0.1055    ndcg@10: 0.0361    ndcg@20: 0.0460    
+Thu 25 Sep 2025 10:56:21 INFO epoch 38 training [time: 2.27s, train loss: 4.3512]
+Thu 25 Sep 2025 10:56:24 INFO epoch 38 evaluating [time: 1.76s, valid_score: 0.099800]
+Thu 25 Sep 2025 10:56:24 INFO valid result: 
+recall@10: 0.0661    recall@20: 0.0998    ndcg@10: 0.0356    ndcg@20: 0.0441    
+Thu 25 Sep 2025 10:56:24 INFO test result: 
+recall@10: 0.0674    recall@20: 0.1049    ndcg@10: 0.0367    ndcg@20: 0.0464    
+Thu 25 Sep 2025 10:56:26 INFO epoch 39 training [time: 1.99s, train loss: 4.2768]
+Thu 25 Sep 2025 10:56:28 INFO epoch 39 evaluating [time: 1.12s, valid_score: 0.099600]
+Thu 25 Sep 2025 10:56:28 INFO valid result: 
+recall@10: 0.0661    recall@20: 0.0996    ndcg@10: 0.0358    ndcg@20: 0.0443    
+Thu 25 Sep 2025 10:56:28 INFO test result: 
+recall@10: 0.0670    recall@20: 0.1053    ndcg@10: 0.0366    ndcg@20: 0.0465    
+Thu 25 Sep 2025 10:56:30 INFO epoch 40 training [time: 1.88s, train loss: 4.2420]
+Thu 25 Sep 2025 10:56:34 INFO epoch 40 evaluating [time: 1.62s, valid_score: 0.099400]
+Thu 25 Sep 2025 10:56:34 INFO valid result: 
+recall@10: 0.0665    recall@20: 0.0994    ndcg@10: 0.0360    ndcg@20: 0.0443    
+Thu 25 Sep 2025 10:56:34 INFO test result: 
+recall@10: 0.0669    recall@20: 0.1052    ndcg@10: 0.0363    ndcg@20: 0.0462    
+Thu 25 Sep 2025 10:56:35 INFO epoch 41 training [time: 1.93s, train loss: 4.1858]
+Thu 25 Sep 2025 10:56:39 INFO epoch 41 evaluating [time: 1.60s, valid_score: 0.099900]
+Thu 25 Sep 2025 10:56:39 INFO valid result: 
+recall@10: 0.0671    recall@20: 0.0999    ndcg@10: 0.0363    ndcg@20: 0.0446    
+Thu 25 Sep 2025 10:56:39 INFO test result: 
+recall@10: 0.0675    recall@20: 0.1049    ndcg@10: 0.0368    ndcg@20: 0.0465    
+Thu 25 Sep 2025 10:56:41 INFO epoch 42 training [time: 2.07s, train loss: 4.1082]
+Thu 25 Sep 2025 10:56:44 INFO epoch 42 evaluating [time: 1.60s, valid_score: 0.100300]
+Thu 25 Sep 2025 10:56:44 INFO valid result: 
+recall@10: 0.0662    recall@20: 0.1003    ndcg@10: 0.0358    ndcg@20: 0.0445    
+Thu 25 Sep 2025 10:56:44 INFO test result: 
+recall@10: 0.0673    recall@20: 0.1051    ndcg@10: 0.0366    ndcg@20: 0.0463    
+Thu 25 Sep 2025 10:56:44 INFO ██ DuGRec--Best validation results updated!!!
+Thu 25 Sep 2025 10:56:46 INFO epoch 43 training [time: 1.94s, train loss: 4.0856]
+Thu 25 Sep 2025 10:56:49 INFO epoch 43 evaluating [time: 1.53s, valid_score: 0.101600]
+Thu 25 Sep 2025 10:56:49 INFO valid result: 
+recall@10: 0.0665    recall@20: 0.1016    ndcg@10: 0.0358    ndcg@20: 0.0447    
+Thu 25 Sep 2025 10:56:49 INFO test result: 
+recall@10: 0.0679    recall@20: 0.1048    ndcg@10: 0.0370    ndcg@20: 0.0465    
+Thu 25 Sep 2025 10:56:49 INFO ██ DuGRec--Best validation results updated!!!
+Thu 25 Sep 2025 10:56:51 INFO epoch 44 training [time: 2.05s, train loss: 4.0589]
+Thu 25 Sep 2025 10:56:55 INFO epoch 44 evaluating [time: 1.86s, valid_score: 0.100500]
+Thu 25 Sep 2025 10:56:55 INFO valid result: 
+recall@10: 0.0669    recall@20: 0.1005    ndcg@10: 0.0358    ndcg@20: 0.0443    
+Thu 25 Sep 2025 10:56:55 INFO test result: 
+recall@10: 0.0679    recall@20: 0.1050    ndcg@10: 0.0371    ndcg@20: 0.0467    
+Thu 25 Sep 2025 10:56:57 INFO epoch 45 training [time: 2.28s, train loss: 4.0522]
+Thu 25 Sep 2025 10:57:00 INFO epoch 45 evaluating [time: 1.53s, valid_score: 0.100500]
+Thu 25 Sep 2025 10:57:00 INFO valid result: 
+recall@10: 0.0681    recall@20: 0.1005    ndcg@10: 0.0364    ndcg@20: 0.0446    
+Thu 25 Sep 2025 10:57:00 INFO test result: 
+recall@10: 0.0682    recall@20: 0.1058    ndcg@10: 0.0370    ndcg@20: 0.0467    
+Thu 25 Sep 2025 10:57:02 INFO epoch 46 training [time: 2.35s, train loss: 4.0080]
+Thu 25 Sep 2025 10:57:05 INFO epoch 46 evaluating [time: 1.53s, valid_score: 0.101500]
+Thu 25 Sep 2025 10:57:05 INFO valid result: 
+recall@10: 0.0673    recall@20: 0.1015    ndcg@10: 0.0365    ndcg@20: 0.0452    
+Thu 25 Sep 2025 10:57:05 INFO test result: 
+recall@10: 0.0682    recall@20: 0.1054    ndcg@10: 0.0373    ndcg@20: 0.0469    
+Thu 25 Sep 2025 10:57:08 INFO epoch 47 training [time: 2.21s, train loss: 3.9875]
+Thu 25 Sep 2025 10:57:11 INFO epoch 47 evaluating [time: 1.54s, valid_score: 0.102600]
+Thu 25 Sep 2025 10:57:11 INFO valid result: 
+recall@10: 0.0680    recall@20: 0.1026    ndcg@10: 0.0366    ndcg@20: 0.0453    
+Thu 25 Sep 2025 10:57:11 INFO test result: 
+recall@10: 0.0688    recall@20: 0.1050    ndcg@10: 0.0372    ndcg@20: 0.0464    
+Thu 25 Sep 2025 10:57:11 INFO ██ DuGRec--Best validation results updated!!!
+Thu 25 Sep 2025 10:57:13 INFO epoch 48 training [time: 2.03s, train loss: 3.9570]
+Thu 25 Sep 2025 10:57:16 INFO epoch 48 evaluating [time: 1.53s, valid_score: 0.101300]
+Thu 25 Sep 2025 10:57:16 INFO valid result: 
+recall@10: 0.0671    recall@20: 0.1013    ndcg@10: 0.0364    ndcg@20: 0.0450    
+Thu 25 Sep 2025 10:57:16 INFO test result: 
+recall@10: 0.0676    recall@20: 0.1060    ndcg@10: 0.0371    ndcg@20: 0.0469    
+Thu 25 Sep 2025 10:57:18 INFO epoch 49 training [time: 2.24s, train loss: 3.9447]
+Thu 25 Sep 2025 10:57:21 INFO epoch 49 evaluating [time: 1.80s, valid_score: 0.101000]
+Thu 25 Sep 2025 10:57:21 INFO valid result: 
+recall@10: 0.0681    recall@20: 0.1010    ndcg@10: 0.0367    ndcg@20: 0.0450    
+Thu 25 Sep 2025 10:57:21 INFO test result: 
+recall@10: 0.0670    recall@20: 0.1048    ndcg@10: 0.0367    ndcg@20: 0.0464    
+Thu 25 Sep 2025 10:57:23 INFO epoch 50 training [time: 1.95s, train loss: 3.8884]
+Thu 25 Sep 2025 10:57:27 INFO epoch 50 evaluating [time: 1.75s, valid_score: 0.102000]
+Thu 25 Sep 2025 10:57:27 INFO valid result: 
+recall@10: 0.0667    recall@20: 0.1020    ndcg@10: 0.0363    ndcg@20: 0.0452    
+Thu 25 Sep 2025 10:57:27 INFO test result: 
+recall@10: 0.0685    recall@20: 0.1052    ndcg@10: 0.0374    ndcg@20: 0.0468    
+Thu 25 Sep 2025 10:57:29 INFO epoch 51 training [time: 2.34s, train loss: 3.9110]
+Thu 25 Sep 2025 10:57:32 INFO epoch 51 evaluating [time: 1.53s, valid_score: 0.102400]
+Thu 25 Sep 2025 10:57:32 INFO valid result: 
+recall@10: 0.0671    recall@20: 0.1024    ndcg@10: 0.0366    ndcg@20: 0.0456    
+Thu 25 Sep 2025 10:57:32 INFO test result: 
+recall@10: 0.0685    recall@20: 0.1053    ndcg@10: 0.0373    ndcg@20: 0.0467    
+Thu 25 Sep 2025 10:57:35 INFO epoch 52 training [time: 2.33s, train loss: 3.8468]
+Thu 25 Sep 2025 10:57:38 INFO epoch 52 evaluating [time: 1.56s, valid_score: 0.102300]
+Thu 25 Sep 2025 10:57:38 INFO valid result: 
+recall@10: 0.0672    recall@20: 0.1023    ndcg@10: 0.0363    ndcg@20: 0.0452    
+Thu 25 Sep 2025 10:57:38 INFO test result: 
+recall@10: 0.0682    recall@20: 0.1054    ndcg@10: 0.0371    ndcg@20: 0.0467    
+Thu 25 Sep 2025 10:57:40 INFO epoch 53 training [time: 2.20s, train loss: 3.8577]
+Thu 25 Sep 2025 10:57:43 INFO epoch 53 evaluating [time: 1.54s, valid_score: 0.104000]
+Thu 25 Sep 2025 10:57:43 INFO valid result: 
+recall@10: 0.0672    recall@20: 0.1040    ndcg@10: 0.0364    ndcg@20: 0.0457    
+Thu 25 Sep 2025 10:57:43 INFO test result: 
+recall@10: 0.0681    recall@20: 0.1049    ndcg@10: 0.0374    ndcg@20: 0.0469    
+Thu 25 Sep 2025 10:57:43 INFO ██ DuGRec--Best validation results updated!!!
+Thu 25 Sep 2025 10:57:45 INFO epoch 54 training [time: 2.18s, train loss: 3.7726]
+Thu 25 Sep 2025 10:57:48 INFO epoch 54 evaluating [time: 1.63s, valid_score: 0.102000]
+Thu 25 Sep 2025 10:57:48 INFO valid result: 
+recall@10: 0.0674    recall@20: 0.1020    ndcg@10: 0.0363    ndcg@20: 0.0451    
+Thu 25 Sep 2025 10:57:48 INFO test result: 
+recall@10: 0.0693    recall@20: 0.1058    ndcg@10: 0.0375    ndcg@20: 0.0469    
+Thu 25 Sep 2025 10:57:51 INFO epoch 55 training [time: 2.22s, train loss: 3.7860]
+Thu 25 Sep 2025 10:57:54 INFO epoch 55 evaluating [time: 1.54s, valid_score: 0.101800]
+Thu 25 Sep 2025 10:57:54 INFO valid result: 
+recall@10: 0.0676    recall@20: 0.1018    ndcg@10: 0.0361    ndcg@20: 0.0448    
+Thu 25 Sep 2025 10:57:54 INFO test result: 
+recall@10: 0.0689    recall@20: 0.1058    ndcg@10: 0.0375    ndcg@20: 0.0470    
+Thu 25 Sep 2025 10:57:56 INFO epoch 56 training [time: 2.34s, train loss: 3.7773]
+Thu 25 Sep 2025 10:57:59 INFO epoch 56 evaluating [time: 1.62s, valid_score: 0.101700]
+Thu 25 Sep 2025 10:57:59 INFO valid result: 
+recall@10: 0.0672    recall@20: 0.1017    ndcg@10: 0.0365    ndcg@20: 0.0452    
+Thu 25 Sep 2025 10:57:59 INFO test result: 
+recall@10: 0.0693    recall@20: 0.1056    ndcg@10: 0.0376    ndcg@20: 0.0470    
+Thu 25 Sep 2025 10:58:01 INFO epoch 57 training [time: 2.08s, train loss: 3.7051]
+Thu 25 Sep 2025 10:58:04 INFO epoch 57 evaluating [time: 1.53s, valid_score: 0.101900]
+Thu 25 Sep 2025 10:58:04 INFO valid result: 
+recall@10: 0.0672    recall@20: 0.1019    ndcg@10: 0.0364    ndcg@20: 0.0452    
+Thu 25 Sep 2025 10:58:04 INFO test result: 
+recall@10: 0.0684    recall@20: 0.1059    ndcg@10: 0.0374    ndcg@20: 0.0471    
+Thu 25 Sep 2025 10:58:06 INFO epoch 58 training [time: 2.11s, train loss: 3.6996]
+Thu 25 Sep 2025 10:58:10 INFO epoch 58 evaluating [time: 1.52s, valid_score: 0.102700]
+Thu 25 Sep 2025 10:58:10 INFO valid result: 
+recall@10: 0.0676    recall@20: 0.1027    ndcg@10: 0.0365    ndcg@20: 0.0455    
+Thu 25 Sep 2025 10:58:10 INFO test result: 
+recall@10: 0.0690    recall@20: 0.1071    ndcg@10: 0.0377    ndcg@20: 0.0475    
+Thu 25 Sep 2025 10:58:12 INFO epoch 59 training [time: 2.22s, train loss: 3.7511]
+Thu 25 Sep 2025 10:58:15 INFO epoch 59 evaluating [time: 1.54s, valid_score: 0.102800]
+Thu 25 Sep 2025 10:58:15 INFO valid result: 
+recall@10: 0.0670    recall@20: 0.1028    ndcg@10: 0.0364    ndcg@20: 0.0455    
+Thu 25 Sep 2025 10:58:15 INFO test result: 
+recall@10: 0.0692    recall@20: 0.1062    ndcg@10: 0.0377    ndcg@20: 0.0473    
+Thu 25 Sep 2025 10:58:17 INFO epoch 60 training [time: 2.27s, train loss: 3.7204]
+Thu 25 Sep 2025 10:58:20 INFO epoch 60 evaluating [time: 1.52s, valid_score: 0.103000]
+Thu 25 Sep 2025 10:58:20 INFO valid result: 
+recall@10: 0.0683    recall@20: 0.1030    ndcg@10: 0.0369    ndcg@20: 0.0457    
+Thu 25 Sep 2025 10:58:20 INFO test result: 
+recall@10: 0.0694    recall@20: 0.1063    ndcg@10: 0.0379    ndcg@20: 0.0474    
+Thu 25 Sep 2025 10:58:22 INFO epoch 61 training [time: 2.36s, train loss: 3.6394]
+Thu 25 Sep 2025 10:58:26 INFO epoch 61 evaluating [time: 1.62s, valid_score: 0.102300]
+Thu 25 Sep 2025 10:58:26 INFO valid result: 
+recall@10: 0.0671    recall@20: 0.1023    ndcg@10: 0.0367    ndcg@20: 0.0457    
+Thu 25 Sep 2025 10:58:26 INFO test result: 
+recall@10: 0.0692    recall@20: 0.1067    ndcg@10: 0.0378    ndcg@20: 0.0475    
+Thu 25 Sep 2025 10:58:28 INFO epoch 62 training [time: 2.29s, train loss: 3.6111]
+Thu 25 Sep 2025 10:58:31 INFO epoch 62 evaluating [time: 1.61s, valid_score: 0.102000]
+Thu 25 Sep 2025 10:58:31 INFO valid result: 
+recall@10: 0.0678    recall@20: 0.1020    ndcg@10: 0.0369    ndcg@20: 0.0456    
+Thu 25 Sep 2025 10:58:31 INFO test result: 
+recall@10: 0.0687    recall@20: 0.1065    ndcg@10: 0.0375    ndcg@20: 0.0473    
+Thu 25 Sep 2025 10:58:33 INFO epoch 63 training [time: 2.19s, train loss: 3.6384]
+Thu 25 Sep 2025 10:58:36 INFO epoch 63 evaluating [time: 1.51s, valid_score: 0.102100]
+Thu 25 Sep 2025 10:58:36 INFO valid result: 
+recall@10: 0.0679    recall@20: 0.1021    ndcg@10: 0.0368    ndcg@20: 0.0455    
+Thu 25 Sep 2025 10:58:36 INFO test result: 
+recall@10: 0.0694    recall@20: 0.1065    ndcg@10: 0.0380    ndcg@20: 0.0475    
+Thu 25 Sep 2025 10:58:39 INFO epoch 64 training [time: 2.27s, train loss: 3.6420]
+Thu 25 Sep 2025 10:58:42 INFO epoch 64 evaluating [time: 1.53s, valid_score: 0.103500]
+Thu 25 Sep 2025 10:58:42 INFO valid result: 
+recall@10: 0.0688    recall@20: 0.1035    ndcg@10: 0.0373    ndcg@20: 0.0461    
+Thu 25 Sep 2025 10:58:42 INFO test result: 
+recall@10: 0.0697    recall@20: 0.1072    ndcg@10: 0.0382    ndcg@20: 0.0478    
+Thu 25 Sep 2025 10:58:44 INFO epoch 65 training [time: 2.11s, train loss: 3.6236]
+Thu 25 Sep 2025 10:58:47 INFO epoch 65 evaluating [time: 1.52s, valid_score: 0.102400]
+Thu 25 Sep 2025 10:58:47 INFO valid result: 
+recall@10: 0.0673    recall@20: 0.1024    ndcg@10: 0.0367    ndcg@20: 0.0456    
+Thu 25 Sep 2025 10:58:47 INFO test result: 
+recall@10: 0.0697    recall@20: 0.1063    ndcg@10: 0.0380    ndcg@20: 0.0474    
+Thu 25 Sep 2025 10:58:49 INFO epoch 66 training [time: 2.26s, train loss: 3.6094]
+Thu 25 Sep 2025 10:58:53 INFO epoch 66 evaluating [time: 1.84s, valid_score: 0.103200]
+Thu 25 Sep 2025 10:58:53 INFO valid result: 
+recall@10: 0.0685    recall@20: 0.1032    ndcg@10: 0.0372    ndcg@20: 0.0460    
+Thu 25 Sep 2025 10:58:53 INFO test result: 
+recall@10: 0.0692    recall@20: 0.1073    ndcg@10: 0.0378    ndcg@20: 0.0475    
+Thu 25 Sep 2025 10:58:55 INFO epoch 67 training [time: 2.33s, train loss: 3.5787]
+Thu 25 Sep 2025 10:58:58 INFO epoch 67 evaluating [time: 1.58s, valid_score: 0.103200]
+Thu 25 Sep 2025 10:58:58 INFO valid result: 
+recall@10: 0.0688    recall@20: 0.1032    ndcg@10: 0.0376    ndcg@20: 0.0464    
+Thu 25 Sep 2025 10:58:58 INFO test result: 
+recall@10: 0.0695    recall@20: 0.1086    ndcg@10: 0.0382    ndcg@20: 0.0483    
+Thu 25 Sep 2025 10:59:01 INFO epoch 68 training [time: 2.31s, train loss: 3.5896]
+Thu 25 Sep 2025 10:59:04 INFO epoch 68 evaluating [time: 1.52s, valid_score: 0.103500]
+Thu 25 Sep 2025 10:59:04 INFO valid result: 
+recall@10: 0.0680    recall@20: 0.1035    ndcg@10: 0.0369    ndcg@20: 0.0459    
+Thu 25 Sep 2025 10:59:04 INFO test result: 
+recall@10: 0.0694    recall@20: 0.1070    ndcg@10: 0.0381    ndcg@20: 0.0477    
+Thu 25 Sep 2025 10:59:06 INFO epoch 69 training [time: 2.32s, train loss: 3.5836]
+Thu 25 Sep 2025 10:59:09 INFO epoch 69 evaluating [time: 1.53s, valid_score: 0.103900]
+Thu 25 Sep 2025 10:59:09 INFO valid result: 
+recall@10: 0.0683    recall@20: 0.1039    ndcg@10: 0.0370    ndcg@20: 0.0460    
+Thu 25 Sep 2025 10:59:09 INFO test result: 
+recall@10: 0.0690    recall@20: 0.1078    ndcg@10: 0.0383    ndcg@20: 0.0482    
+Thu 25 Sep 2025 10:59:11 INFO epoch 70 training [time: 2.07s, train loss: 3.5083]
+Thu 25 Sep 2025 10:59:14 INFO epoch 70 evaluating [time: 1.53s, valid_score: 0.102200]
+Thu 25 Sep 2025 10:59:14 INFO valid result: 
+recall@10: 0.0678    recall@20: 0.1022    ndcg@10: 0.0369    ndcg@20: 0.0456    
+Thu 25 Sep 2025 10:59:14 INFO test result: 
+recall@10: 0.0702    recall@20: 0.1077    ndcg@10: 0.0384    ndcg@20: 0.0481    
+Thu 25 Sep 2025 10:59:17 INFO epoch 71 training [time: 2.30s, train loss: 3.5194]
+Thu 25 Sep 2025 10:59:20 INFO epoch 71 evaluating [time: 1.53s, valid_score: 0.103300]
+Thu 25 Sep 2025 10:59:20 INFO valid result: 
+recall@10: 0.0685    recall@20: 0.1033    ndcg@10: 0.0371    ndcg@20: 0.0460    
+Thu 25 Sep 2025 10:59:20 INFO test result: 
+recall@10: 0.0696    recall@20: 0.1074    ndcg@10: 0.0383    ndcg@20: 0.0480    
+Thu 25 Sep 2025 10:59:22 INFO epoch 72 training [time: 2.16s, train loss: 3.5677]
+Thu 25 Sep 2025 10:59:25 INFO epoch 72 evaluating [time: 1.55s, valid_score: 0.103500]
+Thu 25 Sep 2025 10:59:25 INFO valid result: 
+recall@10: 0.0685    recall@20: 0.1035    ndcg@10: 0.0374    ndcg@20: 0.0463    
+Thu 25 Sep 2025 10:59:25 INFO test result: 
+recall@10: 0.0697    recall@20: 0.1072    ndcg@10: 0.0385    ndcg@20: 0.0481    
+Thu 25 Sep 2025 10:59:27 INFO epoch 73 training [time: 2.05s, train loss: 3.5275]
+Thu 25 Sep 2025 10:59:30 INFO epoch 73 evaluating [time: 1.67s, valid_score: 0.103400]
+Thu 25 Sep 2025 10:59:30 INFO valid result: 
+recall@10: 0.0682    recall@20: 0.1034    ndcg@10: 0.0371    ndcg@20: 0.0460    
+Thu 25 Sep 2025 10:59:30 INFO test result: 
+recall@10: 0.0697    recall@20: 0.1074    ndcg@10: 0.0386    ndcg@20: 0.0483    
+Thu 25 Sep 2025 10:59:32 INFO epoch 74 training [time: 2.05s, train loss: 3.4862]
+Thu 25 Sep 2025 10:59:34 INFO epoch 74 evaluating [time: 1.15s, valid_score: 0.103600]
+Thu 25 Sep 2025 10:59:34 INFO valid result: 
+recall@10: 0.0693    recall@20: 0.1036    ndcg@10: 0.0376    ndcg@20: 0.0463    
+Thu 25 Sep 2025 10:59:34 INFO test result: 
+recall@10: 0.0697    recall@20: 0.1073    ndcg@10: 0.0384    ndcg@20: 0.0481    
+Thu 25 Sep 2025 10:59:37 INFO epoch 75 training [time: 2.20s, train loss: 3.4923]
+Thu 25 Sep 2025 10:59:40 INFO epoch 75 evaluating [time: 1.54s, valid_score: 0.102800]
+Thu 25 Sep 2025 10:59:40 INFO valid result: 
+recall@10: 0.0687    recall@20: 0.1028    ndcg@10: 0.0372    ndcg@20: 0.0459    
+Thu 25 Sep 2025 10:59:40 INFO test result: 
+recall@10: 0.0691    recall@20: 0.1071    ndcg@10: 0.0383    ndcg@20: 0.0481    
+Thu 25 Sep 2025 10:59:42 INFO epoch 76 training [time: 2.06s, train loss: 3.4902]
+Thu 25 Sep 2025 10:59:45 INFO epoch 76 evaluating [time: 1.54s, valid_score: 0.103300]
+Thu 25 Sep 2025 10:59:45 INFO valid result: 
+recall@10: 0.0682    recall@20: 0.1033    ndcg@10: 0.0371    ndcg@20: 0.0460    
+Thu 25 Sep 2025 10:59:45 INFO test result: 
+recall@10: 0.0700    recall@20: 0.1082    ndcg@10: 0.0385    ndcg@20: 0.0483    
+Thu 25 Sep 2025 10:59:47 INFO epoch 77 training [time: 2.34s, train loss: 3.5053]
+Thu 25 Sep 2025 10:59:50 INFO epoch 77 evaluating [time: 1.53s, valid_score: 0.103200]
+Thu 25 Sep 2025 10:59:50 INFO valid result: 
+recall@10: 0.0684    recall@20: 0.1032    ndcg@10: 0.0371    ndcg@20: 0.0460    
+Thu 25 Sep 2025 10:59:50 INFO test result: 
+recall@10: 0.0698    recall@20: 0.1075    ndcg@10: 0.0383    ndcg@20: 0.0480    
+Thu 25 Sep 2025 10:59:53 INFO epoch 78 training [time: 2.36s, train loss: 3.4976]
+Thu 25 Sep 2025 10:59:56 INFO epoch 78 evaluating [time: 1.77s, valid_score: 0.103900]
+Thu 25 Sep 2025 10:59:56 INFO valid result: 
+recall@10: 0.0682    recall@20: 0.1039    ndcg@10: 0.0373    ndcg@20: 0.0464    
+Thu 25 Sep 2025 10:59:56 INFO test result: 
+recall@10: 0.0703    recall@20: 0.1066    ndcg@10: 0.0385    ndcg@20: 0.0479    
+Thu 25 Sep 2025 10:59:58 INFO epoch 79 training [time: 2.25s, train loss: 3.4652]
+Thu 25 Sep 2025 11:00:01 INFO epoch 79 evaluating [time: 1.54s, valid_score: 0.104000]
+Thu 25 Sep 2025 11:00:01 INFO valid result: 
+recall@10: 0.0689    recall@20: 0.1040    ndcg@10: 0.0372    ndcg@20: 0.0461    
+Thu 25 Sep 2025 11:00:01 INFO test result: 
+recall@10: 0.0699    recall@20: 0.1077    ndcg@10: 0.0386    ndcg@20: 0.0483    
+Thu 25 Sep 2025 11:00:03 INFO epoch 80 training [time: 2.29s, train loss: 3.4309]
+Thu 25 Sep 2025 11:00:06 INFO epoch 80 evaluating [time: 1.54s, valid_score: 0.103900]
+Thu 25 Sep 2025 11:00:06 INFO valid result: 
+recall@10: 0.0686    recall@20: 0.1039    ndcg@10: 0.0373    ndcg@20: 0.0462    
+Thu 25 Sep 2025 11:00:06 INFO test result: 
+recall@10: 0.0694    recall@20: 0.1078    ndcg@10: 0.0380    ndcg@20: 0.0479    
+Thu 25 Sep 2025 11:00:08 INFO epoch 81 training [time: 2.15s, train loss: 3.4147]
+Thu 25 Sep 2025 11:00:12 INFO epoch 81 evaluating [time: 1.56s, valid_score: 0.104800]
+Thu 25 Sep 2025 11:00:12 INFO valid result: 
+recall@10: 0.0682    recall@20: 0.1048    ndcg@10: 0.0370    ndcg@20: 0.0463    
+Thu 25 Sep 2025 11:00:12 INFO test result: 
+recall@10: 0.0695    recall@20: 0.1081    ndcg@10: 0.0384    ndcg@20: 0.0483    
+Thu 25 Sep 2025 11:00:12 INFO ██ DuGRec--Best validation results updated!!!
+Thu 25 Sep 2025 11:00:14 INFO epoch 82 training [time: 2.35s, train loss: 3.4353]
+Thu 25 Sep 2025 11:00:17 INFO epoch 82 evaluating [time: 1.53s, valid_score: 0.104500]
+Thu 25 Sep 2025 11:00:17 INFO valid result: 
+recall@10: 0.0686    recall@20: 0.1045    ndcg@10: 0.0373    ndcg@20: 0.0464    
+Thu 25 Sep 2025 11:00:17 INFO test result: 
+recall@10: 0.0691    recall@20: 0.1069    ndcg@10: 0.0381    ndcg@20: 0.0478    
+Thu 25 Sep 2025 11:00:19 INFO epoch 83 training [time: 2.35s, train loss: 3.4409]
+Thu 25 Sep 2025 11:00:23 INFO epoch 83 evaluating [time: 1.65s, valid_score: 0.103500]
+Thu 25 Sep 2025 11:00:23 INFO valid result: 
+recall@10: 0.0679    recall@20: 0.1035    ndcg@10: 0.0369    ndcg@20: 0.0460    
+Thu 25 Sep 2025 11:00:23 INFO test result: 
+recall@10: 0.0702    recall@20: 0.1083    ndcg@10: 0.0384    ndcg@20: 0.0481    
+Thu 25 Sep 2025 11:00:25 INFO epoch 84 training [time: 2.34s, train loss: 3.4219]
+Thu 25 Sep 2025 11:00:28 INFO epoch 84 evaluating [time: 1.54s, valid_score: 0.104500]
+Thu 25 Sep 2025 11:00:28 INFO valid result: 
+recall@10: 0.0685    recall@20: 0.1045    ndcg@10: 0.0373    ndcg@20: 0.0464    
+Thu 25 Sep 2025 11:00:28 INFO test result: 
+recall@10: 0.0700    recall@20: 0.1064    ndcg@10: 0.0385    ndcg@20: 0.0478    
+Thu 25 Sep 2025 11:00:30 INFO epoch 85 training [time: 2.34s, train loss: 3.4135]
+Thu 25 Sep 2025 11:00:33 INFO epoch 85 evaluating [time: 1.63s, valid_score: 0.104000]
+Thu 25 Sep 2025 11:00:33 INFO valid result: 
+recall@10: 0.0688    recall@20: 0.1040    ndcg@10: 0.0371    ndcg@20: 0.0461    
+Thu 25 Sep 2025 11:00:33 INFO test result: 
+recall@10: 0.0697    recall@20: 0.1075    ndcg@10: 0.0381    ndcg@20: 0.0478    
+Thu 25 Sep 2025 11:00:36 INFO epoch 86 training [time: 2.33s, train loss: 3.3848]
+Thu 25 Sep 2025 11:00:39 INFO epoch 86 evaluating [time: 1.53s, valid_score: 0.104200]
+Thu 25 Sep 2025 11:00:39 INFO valid result: 
+recall@10: 0.0691    recall@20: 0.1042    ndcg@10: 0.0374    ndcg@20: 0.0463    
+Thu 25 Sep 2025 11:00:39 INFO test result: 
+recall@10: 0.0696    recall@20: 0.1072    ndcg@10: 0.0384    ndcg@20: 0.0481    
+Thu 25 Sep 2025 11:00:41 INFO epoch 87 training [time: 2.23s, train loss: 3.4006]
+Thu 25 Sep 2025 11:00:44 INFO epoch 87 evaluating [time: 1.52s, valid_score: 0.105400]
+Thu 25 Sep 2025 11:00:44 INFO valid result: 
+recall@10: 0.0685    recall@20: 0.1054    ndcg@10: 0.0373    ndcg@20: 0.0467    
+Thu 25 Sep 2025 11:00:44 INFO test result: 
+recall@10: 0.0700    recall@20: 0.1081    ndcg@10: 0.0385    ndcg@20: 0.0483    
+Thu 25 Sep 2025 11:00:44 INFO ██ DuGRec--Best validation results updated!!!
+Thu 25 Sep 2025 11:00:46 INFO epoch 88 training [time: 1.97s, train loss: 3.3837]
+Thu 25 Sep 2025 11:00:49 INFO epoch 88 evaluating [time: 1.53s, valid_score: 0.103300]
+Thu 25 Sep 2025 11:00:49 INFO valid result: 
+recall@10: 0.0684    recall@20: 0.1033    ndcg@10: 0.0373    ndcg@20: 0.0462    
+Thu 25 Sep 2025 11:00:49 INFO test result: 
+recall@10: 0.0692    recall@20: 0.1077    ndcg@10: 0.0382    ndcg@20: 0.0481    
+Thu 25 Sep 2025 11:00:51 INFO epoch 89 training [time: 2.16s, train loss: 3.4050]
+Thu 25 Sep 2025 11:00:54 INFO epoch 89 evaluating [time: 1.54s, valid_score: 0.104300]
+Thu 25 Sep 2025 11:00:54 INFO valid result: 
+recall@10: 0.0694    recall@20: 0.1043    ndcg@10: 0.0379    ndcg@20: 0.0468    
+Thu 25 Sep 2025 11:00:54 INFO test result: 
+recall@10: 0.0692    recall@20: 0.1072    ndcg@10: 0.0381    ndcg@20: 0.0478    
+Thu 25 Sep 2025 11:00:57 INFO epoch 90 training [time: 2.34s, train loss: 3.3786]
+Thu 25 Sep 2025 11:01:00 INFO epoch 90 evaluating [time: 1.64s, valid_score: 0.104200]
+Thu 25 Sep 2025 11:01:00 INFO valid result: 
+recall@10: 0.0683    recall@20: 0.1042    ndcg@10: 0.0372    ndcg@20: 0.0464    
+Thu 25 Sep 2025 11:01:00 INFO test result: 
+recall@10: 0.0699    recall@20: 0.1083    ndcg@10: 0.0384    ndcg@20: 0.0483    
+Thu 25 Sep 2025 11:01:02 INFO epoch 91 training [time: 2.20s, train loss: 3.3282]
+Thu 25 Sep 2025 11:01:05 INFO epoch 91 evaluating [time: 1.54s, valid_score: 0.103800]
+Thu 25 Sep 2025 11:01:05 INFO valid result: 
+recall@10: 0.0691    recall@20: 0.1038    ndcg@10: 0.0375    ndcg@20: 0.0463    
+Thu 25 Sep 2025 11:01:05 INFO test result: 
+recall@10: 0.0707    recall@20: 0.1077    ndcg@10: 0.0385    ndcg@20: 0.0480    
+Thu 25 Sep 2025 11:01:07 INFO epoch 92 training [time: 2.04s, train loss: 3.3418]
+Thu 25 Sep 2025 11:01:10 INFO epoch 92 evaluating [time: 1.53s, valid_score: 0.104900]
+Thu 25 Sep 2025 11:01:10 INFO valid result: 
+recall@10: 0.0690    recall@20: 0.1049    ndcg@10: 0.0373    ndcg@20: 0.0464    
+Thu 25 Sep 2025 11:01:10 INFO test result: 
+recall@10: 0.0697    recall@20: 0.1087    ndcg@10: 0.0383    ndcg@20: 0.0484    
+Thu 25 Sep 2025 11:01:13 INFO epoch 93 training [time: 2.22s, train loss: 3.3545]
+Thu 25 Sep 2025 11:01:16 INFO epoch 93 evaluating [time: 1.54s, valid_score: 0.104800]
+Thu 25 Sep 2025 11:01:16 INFO valid result: 
+recall@10: 0.0691    recall@20: 0.1048    ndcg@10: 0.0374    ndcg@20: 0.0466    
+Thu 25 Sep 2025 11:01:16 INFO test result: 
+recall@10: 0.0699    recall@20: 0.1082    ndcg@10: 0.0385    ndcg@20: 0.0483    
+Thu 25 Sep 2025 11:01:18 INFO epoch 94 training [time: 2.37s, train loss: 3.3327]
+Thu 25 Sep 2025 11:01:21 INFO epoch 94 evaluating [time: 1.54s, valid_score: 0.105100]
+Thu 25 Sep 2025 11:01:21 INFO valid result: 
+recall@10: 0.0692    recall@20: 0.1051    ndcg@10: 0.0378    ndcg@20: 0.0469    
+Thu 25 Sep 2025 11:01:21 INFO test result: 
+recall@10: 0.0703    recall@20: 0.1075    ndcg@10: 0.0386    ndcg@20: 0.0482    
+Thu 25 Sep 2025 11:01:23 INFO epoch 95 training [time: 2.15s, train loss: 3.3548]
+Thu 25 Sep 2025 11:01:26 INFO epoch 95 evaluating [time: 1.63s, valid_score: 0.105300]
+Thu 25 Sep 2025 11:01:26 INFO valid result: 
+recall@10: 0.0691    recall@20: 0.1053    ndcg@10: 0.0373    ndcg@20: 0.0465    
+Thu 25 Sep 2025 11:01:26 INFO test result: 
+recall@10: 0.0701    recall@20: 0.1089    ndcg@10: 0.0388    ndcg@20: 0.0487    
+Thu 25 Sep 2025 11:01:29 INFO epoch 96 training [time: 2.18s, train loss: 3.3392]
+Thu 25 Sep 2025 11:01:32 INFO epoch 96 evaluating [time: 1.61s, valid_score: 0.105200]
+Thu 25 Sep 2025 11:01:32 INFO valid result: 
+recall@10: 0.0693    recall@20: 0.1052    ndcg@10: 0.0375    ndcg@20: 0.0466    
+Thu 25 Sep 2025 11:01:32 INFO test result: 
+recall@10: 0.0704    recall@20: 0.1070    ndcg@10: 0.0389    ndcg@20: 0.0483    
+Thu 25 Sep 2025 11:01:34 INFO epoch 97 training [time: 2.04s, train loss: 3.3256]
+Thu 25 Sep 2025 11:01:37 INFO epoch 97 evaluating [time: 1.53s, valid_score: 0.105300]
+Thu 25 Sep 2025 11:01:37 INFO valid result: 
+recall@10: 0.0678    recall@20: 0.1053    ndcg@10: 0.0371    ndcg@20: 0.0467    
+Thu 25 Sep 2025 11:01:37 INFO test result: 
+recall@10: 0.0697    recall@20: 0.1083    ndcg@10: 0.0383    ndcg@20: 0.0483    
+Thu 25 Sep 2025 11:01:39 INFO epoch 98 training [time: 2.32s, train loss: 3.3213]
+Thu 25 Sep 2025 11:01:42 INFO epoch 98 evaluating [time: 1.53s, valid_score: 0.105400]
+Thu 25 Sep 2025 11:01:42 INFO valid result: 
+recall@10: 0.0697    recall@20: 0.1054    ndcg@10: 0.0377    ndcg@20: 0.0468    
+Thu 25 Sep 2025 11:01:42 INFO test result: 
+recall@10: 0.0703    recall@20: 0.1087    ndcg@10: 0.0385    ndcg@20: 0.0484    
+Thu 25 Sep 2025 11:01:45 INFO epoch 99 training [time: 2.23s, train loss: 3.3153]
+Thu 25 Sep 2025 11:01:48 INFO epoch 99 evaluating [time: 1.53s, valid_score: 0.104300]
+Thu 25 Sep 2025 11:01:48 INFO valid result: 
+recall@10: 0.0703    recall@20: 0.1043    ndcg@10: 0.0380    ndcg@20: 0.0467    
+Thu 25 Sep 2025 11:01:48 INFO test result: 
+recall@10: 0.0706    recall@20: 0.1080    ndcg@10: 0.0391    ndcg@20: 0.0487    
+Thu 25 Sep 2025 11:01:50 INFO epoch 100 training [time: 2.34s, train loss: 3.2846]
+Thu 25 Sep 2025 11:01:53 INFO epoch 100 evaluating [time: 1.53s, valid_score: 0.104000]
+Thu 25 Sep 2025 11:01:53 INFO valid result: 
+recall@10: 0.0696    recall@20: 0.1040    ndcg@10: 0.0379    ndcg@20: 0.0466    
+Thu 25 Sep 2025 11:01:53 INFO test result: 
+recall@10: 0.0706    recall@20: 0.1069    ndcg@10: 0.0386    ndcg@20: 0.0480    
+Thu 25 Sep 2025 11:01:55 INFO epoch 101 training [time: 2.12s, train loss: 3.2735]
+Thu 25 Sep 2025 11:01:58 INFO epoch 101 evaluating [time: 1.54s, valid_score: 0.105200]
+Thu 25 Sep 2025 11:01:58 INFO valid result: 
+recall@10: 0.0693    recall@20: 0.1052    ndcg@10: 0.0376    ndcg@20: 0.0468    
+Thu 25 Sep 2025 11:01:58 INFO test result: 
+recall@10: 0.0704    recall@20: 0.1081    ndcg@10: 0.0390    ndcg@20: 0.0486    
+Thu 25 Sep 2025 11:02:01 INFO epoch 102 training [time: 2.25s, train loss: 3.2946]
+Thu 25 Sep 2025 11:02:04 INFO epoch 102 evaluating [time: 1.63s, valid_score: 0.105100]
+Thu 25 Sep 2025 11:02:04 INFO valid result: 
+recall@10: 0.0689    recall@20: 0.1051    ndcg@10: 0.0376    ndcg@20: 0.0467    
+Thu 25 Sep 2025 11:02:04 INFO test result: 
+recall@10: 0.0701    recall@20: 0.1078    ndcg@10: 0.0387    ndcg@20: 0.0484    
+Thu 25 Sep 2025 11:02:06 INFO epoch 103 training [time: 2.19s, train loss: 3.2685]
+Thu 25 Sep 2025 11:02:09 INFO epoch 103 evaluating [time: 1.53s, valid_score: 0.105000]
+Thu 25 Sep 2025 11:02:09 INFO valid result: 
+recall@10: 0.0688    recall@20: 0.1050    ndcg@10: 0.0375    ndcg@20: 0.0467    
+Thu 25 Sep 2025 11:02:09 INFO test result: 
+recall@10: 0.0707    recall@20: 0.1073    ndcg@10: 0.0389    ndcg@20: 0.0483    
+Thu 25 Sep 2025 11:02:11 INFO epoch 104 training [time: 2.34s, train loss: 3.2763]
+Thu 25 Sep 2025 11:02:14 INFO epoch 104 evaluating [time: 1.53s, valid_score: 0.105000]
+Thu 25 Sep 2025 11:02:14 INFO valid result: 
+recall@10: 0.0696    recall@20: 0.1050    ndcg@10: 0.0378    ndcg@20: 0.0468    
+Thu 25 Sep 2025 11:02:14 INFO test result: 
+recall@10: 0.0709    recall@20: 0.1074    ndcg@10: 0.0388    ndcg@20: 0.0482    
+Thu 25 Sep 2025 11:02:17 INFO epoch 105 training [time: 2.32s, train loss: 3.2714]
+Thu 25 Sep 2025 11:02:20 INFO epoch 105 evaluating [time: 1.61s, valid_score: 0.105400]
+Thu 25 Sep 2025 11:02:20 INFO valid result: 
+recall@10: 0.0693    recall@20: 0.1054    ndcg@10: 0.0378    ndcg@20: 0.0470    
+Thu 25 Sep 2025 11:02:20 INFO test result: 
+recall@10: 0.0720    recall@20: 0.1082    ndcg@10: 0.0393    ndcg@20: 0.0486    
+Thu 25 Sep 2025 11:02:22 INFO epoch 106 training [time: 2.34s, train loss: 3.2943]
+Thu 25 Sep 2025 11:02:25 INFO epoch 106 evaluating [time: 1.53s, valid_score: 0.105400]
+Thu 25 Sep 2025 11:02:25 INFO valid result: 
+recall@10: 0.0693    recall@20: 0.1054    ndcg@10: 0.0375    ndcg@20: 0.0467    
+Thu 25 Sep 2025 11:02:25 INFO test result: 
+recall@10: 0.0706    recall@20: 0.1092    ndcg@10: 0.0388    ndcg@20: 0.0487    
+Thu 25 Sep 2025 11:02:27 INFO epoch 107 training [time: 2.14s, train loss: 3.2688]
+Thu 25 Sep 2025 11:02:31 INFO epoch 107 evaluating [time: 1.64s, valid_score: 0.104600]
+Thu 25 Sep 2025 11:02:31 INFO valid result: 
+recall@10: 0.0694    recall@20: 0.1046    ndcg@10: 0.0375    ndcg@20: 0.0465    
+Thu 25 Sep 2025 11:02:31 INFO test result: 
+recall@10: 0.0706    recall@20: 0.1089    ndcg@10: 0.0387    ndcg@20: 0.0485    
+Thu 25 Sep 2025 11:02:33 INFO epoch 108 training [time: 2.02s, train loss: 3.2584]
+Thu 25 Sep 2025 11:02:36 INFO epoch 108 evaluating [time: 1.53s, valid_score: 0.106200]
+Thu 25 Sep 2025 11:02:36 INFO valid result: 
+recall@10: 0.0700    recall@20: 0.1062    ndcg@10: 0.0379    ndcg@20: 0.0471    
+Thu 25 Sep 2025 11:02:36 INFO test result: 
+recall@10: 0.0707    recall@20: 0.1091    ndcg@10: 0.0391    ndcg@20: 0.0489    
+Thu 25 Sep 2025 11:02:36 INFO ██ DuGRec--Best validation results updated!!!
+Thu 25 Sep 2025 11:02:38 INFO epoch 109 training [time: 2.18s, train loss: 3.2256]
+Thu 25 Sep 2025 11:02:41 INFO epoch 109 evaluating [time: 1.55s, valid_score: 0.105400]
+Thu 25 Sep 2025 11:02:41 INFO valid result: 
+recall@10: 0.0694    recall@20: 0.1054    ndcg@10: 0.0378    ndcg@20: 0.0470    
+Thu 25 Sep 2025 11:02:41 INFO test result: 
+recall@10: 0.0708    recall@20: 0.1096    ndcg@10: 0.0389    ndcg@20: 0.0488    
+Thu 25 Sep 2025 11:02:43 INFO epoch 110 training [time: 2.31s, train loss: 3.2264]
+Thu 25 Sep 2025 11:02:46 INFO epoch 110 evaluating [time: 1.53s, valid_score: 0.106000]
+Thu 25 Sep 2025 11:02:46 INFO valid result: 
+recall@10: 0.0693    recall@20: 0.1060    ndcg@10: 0.0377    ndcg@20: 0.0470    
+Thu 25 Sep 2025 11:02:46 INFO test result: 
+recall@10: 0.0712    recall@20: 0.1096    ndcg@10: 0.0389    ndcg@20: 0.0487    
+Thu 25 Sep 2025 11:02:48 INFO epoch 111 training [time: 2.00s, train loss: 3.2150]
+Thu 25 Sep 2025 11:02:51 INFO epoch 111 evaluating [time: 1.53s, valid_score: 0.105500]
+Thu 25 Sep 2025 11:02:51 INFO valid result: 
+recall@10: 0.0686    recall@20: 0.1055    ndcg@10: 0.0378    ndcg@20: 0.0473    
+Thu 25 Sep 2025 11:02:51 INFO test result: 
+recall@10: 0.0711    recall@20: 0.1095    ndcg@10: 0.0390    ndcg@20: 0.0489    
+Thu 25 Sep 2025 11:02:54 INFO epoch 112 training [time: 2.27s, train loss: 3.2368]
+Thu 25 Sep 2025 11:02:57 INFO epoch 112 evaluating [time: 1.83s, valid_score: 0.104800]
+Thu 25 Sep 2025 11:02:57 INFO valid result: 
+recall@10: 0.0696    recall@20: 0.1048    ndcg@10: 0.0381    ndcg@20: 0.0471    
+Thu 25 Sep 2025 11:02:57 INFO test result: 
+recall@10: 0.0716    recall@20: 0.1088    ndcg@10: 0.0389    ndcg@20: 0.0485    
+Thu 25 Sep 2025 11:02:59 INFO epoch 113 training [time: 2.28s, train loss: 3.2486]
+Thu 25 Sep 2025 11:03:03 INFO epoch 113 evaluating [time: 1.75s, valid_score: 0.105700]
+Thu 25 Sep 2025 11:03:03 INFO valid result: 
+recall@10: 0.0687    recall@20: 0.1057    ndcg@10: 0.0379    ndcg@20: 0.0473    
+Thu 25 Sep 2025 11:03:03 INFO test result: 
+recall@10: 0.0717    recall@20: 0.1082    ndcg@10: 0.0390    ndcg@20: 0.0484    
+Thu 25 Sep 2025 11:03:05 INFO epoch 114 training [time: 2.15s, train loss: 3.2358]
+Thu 25 Sep 2025 11:03:08 INFO epoch 114 evaluating [time: 1.63s, valid_score: 0.105700]
+Thu 25 Sep 2025 11:03:08 INFO valid result: 
+recall@10: 0.0691    recall@20: 0.1057    ndcg@10: 0.0379    ndcg@20: 0.0473    
+Thu 25 Sep 2025 11:03:08 INFO test result: 
+recall@10: 0.0717    recall@20: 0.1090    ndcg@10: 0.0391    ndcg@20: 0.0486    
+Thu 25 Sep 2025 11:03:10 INFO epoch 115 training [time: 2.29s, train loss: 3.2310]
+Thu 25 Sep 2025 11:03:13 INFO epoch 115 evaluating [time: 1.55s, valid_score: 0.105900]
+Thu 25 Sep 2025 11:03:13 INFO valid result: 
+recall@10: 0.0703    recall@20: 0.1059    ndcg@10: 0.0384    ndcg@20: 0.0474    
+Thu 25 Sep 2025 11:03:13 INFO test result: 
+recall@10: 0.0721    recall@20: 0.1086    ndcg@10: 0.0392    ndcg@20: 0.0486    
+Thu 25 Sep 2025 11:03:16 INFO epoch 116 training [time: 2.27s, train loss: 3.2361]
+Thu 25 Sep 2025 11:03:19 INFO epoch 116 evaluating [time: 1.58s, valid_score: 0.106000]
+Thu 25 Sep 2025 11:03:19 INFO valid result: 
+recall@10: 0.0702    recall@20: 0.1060    ndcg@10: 0.0381    ndcg@20: 0.0472    
+Thu 25 Sep 2025 11:03:19 INFO test result: 
+recall@10: 0.0718    recall@20: 0.1071    ndcg@10: 0.0390    ndcg@20: 0.0481    
+Thu 25 Sep 2025 11:03:21 INFO epoch 117 training [time: 2.17s, train loss: 3.2126]
+Thu 25 Sep 2025 11:03:24 INFO epoch 117 evaluating [time: 1.53s, valid_score: 0.105400]
+Thu 25 Sep 2025 11:03:24 INFO valid result: 
+recall@10: 0.0693    recall@20: 0.1054    ndcg@10: 0.0381    ndcg@20: 0.0473    
+Thu 25 Sep 2025 11:03:24 INFO test result: 
+recall@10: 0.0709    recall@20: 0.1093    ndcg@10: 0.0388    ndcg@20: 0.0486    
+Thu 25 Sep 2025 11:03:26 INFO epoch 118 training [time: 2.14s, train loss: 3.2149]
+Thu 25 Sep 2025 11:03:29 INFO epoch 118 evaluating [time: 1.54s, valid_score: 0.104900]
+Thu 25 Sep 2025 11:03:29 INFO valid result: 
+recall@10: 0.0699    recall@20: 0.1049    ndcg@10: 0.0383    ndcg@20: 0.0472    
+Thu 25 Sep 2025 11:03:29 INFO test result: 
+recall@10: 0.0711    recall@20: 0.1081    ndcg@10: 0.0388    ndcg@20: 0.0483    
+Thu 25 Sep 2025 11:03:31 INFO epoch 119 training [time: 2.35s, train loss: 3.2055]
+Thu 25 Sep 2025 11:03:35 INFO epoch 119 evaluating [time: 1.62s, valid_score: 0.106000]
+Thu 25 Sep 2025 11:03:35 INFO valid result: 
+recall@10: 0.0697    recall@20: 0.1060    ndcg@10: 0.0386    ndcg@20: 0.0478    
+Thu 25 Sep 2025 11:03:35 INFO test result: 
+recall@10: 0.0715    recall@20: 0.1078    ndcg@10: 0.0391    ndcg@20: 0.0484    
+Thu 25 Sep 2025 11:03:37 INFO epoch 120 training [time: 2.28s, train loss: 3.1800]
+Thu 25 Sep 2025 11:03:40 INFO epoch 120 evaluating [time: 1.56s, valid_score: 0.105400]
+Thu 25 Sep 2025 11:03:40 INFO valid result: 
+recall@10: 0.0685    recall@20: 0.1054    ndcg@10: 0.0379    ndcg@20: 0.0473    
+Thu 25 Sep 2025 11:03:40 INFO test result: 
+recall@10: 0.0709    recall@20: 0.1083    ndcg@10: 0.0390    ndcg@20: 0.0486    
+Thu 25 Sep 2025 11:03:42 INFO epoch 121 training [time: 2.30s, train loss: 3.2234]
+Thu 25 Sep 2025 11:03:45 INFO epoch 121 evaluating [time: 1.31s, valid_score: 0.105700]
+Thu 25 Sep 2025 11:03:45 INFO valid result: 
+recall@10: 0.0694    recall@20: 0.1057    ndcg@10: 0.0380    ndcg@20: 0.0472    
+Thu 25 Sep 2025 11:03:45 INFO test result: 
+recall@10: 0.0713    recall@20: 0.1099    ndcg@10: 0.0390    ndcg@20: 0.0489    
+Thu 25 Sep 2025 11:03:47 INFO epoch 122 training [time: 2.22s, train loss: 3.1958]
+Thu 25 Sep 2025 11:03:50 INFO epoch 122 evaluating [time: 1.74s, valid_score: 0.105700]
+Thu 25 Sep 2025 11:03:50 INFO valid result: 
+recall@10: 0.0689    recall@20: 0.1057    ndcg@10: 0.0380    ndcg@20: 0.0473    
+Thu 25 Sep 2025 11:03:50 INFO test result: 
+recall@10: 0.0708    recall@20: 0.1084    ndcg@10: 0.0390    ndcg@20: 0.0487    
+Thu 25 Sep 2025 11:03:52 INFO epoch 123 training [time: 2.01s, train loss: 3.1995]
+Thu 25 Sep 2025 11:03:56 INFO epoch 123 evaluating [time: 1.63s, valid_score: 0.105200]
+Thu 25 Sep 2025 11:03:56 INFO valid result: 
+recall@10: 0.0689    recall@20: 0.1052    ndcg@10: 0.0377    ndcg@20: 0.0470    
+Thu 25 Sep 2025 11:03:56 INFO test result: 
+recall@10: 0.0718    recall@20: 0.1092    ndcg@10: 0.0391    ndcg@20: 0.0488    
+Thu 25 Sep 2025 11:03:58 INFO epoch 124 training [time: 2.18s, train loss: 3.2001]
+Thu 25 Sep 2025 11:04:01 INFO epoch 124 evaluating [time: 1.63s, valid_score: 0.105500]
+Thu 25 Sep 2025 11:04:01 INFO valid result: 
+recall@10: 0.0686    recall@20: 0.1055    ndcg@10: 0.0378    ndcg@20: 0.0472    
+Thu 25 Sep 2025 11:04:01 INFO test result: 
+recall@10: 0.0714    recall@20: 0.1099    ndcg@10: 0.0391    ndcg@20: 0.0490    
+Thu 25 Sep 2025 11:04:03 INFO epoch 125 training [time: 2.31s, train loss: 3.1775]
+Thu 25 Sep 2025 11:04:06 INFO epoch 125 evaluating [time: 1.53s, valid_score: 0.105900]
+Thu 25 Sep 2025 11:04:06 INFO valid result: 
+recall@10: 0.0693    recall@20: 0.1059    ndcg@10: 0.0384    ndcg@20: 0.0477    
+Thu 25 Sep 2025 11:04:06 INFO test result: 
+recall@10: 0.0725    recall@20: 0.1091    ndcg@10: 0.0394    ndcg@20: 0.0488    
+Thu 25 Sep 2025 11:04:09 INFO epoch 126 training [time: 2.28s, train loss: 3.1588]
+Thu 25 Sep 2025 11:04:12 INFO epoch 126 evaluating [time: 1.74s, valid_score: 0.106600]
+Thu 25 Sep 2025 11:04:12 INFO valid result: 
+recall@10: 0.0691    recall@20: 0.1066    ndcg@10: 0.0382    ndcg@20: 0.0477    
+Thu 25 Sep 2025 11:04:12 INFO test result: 
+recall@10: 0.0725    recall@20: 0.1102    ndcg@10: 0.0397    ndcg@20: 0.0494    
+Thu 25 Sep 2025 11:04:12 INFO ██ DuGRec--Best validation results updated!!!
+Thu 25 Sep 2025 11:04:15 INFO epoch 127 training [time: 2.26s, train loss: 3.1565]
+Thu 25 Sep 2025 11:04:18 INFO epoch 127 evaluating [time: 1.53s, valid_score: 0.105000]
+Thu 25 Sep 2025 11:04:18 INFO valid result: 
+recall@10: 0.0686    recall@20: 0.1050    ndcg@10: 0.0379    ndcg@20: 0.0472    
+Thu 25 Sep 2025 11:04:18 INFO test result: 
+recall@10: 0.0720    recall@20: 0.1094    ndcg@10: 0.0392    ndcg@20: 0.0488    
+Thu 25 Sep 2025 11:04:20 INFO epoch 128 training [time: 2.26s, train loss: 3.1728]
+Thu 25 Sep 2025 11:04:23 INFO epoch 128 evaluating [time: 1.53s, valid_score: 0.106100]
+Thu 25 Sep 2025 11:04:23 INFO valid result: 
+recall@10: 0.0693    recall@20: 0.1061    ndcg@10: 0.0383    ndcg@20: 0.0477    
+Thu 25 Sep 2025 11:04:23 INFO test result: 
+recall@10: 0.0714    recall@20: 0.1099    ndcg@10: 0.0392    ndcg@20: 0.0490    
+Thu 25 Sep 2025 11:04:25 INFO epoch 129 training [time: 2.28s, train loss: 3.1919]
+Thu 25 Sep 2025 11:04:28 INFO epoch 129 evaluating [time: 1.58s, valid_score: 0.106000]
+Thu 25 Sep 2025 11:04:28 INFO valid result: 
+recall@10: 0.0683    recall@20: 0.1060    ndcg@10: 0.0377    ndcg@20: 0.0473    
+Thu 25 Sep 2025 11:04:28 INFO test result: 
+recall@10: 0.0718    recall@20: 0.1081    ndcg@10: 0.0390    ndcg@20: 0.0484    
+Thu 25 Sep 2025 11:04:31 INFO epoch 130 training [time: 2.22s, train loss: 3.2006]
+Thu 25 Sep 2025 11:04:34 INFO epoch 130 evaluating [time: 1.52s, valid_score: 0.106400]
+Thu 25 Sep 2025 11:04:34 INFO valid result: 
+recall@10: 0.0688    recall@20: 0.1064    ndcg@10: 0.0380    ndcg@20: 0.0476    
+Thu 25 Sep 2025 11:04:34 INFO test result: 
+recall@10: 0.0723    recall@20: 0.1099    ndcg@10: 0.0394    ndcg@20: 0.0490    
+Thu 25 Sep 2025 11:04:36 INFO epoch 131 training [time: 2.14s, train loss: 3.1379]
+Thu 25 Sep 2025 11:04:39 INFO epoch 131 evaluating [time: 1.61s, valid_score: 0.106400]
+Thu 25 Sep 2025 11:04:39 INFO valid result: 
+recall@10: 0.0699    recall@20: 0.1064    ndcg@10: 0.0383    ndcg@20: 0.0476    
+Thu 25 Sep 2025 11:04:39 INFO test result: 
+recall@10: 0.0714    recall@20: 0.1094    ndcg@10: 0.0390    ndcg@20: 0.0488    
+Thu 25 Sep 2025 11:04:41 INFO epoch 132 training [time: 2.31s, train loss: 3.1501]
+Thu 25 Sep 2025 11:04:44 INFO epoch 132 evaluating [time: 1.54s, valid_score: 0.105800]
+Thu 25 Sep 2025 11:04:44 INFO valid result: 
+recall@10: 0.0703    recall@20: 0.1058    ndcg@10: 0.0385    ndcg@20: 0.0475    
+Thu 25 Sep 2025 11:04:44 INFO test result: 
+recall@10: 0.0717    recall@20: 0.1089    ndcg@10: 0.0394    ndcg@20: 0.0490    
+Thu 25 Sep 2025 11:04:46 INFO epoch 133 training [time: 2.07s, train loss: 3.1443]
+Thu 25 Sep 2025 11:04:49 INFO epoch 133 evaluating [time: 1.54s, valid_score: 0.106000]
+Thu 25 Sep 2025 11:04:49 INFO valid result: 
+recall@10: 0.0693    recall@20: 0.1060    ndcg@10: 0.0379    ndcg@20: 0.0472    
+Thu 25 Sep 2025 11:04:49 INFO test result: 
+recall@10: 0.0711    recall@20: 0.1092    ndcg@10: 0.0392    ndcg@20: 0.0490    
+Thu 25 Sep 2025 11:04:51 INFO epoch 134 training [time: 2.02s, train loss: 3.1185]
+Thu 25 Sep 2025 11:04:55 INFO epoch 134 evaluating [time: 1.53s, valid_score: 0.105200]
+Thu 25 Sep 2025 11:04:55 INFO valid result: 
+recall@10: 0.0693    recall@20: 0.1052    ndcg@10: 0.0382    ndcg@20: 0.0473    
+Thu 25 Sep 2025 11:04:55 INFO test result: 
+recall@10: 0.0722    recall@20: 0.1090    ndcg@10: 0.0395    ndcg@20: 0.0490    
+Thu 25 Sep 2025 11:04:57 INFO epoch 135 training [time: 2.02s, train loss: 3.1282]
+Thu 25 Sep 2025 11:05:00 INFO epoch 135 evaluating [time: 1.59s, valid_score: 0.105900]
+Thu 25 Sep 2025 11:05:00 INFO valid result: 
+recall@10: 0.0694    recall@20: 0.1059    ndcg@10: 0.0382    ndcg@20: 0.0475    
+Thu 25 Sep 2025 11:05:00 INFO test result: 
+recall@10: 0.0712    recall@20: 0.1090    ndcg@10: 0.0392    ndcg@20: 0.0489    
+Thu 25 Sep 2025 11:05:02 INFO epoch 136 training [time: 2.01s, train loss: 3.1225]
+Thu 25 Sep 2025 11:05:05 INFO epoch 136 evaluating [time: 1.62s, valid_score: 0.105500]
+Thu 25 Sep 2025 11:05:05 INFO valid result: 
+recall@10: 0.0703    recall@20: 0.1055    ndcg@10: 0.0383    ndcg@20: 0.0473    
+Thu 25 Sep 2025 11:05:05 INFO test result: 
+recall@10: 0.0719    recall@20: 0.1094    ndcg@10: 0.0394    ndcg@20: 0.0491    
+Thu 25 Sep 2025 11:05:07 INFO epoch 137 training [time: 2.32s, train loss: 3.1093]
+Thu 25 Sep 2025 11:05:10 INFO epoch 137 evaluating [time: 1.54s, valid_score: 0.105500]
+Thu 25 Sep 2025 11:05:10 INFO valid result: 
+recall@10: 0.0694    recall@20: 0.1055    ndcg@10: 0.0380    ndcg@20: 0.0472    
+Thu 25 Sep 2025 11:05:10 INFO test result: 
+recall@10: 0.0714    recall@20: 0.1091    ndcg@10: 0.0394    ndcg@20: 0.0491    
+Thu 25 Sep 2025 11:05:12 INFO epoch 138 training [time: 2.29s, train loss: 3.1087]
+Thu 25 Sep 2025 11:05:16 INFO epoch 138 evaluating [time: 1.53s, valid_score: 0.105500]
+Thu 25 Sep 2025 11:05:16 INFO valid result: 
+recall@10: 0.0696    recall@20: 0.1055    ndcg@10: 0.0379    ndcg@20: 0.0470    
+Thu 25 Sep 2025 11:05:16 INFO test result: 
+recall@10: 0.0720    recall@20: 0.1095    ndcg@10: 0.0394    ndcg@20: 0.0490    
+Thu 25 Sep 2025 11:05:18 INFO epoch 139 training [time: 2.30s, train loss: 3.0987]
+Thu 25 Sep 2025 11:05:21 INFO epoch 139 evaluating [time: 1.53s, valid_score: 0.105800]
+Thu 25 Sep 2025 11:05:21 INFO valid result: 
+recall@10: 0.0696    recall@20: 0.1058    ndcg@10: 0.0381    ndcg@20: 0.0473    
+Thu 25 Sep 2025 11:05:21 INFO test result: 
+recall@10: 0.0718    recall@20: 0.1095    ndcg@10: 0.0394    ndcg@20: 0.0491    
+Thu 25 Sep 2025 11:05:23 INFO epoch 140 training [time: 2.33s, train loss: 3.1254]
+Thu 25 Sep 2025 11:05:26 INFO epoch 140 evaluating [time: 1.55s, valid_score: 0.105600]
+Thu 25 Sep 2025 11:05:26 INFO valid result: 
+recall@10: 0.0702    recall@20: 0.1056    ndcg@10: 0.0383    ndcg@20: 0.0473    
+Thu 25 Sep 2025 11:05:26 INFO test result: 
+recall@10: 0.0719    recall@20: 0.1103    ndcg@10: 0.0392    ndcg@20: 0.0491    
+Thu 25 Sep 2025 11:05:28 INFO epoch 141 training [time: 2.13s, train loss: 3.1162]
+Thu 25 Sep 2025 11:05:32 INFO epoch 141 evaluating [time: 1.62s, valid_score: 0.106200]
+Thu 25 Sep 2025 11:05:32 INFO valid result: 
+recall@10: 0.0686    recall@20: 0.1062    ndcg@10: 0.0375    ndcg@20: 0.0471    
+Thu 25 Sep 2025 11:05:32 INFO test result: 
+recall@10: 0.0712    recall@20: 0.1096    ndcg@10: 0.0391    ndcg@20: 0.0490    
+Thu 25 Sep 2025 11:05:34 INFO epoch 142 training [time: 2.31s, train loss: 3.0828]
+Thu 25 Sep 2025 11:05:37 INFO epoch 142 evaluating [time: 1.54s, valid_score: 0.106200]
+Thu 25 Sep 2025 11:05:37 INFO valid result: 
+recall@10: 0.0700    recall@20: 0.1062    ndcg@10: 0.0381    ndcg@20: 0.0472    
+Thu 25 Sep 2025 11:05:37 INFO test result: 
+recall@10: 0.0707    recall@20: 0.1096    ndcg@10: 0.0391    ndcg@20: 0.0491    
+Thu 25 Sep 2025 11:05:39 INFO epoch 143 training [time: 2.30s, train loss: 3.1277]
+Thu 25 Sep 2025 11:05:43 INFO epoch 143 evaluating [time: 1.70s, valid_score: 0.106700]
+Thu 25 Sep 2025 11:05:43 INFO valid result: 
+recall@10: 0.0703    recall@20: 0.1067    ndcg@10: 0.0380    ndcg@20: 0.0472    
+Thu 25 Sep 2025 11:05:43 INFO test result: 
+recall@10: 0.0718    recall@20: 0.1106    ndcg@10: 0.0394    ndcg@20: 0.0494    
+Thu 25 Sep 2025 11:05:43 INFO ██ DuGRec--Best validation results updated!!!
+Thu 25 Sep 2025 11:05:45 INFO epoch 144 training [time: 2.16s, train loss: 3.0852]
+Thu 25 Sep 2025 11:05:48 INFO epoch 144 evaluating [time: 1.53s, valid_score: 0.106200]
+Thu 25 Sep 2025 11:05:48 INFO valid result: 
+recall@10: 0.0709    recall@20: 0.1062    ndcg@10: 0.0385    ndcg@20: 0.0474    
+Thu 25 Sep 2025 11:05:48 INFO test result: 
+recall@10: 0.0716    recall@20: 0.1099    ndcg@10: 0.0393    ndcg@20: 0.0492    
+Thu 25 Sep 2025 11:05:50 INFO epoch 145 training [time: 2.13s, train loss: 3.0964]
+Thu 25 Sep 2025 11:05:53 INFO epoch 145 evaluating [time: 1.53s, valid_score: 0.105500]
+Thu 25 Sep 2025 11:05:53 INFO valid result: 
+recall@10: 0.0694    recall@20: 0.1055    ndcg@10: 0.0380    ndcg@20: 0.0472    
+Thu 25 Sep 2025 11:05:53 INFO test result: 
+recall@10: 0.0722    recall@20: 0.1100    ndcg@10: 0.0395    ndcg@20: 0.0492    
+Thu 25 Sep 2025 11:05:55 INFO epoch 146 training [time: 2.09s, train loss: 3.0774]
+Thu 25 Sep 2025 11:05:58 INFO epoch 146 evaluating [time: 1.60s, valid_score: 0.105200]
+Thu 25 Sep 2025 11:05:58 INFO valid result: 
+recall@10: 0.0692    recall@20: 0.1052    ndcg@10: 0.0378    ndcg@20: 0.0470    
+Thu 25 Sep 2025 11:05:58 INFO test result: 
+recall@10: 0.0722    recall@20: 0.1104    ndcg@10: 0.0394    ndcg@20: 0.0493    
+Thu 25 Sep 2025 11:06:00 INFO epoch 147 training [time: 2.22s, train loss: 3.0739]
+Thu 25 Sep 2025 11:06:03 INFO epoch 147 evaluating [time: 1.53s, valid_score: 0.106100]
+Thu 25 Sep 2025 11:06:03 INFO valid result: 
+recall@10: 0.0703    recall@20: 0.1061    ndcg@10: 0.0382    ndcg@20: 0.0473    
+Thu 25 Sep 2025 11:06:03 INFO test result: 
+recall@10: 0.0722    recall@20: 0.1113    ndcg@10: 0.0395    ndcg@20: 0.0495    
+Thu 25 Sep 2025 11:06:05 INFO epoch 148 training [time: 2.13s, train loss: 3.0796]
+Thu 25 Sep 2025 11:06:09 INFO epoch 148 evaluating [time: 1.66s, valid_score: 0.106400]
+Thu 25 Sep 2025 11:06:09 INFO valid result: 
+recall@10: 0.0694    recall@20: 0.1064    ndcg@10: 0.0383    ndcg@20: 0.0477    
+Thu 25 Sep 2025 11:06:09 INFO test result: 
+recall@10: 0.0717    recall@20: 0.1100    ndcg@10: 0.0394    ndcg@20: 0.0492    
+Thu 25 Sep 2025 11:06:11 INFO epoch 149 training [time: 2.34s, train loss: 3.0886]
+Thu 25 Sep 2025 11:06:14 INFO epoch 149 evaluating [time: 1.53s, valid_score: 0.105400]
+Thu 25 Sep 2025 11:06:14 INFO valid result: 
+recall@10: 0.0694    recall@20: 0.1054    ndcg@10: 0.0380    ndcg@20: 0.0472    
+Thu 25 Sep 2025 11:06:14 INFO test result: 
+recall@10: 0.0721    recall@20: 0.1098    ndcg@10: 0.0391    ndcg@20: 0.0488    
+Thu 25 Sep 2025 11:06:16 INFO epoch 150 training [time: 2.16s, train loss: 3.0673]
+Thu 25 Sep 2025 11:06:19 INFO epoch 150 evaluating [time: 1.53s, valid_score: 0.106000]
+Thu 25 Sep 2025 11:06:19 INFO valid result: 
+recall@10: 0.0703    recall@20: 0.1060    ndcg@10: 0.0383    ndcg@20: 0.0474    
+Thu 25 Sep 2025 11:06:19 INFO test result: 
+recall@10: 0.0726    recall@20: 0.1104    ndcg@10: 0.0397    ndcg@20: 0.0494    
+Thu 25 Sep 2025 11:06:21 INFO epoch 151 training [time: 2.02s, train loss: 3.0741]
+Thu 25 Sep 2025 11:06:25 INFO epoch 151 evaluating [time: 1.75s, valid_score: 0.106100]
+Thu 25 Sep 2025 11:06:25 INFO valid result: 
+recall@10: 0.0708    recall@20: 0.1061    ndcg@10: 0.0386    ndcg@20: 0.0476    
+Thu 25 Sep 2025 11:06:25 INFO test result: 
+recall@10: 0.0715    recall@20: 0.1101    ndcg@10: 0.0393    ndcg@20: 0.0493    
+Thu 25 Sep 2025 11:06:27 INFO epoch 152 training [time: 2.32s, train loss: 3.0560]
+Thu 25 Sep 2025 11:06:30 INFO epoch 152 evaluating [time: 1.73s, valid_score: 0.105600]
+Thu 25 Sep 2025 11:06:30 INFO valid result: 
+recall@10: 0.0702    recall@20: 0.1056    ndcg@10: 0.0385    ndcg@20: 0.0475    
+Thu 25 Sep 2025 11:06:30 INFO test result: 
+recall@10: 0.0723    recall@20: 0.1101    ndcg@10: 0.0394    ndcg@20: 0.0491    
+Thu 25 Sep 2025 11:06:32 INFO epoch 153 training [time: 2.06s, train loss: 3.0803]
+Thu 25 Sep 2025 11:06:35 INFO epoch 153 evaluating [time: 1.65s, valid_score: 0.105200]
+Thu 25 Sep 2025 11:06:35 INFO valid result: 
+recall@10: 0.0703    recall@20: 0.1052    ndcg@10: 0.0383    ndcg@20: 0.0472    
+Thu 25 Sep 2025 11:06:35 INFO test result: 
+recall@10: 0.0719    recall@20: 0.1093    ndcg@10: 0.0394    ndcg@20: 0.0491    
+Thu 25 Sep 2025 11:06:38 INFO epoch 154 training [time: 2.35s, train loss: 3.0491]
+Thu 25 Sep 2025 11:06:41 INFO epoch 154 evaluating [time: 1.70s, valid_score: 0.105500]
+Thu 25 Sep 2025 11:06:41 INFO valid result: 
+recall@10: 0.0700    recall@20: 0.1055    ndcg@10: 0.0380    ndcg@20: 0.0470    
+Thu 25 Sep 2025 11:06:41 INFO test result: 
+recall@10: 0.0718    recall@20: 0.1104    ndcg@10: 0.0394    ndcg@20: 0.0494    
+Thu 25 Sep 2025 11:06:43 INFO epoch 155 training [time: 2.18s, train loss: 3.0405]
+Thu 25 Sep 2025 11:06:46 INFO epoch 155 evaluating [time: 1.54s, valid_score: 0.106300]
+Thu 25 Sep 2025 11:06:46 INFO valid result: 
+recall@10: 0.0695    recall@20: 0.1063    ndcg@10: 0.0383    ndcg@20: 0.0477    
+Thu 25 Sep 2025 11:06:46 INFO test result: 
+recall@10: 0.0706    recall@20: 0.1100    ndcg@10: 0.0392    ndcg@20: 0.0494    
+Thu 25 Sep 2025 11:06:49 INFO epoch 156 training [time: 2.33s, train loss: 3.0455]
+Thu 25 Sep 2025 11:06:52 INFO epoch 156 evaluating [time: 1.59s, valid_score: 0.104200]
+Thu 25 Sep 2025 11:06:52 INFO valid result: 
+recall@10: 0.0699    recall@20: 0.1042    ndcg@10: 0.0381    ndcg@20: 0.0469    
+Thu 25 Sep 2025 11:06:52 INFO test result: 
+recall@10: 0.0724    recall@20: 0.1108    ndcg@10: 0.0396    ndcg@20: 0.0495    
+Thu 25 Sep 2025 11:06:54 INFO epoch 157 training [time: 2.10s, train loss: 3.0526]
+Thu 25 Sep 2025 11:06:57 INFO epoch 157 evaluating [time: 1.52s, valid_score: 0.105800]
+Thu 25 Sep 2025 11:06:57 INFO valid result: 
+recall@10: 0.0688    recall@20: 0.1058    ndcg@10: 0.0376    ndcg@20: 0.0470    
+Thu 25 Sep 2025 11:06:57 INFO test result: 
+recall@10: 0.0725    recall@20: 0.1101    ndcg@10: 0.0396    ndcg@20: 0.0493    
+Thu 25 Sep 2025 11:06:59 INFO epoch 158 training [time: 2.31s, train loss: 3.0510]
+Thu 25 Sep 2025 11:07:03 INFO epoch 158 evaluating [time: 1.68s, valid_score: 0.106100]
+Thu 25 Sep 2025 11:07:03 INFO valid result: 
+recall@10: 0.0707    recall@20: 0.1061    ndcg@10: 0.0386    ndcg@20: 0.0477    
+Thu 25 Sep 2025 11:07:03 INFO test result: 
+recall@10: 0.0724    recall@20: 0.1105    ndcg@10: 0.0397    ndcg@20: 0.0496    
+Thu 25 Sep 2025 11:07:05 INFO epoch 159 training [time: 2.00s, train loss: 3.0519]
+Thu 25 Sep 2025 11:07:08 INFO epoch 159 evaluating [time: 1.64s, valid_score: 0.106500]
+Thu 25 Sep 2025 11:07:08 INFO valid result: 
+recall@10: 0.0703    recall@20: 0.1065    ndcg@10: 0.0383    ndcg@20: 0.0475    
+Thu 25 Sep 2025 11:07:08 INFO test result: 
+recall@10: 0.0724    recall@20: 0.1103    ndcg@10: 0.0397    ndcg@20: 0.0495    
+Thu 25 Sep 2025 11:07:10 INFO epoch 160 training [time: 2.00s, train loss: 3.0385]
+Thu 25 Sep 2025 11:07:13 INFO epoch 160 evaluating [time: 1.61s, valid_score: 0.106800]
+Thu 25 Sep 2025 11:07:13 INFO valid result: 
+recall@10: 0.0695    recall@20: 0.1068    ndcg@10: 0.0380    ndcg@20: 0.0475    
+Thu 25 Sep 2025 11:07:13 INFO test result: 
+recall@10: 0.0734    recall@20: 0.1103    ndcg@10: 0.0402    ndcg@20: 0.0497    
+Thu 25 Sep 2025 11:07:13 INFO ██ DuGRec--Best validation results updated!!!
+Thu 25 Sep 2025 11:07:15 INFO epoch 161 training [time: 2.13s, train loss: 3.0584]
+Thu 25 Sep 2025 11:07:18 INFO epoch 161 evaluating [time: 1.53s, valid_score: 0.105500]
+Thu 25 Sep 2025 11:07:18 INFO valid result: 
+recall@10: 0.0701    recall@20: 0.1055    ndcg@10: 0.0385    ndcg@20: 0.0475    
+Thu 25 Sep 2025 11:07:18 INFO test result: 
+recall@10: 0.0729    recall@20: 0.1099    ndcg@10: 0.0399    ndcg@20: 0.0495    
+Thu 25 Sep 2025 11:07:21 INFO epoch 162 training [time: 2.26s, train loss: 3.0352]
+Thu 25 Sep 2025 11:07:24 INFO epoch 162 evaluating [time: 1.53s, valid_score: 0.105200]
+Thu 25 Sep 2025 11:07:24 INFO valid result: 
+recall@10: 0.0699    recall@20: 0.1052    ndcg@10: 0.0384    ndcg@20: 0.0474    
+Thu 25 Sep 2025 11:07:24 INFO test result: 
+recall@10: 0.0726    recall@20: 0.1101    ndcg@10: 0.0401    ndcg@20: 0.0498    
+Thu 25 Sep 2025 11:07:26 INFO epoch 163 training [time: 2.21s, train loss: 3.0338]
+Thu 25 Sep 2025 11:07:29 INFO epoch 163 evaluating [time: 1.53s, valid_score: 0.105800]
+Thu 25 Sep 2025 11:07:29 INFO valid result: 
+recall@10: 0.0692    recall@20: 0.1058    ndcg@10: 0.0378    ndcg@20: 0.0472    
+Thu 25 Sep 2025 11:07:29 INFO test result: 
+recall@10: 0.0725    recall@20: 0.1107    ndcg@10: 0.0399    ndcg@20: 0.0497    
+Thu 25 Sep 2025 11:07:31 INFO epoch 164 training [time: 2.28s, train loss: 3.0213]
+Thu 25 Sep 2025 11:07:34 INFO epoch 164 evaluating [time: 1.53s, valid_score: 0.106300]
+Thu 25 Sep 2025 11:07:34 INFO valid result: 
+recall@10: 0.0696    recall@20: 0.1063    ndcg@10: 0.0383    ndcg@20: 0.0476    
+Thu 25 Sep 2025 11:07:34 INFO test result: 
+recall@10: 0.0726    recall@20: 0.1100    ndcg@10: 0.0401    ndcg@20: 0.0497    
+Thu 25 Sep 2025 11:07:37 INFO epoch 165 training [time: 2.29s, train loss: 3.0201]
+Thu 25 Sep 2025 11:07:40 INFO epoch 165 evaluating [time: 1.64s, valid_score: 0.105800]
+Thu 25 Sep 2025 11:07:40 INFO valid result: 
+recall@10: 0.0702    recall@20: 0.1058    ndcg@10: 0.0388    ndcg@20: 0.0479    
+Thu 25 Sep 2025 11:07:40 INFO test result: 
+recall@10: 0.0720    recall@20: 0.1099    ndcg@10: 0.0398    ndcg@20: 0.0495    
+Thu 25 Sep 2025 11:07:42 INFO epoch 166 training [time: 2.24s, train loss: 3.0107]
+Thu 25 Sep 2025 11:07:45 INFO epoch 166 evaluating [time: 1.53s, valid_score: 0.106300]
+Thu 25 Sep 2025 11:07:45 INFO valid result: 
+recall@10: 0.0698    recall@20: 0.1063    ndcg@10: 0.0382    ndcg@20: 0.0475    
+Thu 25 Sep 2025 11:07:45 INFO test result: 
+recall@10: 0.0724    recall@20: 0.1094    ndcg@10: 0.0399    ndcg@20: 0.0494    
+Thu 25 Sep 2025 11:07:47 INFO epoch 167 training [time: 2.36s, train loss: 3.0050]
+Thu 25 Sep 2025 11:07:51 INFO epoch 167 evaluating [time: 1.54s, valid_score: 0.106400]
+Thu 25 Sep 2025 11:07:51 INFO valid result: 
+recall@10: 0.0704    recall@20: 0.1064    ndcg@10: 0.0387    ndcg@20: 0.0479    
+Thu 25 Sep 2025 11:07:51 INFO test result: 
+recall@10: 0.0719    recall@20: 0.1100    ndcg@10: 0.0396    ndcg@20: 0.0495    
+Thu 25 Sep 2025 11:07:53 INFO epoch 168 training [time: 2.31s, train loss: 2.9924]
+Thu 25 Sep 2025 11:07:56 INFO epoch 168 evaluating [time: 1.54s, valid_score: 0.105100]
+Thu 25 Sep 2025 11:07:56 INFO valid result: 
+recall@10: 0.0694    recall@20: 0.1051    ndcg@10: 0.0380    ndcg@20: 0.0471    
+Thu 25 Sep 2025 11:07:56 INFO test result: 
+recall@10: 0.0729    recall@20: 0.1100    ndcg@10: 0.0397    ndcg@20: 0.0493    
+Thu 25 Sep 2025 11:07:58 INFO epoch 169 training [time: 2.02s, train loss: 2.9702]
+Thu 25 Sep 2025 11:08:01 INFO epoch 169 evaluating [time: 1.54s, valid_score: 0.105300]
+Thu 25 Sep 2025 11:08:01 INFO valid result: 
+recall@10: 0.0696    recall@20: 0.1053    ndcg@10: 0.0383    ndcg@20: 0.0474    
+Thu 25 Sep 2025 11:08:01 INFO test result: 
+recall@10: 0.0717    recall@20: 0.1098    ndcg@10: 0.0393    ndcg@20: 0.0491    
+Thu 25 Sep 2025 11:08:03 INFO epoch 170 training [time: 2.14s, train loss: 2.9971]
+Thu 25 Sep 2025 11:08:06 INFO epoch 170 evaluating [time: 1.64s, valid_score: 0.105900]
+Thu 25 Sep 2025 11:08:06 INFO valid result: 
+recall@10: 0.0698    recall@20: 0.1059    ndcg@10: 0.0382    ndcg@20: 0.0473    
+Thu 25 Sep 2025 11:08:06 INFO test result: 
+recall@10: 0.0717    recall@20: 0.1096    ndcg@10: 0.0393    ndcg@20: 0.0491    
+Thu 25 Sep 2025 11:08:09 INFO epoch 171 training [time: 2.23s, train loss: 2.9862]
+Thu 25 Sep 2025 11:08:12 INFO epoch 171 evaluating [time: 1.54s, valid_score: 0.105000]
+Thu 25 Sep 2025 11:08:12 INFO valid result: 
+recall@10: 0.0703    recall@20: 0.1050    ndcg@10: 0.0382    ndcg@20: 0.0471    
+Thu 25 Sep 2025 11:08:12 INFO test result: 
+recall@10: 0.0715    recall@20: 0.1101    ndcg@10: 0.0392    ndcg@20: 0.0492    
+Thu 25 Sep 2025 11:08:14 INFO epoch 172 training [time: 2.26s, train loss: 3.0141]
+Thu 25 Sep 2025 11:08:17 INFO epoch 172 evaluating [time: 1.53s, valid_score: 0.104900]
+Thu 25 Sep 2025 11:08:17 INFO valid result: 
+recall@10: 0.0698    recall@20: 0.1049    ndcg@10: 0.0381    ndcg@20: 0.0471    
+Thu 25 Sep 2025 11:08:17 INFO test result: 
+recall@10: 0.0720    recall@20: 0.1103    ndcg@10: 0.0396    ndcg@20: 0.0494    
+Thu 25 Sep 2025 11:08:19 INFO epoch 173 training [time: 2.08s, train loss: 2.9968]
+Thu 25 Sep 2025 11:08:22 INFO epoch 173 evaluating [time: 1.54s, valid_score: 0.106000]
+Thu 25 Sep 2025 11:08:22 INFO valid result: 
+recall@10: 0.0701    recall@20: 0.1060    ndcg@10: 0.0386    ndcg@20: 0.0477    
+Thu 25 Sep 2025 11:08:22 INFO test result: 
+recall@10: 0.0733    recall@20: 0.1102    ndcg@10: 0.0398    ndcg@20: 0.0493    
+Thu 25 Sep 2025 11:08:25 INFO epoch 174 training [time: 2.32s, train loss: 2.9699]
+Thu 25 Sep 2025 11:08:28 INFO epoch 174 evaluating [time: 1.52s, valid_score: 0.106700]
+Thu 25 Sep 2025 11:08:28 INFO valid result: 
+recall@10: 0.0704    recall@20: 0.1067    ndcg@10: 0.0383    ndcg@20: 0.0475    
+Thu 25 Sep 2025 11:08:28 INFO test result: 
+recall@10: 0.0718    recall@20: 0.1094    ndcg@10: 0.0398    ndcg@20: 0.0495    
+Thu 25 Sep 2025 11:08:30 INFO epoch 175 training [time: 2.33s, train loss: 2.9949]
+Thu 25 Sep 2025 11:08:33 INFO epoch 175 evaluating [time: 1.54s, valid_score: 0.106000]
+Thu 25 Sep 2025 11:08:33 INFO valid result: 
+recall@10: 0.0702    recall@20: 0.1060    ndcg@10: 0.0385    ndcg@20: 0.0476    
+Thu 25 Sep 2025 11:08:33 INFO test result: 
+recall@10: 0.0712    recall@20: 0.1098    ndcg@10: 0.0394    ndcg@20: 0.0493    
+Thu 25 Sep 2025 11:08:35 INFO epoch 176 training [time: 1.96s, train loss: 2.9879]
+Thu 25 Sep 2025 11:08:38 INFO epoch 176 evaluating [time: 1.52s, valid_score: 0.106800]
+Thu 25 Sep 2025 11:08:38 INFO valid result: 
+recall@10: 0.0705    recall@20: 0.1068    ndcg@10: 0.0384    ndcg@20: 0.0476    
+Thu 25 Sep 2025 11:08:38 INFO test result: 
+recall@10: 0.0723    recall@20: 0.1091    ndcg@10: 0.0398    ndcg@20: 0.0493    
+Thu 25 Sep 2025 11:08:40 INFO epoch 177 training [time: 2.02s, train loss: 2.9736]
+Thu 25 Sep 2025 11:08:43 INFO epoch 177 evaluating [time: 1.63s, valid_score: 0.105300]
+Thu 25 Sep 2025 11:08:43 INFO valid result: 
+recall@10: 0.0700    recall@20: 0.1053    ndcg@10: 0.0384    ndcg@20: 0.0474    
+Thu 25 Sep 2025 11:08:43 INFO test result: 
+recall@10: 0.0707    recall@20: 0.1096    ndcg@10: 0.0392    ndcg@20: 0.0492    
+Thu 25 Sep 2025 11:08:45 INFO epoch 178 training [time: 2.22s, train loss: 2.9842]
+Thu 25 Sep 2025 11:08:48 INFO epoch 178 evaluating [time: 1.54s, valid_score: 0.104400]
+Thu 25 Sep 2025 11:08:48 INFO valid result: 
+recall@10: 0.0706    recall@20: 0.1044    ndcg@10: 0.0386    ndcg@20: 0.0472    
+Thu 25 Sep 2025 11:08:48 INFO test result: 
+recall@10: 0.0710    recall@20: 0.1097    ndcg@10: 0.0390    ndcg@20: 0.0490    
+Thu 25 Sep 2025 11:08:50 INFO epoch 179 training [time: 2.22s, train loss: 2.9676]
+Thu 25 Sep 2025 11:08:54 INFO epoch 179 evaluating [time: 1.53s, valid_score: 0.105800]
+Thu 25 Sep 2025 11:08:54 INFO valid result: 
+recall@10: 0.0708    recall@20: 0.1058    ndcg@10: 0.0385    ndcg@20: 0.0474    
+Thu 25 Sep 2025 11:08:54 INFO test result: 
+recall@10: 0.0709    recall@20: 0.1091    ndcg@10: 0.0393    ndcg@20: 0.0491    
+Thu 25 Sep 2025 11:08:56 INFO epoch 180 training [time: 2.04s, train loss: 2.9863]
+Thu 25 Sep 2025 11:08:59 INFO epoch 180 evaluating [time: 1.54s, valid_score: 0.105000]
+Thu 25 Sep 2025 11:08:59 INFO valid result: 
+recall@10: 0.0696    recall@20: 0.1050    ndcg@10: 0.0385    ndcg@20: 0.0475    
+Thu 25 Sep 2025 11:08:59 INFO test result: 
+recall@10: 0.0714    recall@20: 0.1091    ndcg@10: 0.0395    ndcg@20: 0.0492    
+Thu 25 Sep 2025 11:09:01 INFO epoch 181 training [time: 2.08s, train loss: 2.9739]
+Thu 25 Sep 2025 11:09:04 INFO epoch 181 evaluating [time: 1.53s, valid_score: 0.105200]
+Thu 25 Sep 2025 11:09:04 INFO valid result: 
+recall@10: 0.0709    recall@20: 0.1052    ndcg@10: 0.0391    ndcg@20: 0.0478    
+Thu 25 Sep 2025 11:09:04 INFO test result: 
+recall@10: 0.0720    recall@20: 0.1103    ndcg@10: 0.0397    ndcg@20: 0.0495    
+Thu 25 Sep 2025 11:09:06 INFO epoch 182 training [time: 2.13s, train loss: 2.9558]
+Thu 25 Sep 2025 11:09:09 INFO epoch 182 evaluating [time: 1.63s, valid_score: 0.105200]
+Thu 25 Sep 2025 11:09:09 INFO valid result: 
+recall@10: 0.0699    recall@20: 0.1052    ndcg@10: 0.0383    ndcg@20: 0.0472    
+Thu 25 Sep 2025 11:09:09 INFO test result: 
+recall@10: 0.0721    recall@20: 0.1095    ndcg@10: 0.0396    ndcg@20: 0.0491    
+Thu 25 Sep 2025 11:09:11 INFO epoch 183 training [time: 2.35s, train loss: 2.9623]
+Thu 25 Sep 2025 11:09:15 INFO epoch 183 evaluating [time: 1.55s, valid_score: 0.105600]
+Thu 25 Sep 2025 11:09:15 INFO valid result: 
+recall@10: 0.0704    recall@20: 0.1056    ndcg@10: 0.0386    ndcg@20: 0.0476    
+Thu 25 Sep 2025 11:09:15 INFO test result: 
+recall@10: 0.0715    recall@20: 0.1097    ndcg@10: 0.0395    ndcg@20: 0.0493    
+Thu 25 Sep 2025 11:09:17 INFO epoch 184 training [time: 2.34s, train loss: 2.9342]
+Thu 25 Sep 2025 11:09:20 INFO epoch 184 evaluating [time: 1.54s, valid_score: 0.106200]
+Thu 25 Sep 2025 11:09:20 INFO valid result: 
+recall@10: 0.0704    recall@20: 0.1062    ndcg@10: 0.0384    ndcg@20: 0.0475    
+Thu 25 Sep 2025 11:09:20 INFO test result: 
+recall@10: 0.0716    recall@20: 0.1112    ndcg@10: 0.0395    ndcg@20: 0.0497    
+Thu 25 Sep 2025 11:09:22 INFO epoch 185 training [time: 2.02s, train loss: 2.9510]
+Thu 25 Sep 2025 11:09:25 INFO epoch 185 evaluating [time: 1.60s, valid_score: 0.105400]
+Thu 25 Sep 2025 11:09:25 INFO valid result: 
+recall@10: 0.0699    recall@20: 0.1054    ndcg@10: 0.0385    ndcg@20: 0.0475    
+Thu 25 Sep 2025 11:09:25 INFO test result: 
+recall@10: 0.0708    recall@20: 0.1100    ndcg@10: 0.0392    ndcg@20: 0.0493    
+Thu 25 Sep 2025 11:09:27 INFO epoch 186 training [time: 2.14s, train loss: 2.9753]
+Thu 25 Sep 2025 11:09:30 INFO epoch 186 evaluating [time: 1.52s, valid_score: 0.105500]
+Thu 25 Sep 2025 11:09:30 INFO valid result: 
+recall@10: 0.0702    recall@20: 0.1055    ndcg@10: 0.0384    ndcg@20: 0.0473    
+Thu 25 Sep 2025 11:09:30 INFO test result: 
+recall@10: 0.0720    recall@20: 0.1099    ndcg@10: 0.0398    ndcg@20: 0.0495    
+Thu 25 Sep 2025 11:09:33 INFO epoch 187 training [time: 2.31s, train loss: 2.9867]
+Thu 25 Sep 2025 11:09:36 INFO epoch 187 evaluating [time: 1.88s, valid_score: 0.104300]
+Thu 25 Sep 2025 11:09:36 INFO valid result: 
+recall@10: 0.0699    recall@20: 0.1043    ndcg@10: 0.0385    ndcg@20: 0.0472    
+Thu 25 Sep 2025 11:09:36 INFO test result: 
+recall@10: 0.0719    recall@20: 0.1095    ndcg@10: 0.0397    ndcg@20: 0.0494    
+Thu 25 Sep 2025 11:09:38 INFO epoch 188 training [time: 2.35s, train loss: 2.9725]
+Thu 25 Sep 2025 11:09:41 INFO epoch 188 evaluating [time: 1.53s, valid_score: 0.103200]
+Thu 25 Sep 2025 11:09:41 INFO valid result: 
+recall@10: 0.0708    recall@20: 0.1032    ndcg@10: 0.0387    ndcg@20: 0.0470    
+Thu 25 Sep 2025 11:09:41 INFO test result: 
+recall@10: 0.0720    recall@20: 0.1102    ndcg@10: 0.0399    ndcg@20: 0.0497    
+Thu 25 Sep 2025 11:09:44 INFO epoch 189 training [time: 2.33s, train loss: 2.9468]
+Thu 25 Sep 2025 11:09:47 INFO epoch 189 evaluating [time: 1.63s, valid_score: 0.104700]
+Thu 25 Sep 2025 11:09:47 INFO valid result: 
+recall@10: 0.0695    recall@20: 0.1047    ndcg@10: 0.0381    ndcg@20: 0.0471    
+Thu 25 Sep 2025 11:09:47 INFO test result: 
+recall@10: 0.0712    recall@20: 0.1103    ndcg@10: 0.0395    ndcg@20: 0.0496    
+Thu 25 Sep 2025 11:09:49 INFO epoch 190 training [time: 2.19s, train loss: 2.9307]
+Thu 25 Sep 2025 11:09:52 INFO epoch 190 evaluating [time: 1.53s, valid_score: 0.103800]
+Thu 25 Sep 2025 11:09:52 INFO valid result: 
+recall@10: 0.0697    recall@20: 0.1038    ndcg@10: 0.0382    ndcg@20: 0.0469    
+Thu 25 Sep 2025 11:09:52 INFO test result: 
+recall@10: 0.0719    recall@20: 0.1097    ndcg@10: 0.0396    ndcg@20: 0.0494    
+Thu 25 Sep 2025 11:09:54 INFO epoch 191 training [time: 2.22s, train loss: 2.9400]
+Thu 25 Sep 2025 11:09:58 INFO epoch 191 evaluating [time: 1.53s, valid_score: 0.105100]
+Thu 25 Sep 2025 11:09:58 INFO valid result: 
+recall@10: 0.0703    recall@20: 0.1051    ndcg@10: 0.0383    ndcg@20: 0.0471    
+Thu 25 Sep 2025 11:09:58 INFO test result: 
+recall@10: 0.0721    recall@20: 0.1092    ndcg@10: 0.0397    ndcg@20: 0.0492    
+Thu 25 Sep 2025 11:10:00 INFO epoch 192 training [time: 2.28s, train loss: 2.9386]
+Thu 25 Sep 2025 11:10:03 INFO epoch 192 evaluating [time: 1.54s, valid_score: 0.104800]
+Thu 25 Sep 2025 11:10:03 INFO valid result: 
+recall@10: 0.0693    recall@20: 0.1048    ndcg@10: 0.0381    ndcg@20: 0.0472    
+Thu 25 Sep 2025 11:10:03 INFO test result: 
+recall@10: 0.0715    recall@20: 0.1091    ndcg@10: 0.0394    ndcg@20: 0.0491    
+Thu 25 Sep 2025 11:10:05 INFO epoch 193 training [time: 2.29s, train loss: 2.9426]
+Thu 25 Sep 2025 11:10:08 INFO epoch 193 evaluating [time: 1.52s, valid_score: 0.104300]
+Thu 25 Sep 2025 11:10:08 INFO valid result: 
+recall@10: 0.0697    recall@20: 0.1043    ndcg@10: 0.0385    ndcg@20: 0.0473    
+Thu 25 Sep 2025 11:10:08 INFO test result: 
+recall@10: 0.0714    recall@20: 0.1087    ndcg@10: 0.0395    ndcg@20: 0.0491    
+Thu 25 Sep 2025 11:10:10 INFO epoch 194 training [time: 2.28s, train loss: 2.9357]
+Thu 25 Sep 2025 11:10:14 INFO epoch 194 evaluating [time: 1.63s, valid_score: 0.103800]
+Thu 25 Sep 2025 11:10:14 INFO valid result: 
+recall@10: 0.0699    recall@20: 0.1038    ndcg@10: 0.0383    ndcg@20: 0.0469    
+Thu 25 Sep 2025 11:10:14 INFO test result: 
+recall@10: 0.0718    recall@20: 0.1093    ndcg@10: 0.0394    ndcg@20: 0.0491    
+Thu 25 Sep 2025 11:10:16 INFO epoch 195 training [time: 2.30s, train loss: 2.9219]
+Thu 25 Sep 2025 11:10:19 INFO epoch 195 evaluating [time: 1.53s, valid_score: 0.104700]
+Thu 25 Sep 2025 11:10:19 INFO valid result: 
+recall@10: 0.0693    recall@20: 0.1047    ndcg@10: 0.0380    ndcg@20: 0.0470    
+Thu 25 Sep 2025 11:10:19 INFO test result: 
+recall@10: 0.0715    recall@20: 0.1090    ndcg@10: 0.0394    ndcg@20: 0.0491    
+Thu 25 Sep 2025 11:10:21 INFO epoch 196 training [time: 2.34s, train loss: 2.9144]
+Thu 25 Sep 2025 11:10:25 INFO epoch 196 evaluating [time: 1.53s, valid_score: 0.104800]
+Thu 25 Sep 2025 11:10:25 INFO valid result: 
+recall@10: 0.0702    recall@20: 0.1048    ndcg@10: 0.0385    ndcg@20: 0.0473    
+Thu 25 Sep 2025 11:10:25 INFO test result: 
+recall@10: 0.0722    recall@20: 0.1093    ndcg@10: 0.0398    ndcg@20: 0.0493    
+Thu 25 Sep 2025 11:10:27 INFO epoch 197 training [time: 2.12s, train loss: 2.9180]
+Thu 25 Sep 2025 11:10:30 INFO epoch 197 evaluating [time: 1.57s, valid_score: 0.105600]
+Thu 25 Sep 2025 11:10:30 INFO valid result: 
+recall@10: 0.0693    recall@20: 0.1056    ndcg@10: 0.0381    ndcg@20: 0.0473    
+Thu 25 Sep 2025 11:10:30 INFO test result: 
+recall@10: 0.0720    recall@20: 0.1089    ndcg@10: 0.0396    ndcg@20: 0.0490    
+Thu 25 Sep 2025 11:10:32 INFO epoch 198 training [time: 2.27s, train loss: 2.9016]
+Thu 25 Sep 2025 11:10:35 INFO epoch 198 evaluating [time: 1.54s, valid_score: 0.105700]
+Thu 25 Sep 2025 11:10:35 INFO valid result: 
+recall@10: 0.0687    recall@20: 0.1057    ndcg@10: 0.0377    ndcg@20: 0.0471    
+Thu 25 Sep 2025 11:10:35 INFO test result: 
+recall@10: 0.0716    recall@20: 0.1075    ndcg@10: 0.0395    ndcg@20: 0.0488    
+Thu 25 Sep 2025 11:10:37 INFO epoch 199 training [time: 2.00s, train loss: 2.9220]
+Thu 25 Sep 2025 11:10:40 INFO epoch 199 evaluating [time: 1.62s, valid_score: 0.104500]
+Thu 25 Sep 2025 11:10:40 INFO valid result: 
+recall@10: 0.0691    recall@20: 0.1045    ndcg@10: 0.0381    ndcg@20: 0.0472    
+Thu 25 Sep 2025 11:10:40 INFO test result: 
+recall@10: 0.0725    recall@20: 0.1089    ndcg@10: 0.0399    ndcg@20: 0.0493    
+Thu 25 Sep 2025 11:10:43 INFO epoch 200 training [time: 2.28s, train loss: 2.8824]
+Thu 25 Sep 2025 11:10:46 INFO epoch 200 evaluating [time: 1.54s, valid_score: 0.104500]
+Thu 25 Sep 2025 11:10:46 INFO valid result: 
+recall@10: 0.0692    recall@20: 0.1045    ndcg@10: 0.0382    ndcg@20: 0.0472    
+Thu 25 Sep 2025 11:10:46 INFO test result: 
+recall@10: 0.0722    recall@20: 0.1097    ndcg@10: 0.0397    ndcg@20: 0.0494    
+Thu 25 Sep 2025 11:10:48 INFO epoch 201 training [time: 2.06s, train loss: 2.9091]
+Thu 25 Sep 2025 11:10:51 INFO epoch 201 evaluating [time: 1.52s, valid_score: 0.105200]
+Thu 25 Sep 2025 11:10:51 INFO valid result: 
+recall@10: 0.0697    recall@20: 0.1052    ndcg@10: 0.0384    ndcg@20: 0.0474    
+Thu 25 Sep 2025 11:10:51 INFO test result: 
+recall@10: 0.0710    recall@20: 0.1090    ndcg@10: 0.0395    ndcg@20: 0.0493    
+Thu 25 Sep 2025 11:10:51 INFO +++++Finished training, best eval result in epoch 160
+Thu 25 Sep 2025 11:10:51 INFO best valid result: recall@10: 0.0695    recall@20: 0.1068    ndcg@10: 0.0380    ndcg@20: 0.0475    
+Thu 25 Sep 2025 11:10:51 INFO test result: recall@10: 0.0734    recall@20: 0.1103    ndcg@10: 0.0402    ndcg@20: 0.0497    
+Thu 25 Sep 2025 11:10:51 INFO ████Current BEST████:
+Parameters: ['reg_weight', 'weight_decay', 'decay_weight', 'alpha_item_co', 'clu_lambda', 'cli_lambda', 'gpert_lambda', 'lambda_spec', 'seed']=(0.001, 0.0001, 0.9, 0.2, 0.0001, 1e-05, 0.0001, 0.1, 999),
+Valid: recall@10: 0.0695    recall@20: 0.1068    ndcg@10: 0.0380    ndcg@20: 0.0475    ,
+Test: recall@10: 0.0734    recall@20: 0.1103    ndcg@10: 0.0402    ndcg@20: 0.0497    
+
+
+
+Thu 25 Sep 2025 11:10:51 INFO =========2/2: Parameters:['reg_weight', 'weight_decay', 'decay_weight', 'alpha_item_co', 'clu_lambda', 'cli_lambda', 'gpert_lambda', 'lambda_spec', 'seed']=(0.001, 0.0001, 0.99, 0.2, 0.0001, 1e-05, 0.0001, 0.1, 999)=======
+Thu 25 Sep 2025 11:10:52 INFO DuGRec(
+  (mod_item_proj): Linear(in_features=192, out_features=64, bias=False)
+  (id_item_proj): Identity()
+  (image_embedding): Embedding(7050, 4096)
+  (v_MLP): Linear(in_features=4096, out_features=256, bias=True)
+  (v_MLP_1): Linear(in_features=256, out_features=64, bias=False)
+  (text_embedding): Embedding(7050, 384)
+  (t_MLP): Linear(in_features=384, out_features=256, bias=True)
+  (t_MLP_1): Linear(in_features=256, out_features=64, bias=False)
+  (s_MLP): Linear(in_features=4480, out_features=256, bias=True)
+  (s_MLP_1): Linear(in_features=256, out_features=64, bias=False)
+  (u_proj_v): Linear(in_features=64, out_features=64, bias=False)
+  (u_proj_t): Linear(in_features=64, out_features=64, bias=False)
+  (u_proj_s): Linear(in_features=64, out_features=64, bias=False)
+  (i_proj_v): Linear(in_features=64, out_features=64, bias=False)
+  (i_proj_t): Linear(in_features=64, out_features=64, bias=False)
+  (i_proj_s): Linear(in_features=64, out_features=64, bias=False)
+)
+Trainable parameters: 37697984
+Thu 25 Sep 2025 11:10:54 INFO epoch 0 training [time: 2.33s, train loss: 25.9978]
+Thu 25 Sep 2025 11:10:57 INFO epoch 0 evaluating [time: 1.55s, valid_score: 0.054300]
+Thu 25 Sep 2025 11:10:57 INFO valid result: 
+recall@10: 0.0344    recall@20: 0.0543    ndcg@10: 0.0187    ndcg@20: 0.0237    
+Thu 25 Sep 2025 11:10:57 INFO test result: 
+recall@10: 0.0358    recall@20: 0.0555    ndcg@10: 0.0195    ndcg@20: 0.0246    
+Thu 25 Sep 2025 11:10:57 INFO ██ DuGRec--Best validation results updated!!!
+Thu 25 Sep 2025 11:11:00 INFO epoch 1 training [time: 2.26s, train loss: 20.6195]
+Thu 25 Sep 2025 11:11:02 INFO epoch 1 evaluating [time: 1.67s, valid_score: 0.067000]
+Thu 25 Sep 2025 11:11:02 INFO valid result: 
+recall@10: 0.0420    recall@20: 0.0670    ndcg@10: 0.0229    ndcg@20: 0.0292    
+Thu 25 Sep 2025 11:11:02 INFO test result: 
+recall@10: 0.0437    recall@20: 0.0690    ndcg@10: 0.0241    ndcg@20: 0.0306    
+Thu 25 Sep 2025 11:11:02 INFO ██ DuGRec--Best validation results updated!!!
+Thu 25 Sep 2025 11:11:04 INFO epoch 2 training [time: 2.13s, train loss: 17.1895]
+Thu 25 Sep 2025 11:11:07 INFO epoch 2 evaluating [time: 1.11s, valid_score: 0.073000]
+Thu 25 Sep 2025 11:11:07 INFO valid result: 
+recall@10: 0.0454    recall@20: 0.0730    ndcg@10: 0.0245    ndcg@20: 0.0315    
+Thu 25 Sep 2025 11:11:07 INFO test result: 
+recall@10: 0.0483    recall@20: 0.0748    ndcg@10: 0.0263    ndcg@20: 0.0331    
+Thu 25 Sep 2025 11:11:07 INFO ██ DuGRec--Best validation results updated!!!
+Thu 25 Sep 2025 11:11:09 INFO epoch 3 training [time: 2.10s, train loss: 15.1177]
+Thu 25 Sep 2025 11:11:12 INFO epoch 3 evaluating [time: 1.53s, valid_score: 0.075700]
+Thu 25 Sep 2025 11:11:12 INFO valid result: 
+recall@10: 0.0476    recall@20: 0.0757    ndcg@10: 0.0257    ndcg@20: 0.0328    
+Thu 25 Sep 2025 11:11:12 INFO test result: 
+recall@10: 0.0510    recall@20: 0.0798    ndcg@10: 0.0274    ndcg@20: 0.0348    
+Thu 25 Sep 2025 11:11:12 INFO ██ DuGRec--Best validation results updated!!!
+Thu 25 Sep 2025 11:11:14 INFO epoch 4 training [time: 2.04s, train loss: 13.5753]
+Thu 25 Sep 2025 11:11:17 INFO epoch 4 evaluating [time: 1.57s, valid_score: 0.078500]
+Thu 25 Sep 2025 11:11:17 INFO valid result: 
+recall@10: 0.0496    recall@20: 0.0785    ndcg@10: 0.0264    ndcg@20: 0.0337    
+Thu 25 Sep 2025 11:11:17 INFO test result: 
+recall@10: 0.0525    recall@20: 0.0812    ndcg@10: 0.0279    ndcg@20: 0.0353    
+Thu 25 Sep 2025 11:11:17 INFO ██ DuGRec--Best validation results updated!!!
+Thu 25 Sep 2025 11:11:19 INFO epoch 5 training [time: 2.33s, train loss: 12.3215]
+Thu 25 Sep 2025 11:11:23 INFO epoch 5 evaluating [time: 1.54s, valid_score: 0.081400]
+Thu 25 Sep 2025 11:11:23 INFO valid result: 
+recall@10: 0.0516    recall@20: 0.0814    ndcg@10: 0.0273    ndcg@20: 0.0349    
+Thu 25 Sep 2025 11:11:23 INFO test result: 
+recall@10: 0.0538    recall@20: 0.0829    ndcg@10: 0.0284    ndcg@20: 0.0359    
+Thu 25 Sep 2025 11:11:23 INFO ██ DuGRec--Best validation results updated!!!
+Thu 25 Sep 2025 11:11:25 INFO epoch 6 training [time: 2.14s, train loss: 11.3230]
+Thu 25 Sep 2025 11:11:28 INFO epoch 6 evaluating [time: 1.53s, valid_score: 0.081600]
+Thu 25 Sep 2025 11:11:28 INFO valid result: 
+recall@10: 0.0524    recall@20: 0.0816    ndcg@10: 0.0278    ndcg@20: 0.0351    
+Thu 25 Sep 2025 11:11:28 INFO test result: 
+recall@10: 0.0545    recall@20: 0.0848    ndcg@10: 0.0289    ndcg@20: 0.0367    
+Thu 25 Sep 2025 11:11:28 INFO ██ DuGRec--Best validation results updated!!!
+Thu 25 Sep 2025 11:11:30 INFO epoch 7 training [time: 2.35s, train loss: 10.6162]
+Thu 25 Sep 2025 11:11:32 INFO epoch 7 evaluating [time: 1.13s, valid_score: 0.084100]
+Thu 25 Sep 2025 11:11:32 INFO valid result: 
+recall@10: 0.0530    recall@20: 0.0841    ndcg@10: 0.0281    ndcg@20: 0.0360    
+Thu 25 Sep 2025 11:11:32 INFO test result: 
+recall@10: 0.0559    recall@20: 0.0861    ndcg@10: 0.0298    ndcg@20: 0.0375    
+Thu 25 Sep 2025 11:11:32 INFO ██ DuGRec--Best validation results updated!!!
+Thu 25 Sep 2025 11:11:35 INFO epoch 8 training [time: 2.25s, train loss: 9.8650]
+Thu 25 Sep 2025 11:11:38 INFO epoch 8 evaluating [time: 1.63s, valid_score: 0.081900]
+Thu 25 Sep 2025 11:11:38 INFO valid result: 
+recall@10: 0.0539    recall@20: 0.0819    ndcg@10: 0.0287    ndcg@20: 0.0358    
+Thu 25 Sep 2025 11:11:38 INFO test result: 
+recall@10: 0.0566    recall@20: 0.0875    ndcg@10: 0.0300    ndcg@20: 0.0379    
+Thu 25 Sep 2025 11:11:40 INFO epoch 9 training [time: 2.33s, train loss: 9.2776]
+Thu 25 Sep 2025 11:11:43 INFO epoch 9 evaluating [time: 1.54s, valid_score: 0.084600]
+Thu 25 Sep 2025 11:11:43 INFO valid result: 
+recall@10: 0.0548    recall@20: 0.0846    ndcg@10: 0.0291    ndcg@20: 0.0366    
+Thu 25 Sep 2025 11:11:43 INFO test result: 
+recall@10: 0.0569    recall@20: 0.0894    ndcg@10: 0.0306    ndcg@20: 0.0389    
+Thu 25 Sep 2025 11:11:43 INFO ██ DuGRec--Best validation results updated!!!
+Thu 25 Sep 2025 11:11:45 INFO epoch 10 training [time: 2.24s, train loss: 8.7411]
+Thu 25 Sep 2025 11:11:49 INFO epoch 10 evaluating [time: 1.54s, valid_score: 0.085800]
+Thu 25 Sep 2025 11:11:49 INFO valid result: 
+recall@10: 0.0553    recall@20: 0.0858    ndcg@10: 0.0295    ndcg@20: 0.0372    
+Thu 25 Sep 2025 11:11:49 INFO test result: 
+recall@10: 0.0572    recall@20: 0.0903    ndcg@10: 0.0311    ndcg@20: 0.0395    
+Thu 25 Sep 2025 11:11:49 INFO ██ DuGRec--Best validation results updated!!!
+Thu 25 Sep 2025 11:11:51 INFO epoch 11 training [time: 2.32s, train loss: 8.3447]
+Thu 25 Sep 2025 11:11:54 INFO epoch 11 evaluating [time: 1.53s, valid_score: 0.087700]
+Thu 25 Sep 2025 11:11:54 INFO valid result: 
+recall@10: 0.0559    recall@20: 0.0877    ndcg@10: 0.0298    ndcg@20: 0.0379    
+Thu 25 Sep 2025 11:11:54 INFO test result: 
+recall@10: 0.0574    recall@20: 0.0917    ndcg@10: 0.0309    ndcg@20: 0.0397    
+Thu 25 Sep 2025 11:11:54 INFO ██ DuGRec--Best validation results updated!!!
+Thu 25 Sep 2025 11:11:56 INFO epoch 12 training [time: 2.31s, train loss: 7.9624]
+Thu 25 Sep 2025 11:11:59 INFO epoch 12 evaluating [time: 1.55s, valid_score: 0.087900]
+Thu 25 Sep 2025 11:11:59 INFO valid result: 
+recall@10: 0.0564    recall@20: 0.0879    ndcg@10: 0.0301    ndcg@20: 0.0382    
+Thu 25 Sep 2025 11:11:59 INFO test result: 
+recall@10: 0.0579    recall@20: 0.0935    ndcg@10: 0.0314    ndcg@20: 0.0405    
+Thu 25 Sep 2025 11:11:59 INFO ██ DuGRec--Best validation results updated!!!
+Thu 25 Sep 2025 11:12:02 INFO epoch 13 training [time: 2.36s, train loss: 7.6118]
+Thu 25 Sep 2025 11:12:05 INFO epoch 13 evaluating [time: 1.78s, valid_score: 0.089700]
+Thu 25 Sep 2025 11:12:05 INFO valid result: 
+recall@10: 0.0568    recall@20: 0.0897    ndcg@10: 0.0304    ndcg@20: 0.0387    
+Thu 25 Sep 2025 11:12:05 INFO test result: 
+recall@10: 0.0586    recall@20: 0.0933    ndcg@10: 0.0318    ndcg@20: 0.0407    
+Thu 25 Sep 2025 11:12:05 INFO ██ DuGRec--Best validation results updated!!!
+Thu 25 Sep 2025 11:12:07 INFO epoch 14 training [time: 2.33s, train loss: 7.2941]
+Thu 25 Sep 2025 11:12:11 INFO epoch 14 evaluating [time: 1.74s, valid_score: 0.090600]
+Thu 25 Sep 2025 11:12:11 INFO valid result: 
+recall@10: 0.0581    recall@20: 0.0906    ndcg@10: 0.0309    ndcg@20: 0.0392    
+Thu 25 Sep 2025 11:12:11 INFO test result: 
+recall@10: 0.0593    recall@20: 0.0942    ndcg@10: 0.0322    ndcg@20: 0.0411    
+Thu 25 Sep 2025 11:12:11 INFO ██ DuGRec--Best validation results updated!!!
+Thu 25 Sep 2025 11:12:13 INFO epoch 15 training [time: 2.34s, train loss: 6.9587]
+Thu 25 Sep 2025 11:12:16 INFO epoch 15 evaluating [time: 1.55s, valid_score: 0.091000]
+Thu 25 Sep 2025 11:12:16 INFO valid result: 
+recall@10: 0.0581    recall@20: 0.0910    ndcg@10: 0.0313    ndcg@20: 0.0396    
+Thu 25 Sep 2025 11:12:16 INFO test result: 
+recall@10: 0.0594    recall@20: 0.0955    ndcg@10: 0.0320    ndcg@20: 0.0412    
+Thu 25 Sep 2025 11:12:16 INFO ██ DuGRec--Best validation results updated!!!
+Thu 25 Sep 2025 11:12:19 INFO epoch 16 training [time: 2.22s, train loss: 6.7744]
+Thu 25 Sep 2025 11:12:22 INFO epoch 16 evaluating [time: 1.54s, valid_score: 0.092100]
+Thu 25 Sep 2025 11:12:22 INFO valid result: 
+recall@10: 0.0587    recall@20: 0.0921    ndcg@10: 0.0317    ndcg@20: 0.0402    
+Thu 25 Sep 2025 11:12:22 INFO test result: 
+recall@10: 0.0604    recall@20: 0.0964    ndcg@10: 0.0325    ndcg@20: 0.0417    
+Thu 25 Sep 2025 11:12:22 INFO ██ DuGRec--Best validation results updated!!!
+Thu 25 Sep 2025 11:12:24 INFO epoch 17 training [time: 2.10s, train loss: 6.5274]
+Thu 25 Sep 2025 11:12:27 INFO epoch 17 evaluating [time: 1.53s, valid_score: 0.093000]
+Thu 25 Sep 2025 11:12:27 INFO valid result: 
+recall@10: 0.0587    recall@20: 0.0930    ndcg@10: 0.0318    ndcg@20: 0.0404    
+Thu 25 Sep 2025 11:12:27 INFO test result: 
+recall@10: 0.0601    recall@20: 0.0965    ndcg@10: 0.0328    ndcg@20: 0.0422    
+Thu 25 Sep 2025 11:12:27 INFO ██ DuGRec--Best validation results updated!!!
+Thu 25 Sep 2025 11:12:29 INFO epoch 18 training [time: 2.12s, train loss: 6.3407]
+Thu 25 Sep 2025 11:12:32 INFO epoch 18 evaluating [time: 1.63s, valid_score: 0.094400]
+Thu 25 Sep 2025 11:12:32 INFO valid result: 
+recall@10: 0.0597    recall@20: 0.0944    ndcg@10: 0.0321    ndcg@20: 0.0409    
+Thu 25 Sep 2025 11:12:32 INFO test result: 
+recall@10: 0.0613    recall@20: 0.0971    ndcg@10: 0.0332    ndcg@20: 0.0423    
+Thu 25 Sep 2025 11:12:32 INFO ██ DuGRec--Best validation results updated!!!
+Thu 25 Sep 2025 11:12:34 INFO epoch 19 training [time: 2.02s, train loss: 6.1305]
+Thu 25 Sep 2025 11:12:37 INFO epoch 19 evaluating [time: 1.55s, valid_score: 0.093400]
+Thu 25 Sep 2025 11:12:37 INFO valid result: 
+recall@10: 0.0594    recall@20: 0.0934    ndcg@10: 0.0320    ndcg@20: 0.0406    
+Thu 25 Sep 2025 11:12:37 INFO test result: 
+recall@10: 0.0616    recall@20: 0.0975    ndcg@10: 0.0334    ndcg@20: 0.0426    
+Thu 25 Sep 2025 11:12:39 INFO epoch 20 training [time: 2.02s, train loss: 5.9331]
+Thu 25 Sep 2025 11:12:42 INFO epoch 20 evaluating [time: 1.63s, valid_score: 0.095200]
+Thu 25 Sep 2025 11:12:42 INFO valid result: 
+recall@10: 0.0615    recall@20: 0.0952    ndcg@10: 0.0328    ndcg@20: 0.0414    
+Thu 25 Sep 2025 11:12:42 INFO test result: 
+recall@10: 0.0621    recall@20: 0.0973    ndcg@10: 0.0336    ndcg@20: 0.0426    
+Thu 25 Sep 2025 11:12:42 INFO ██ DuGRec--Best validation results updated!!!
+Thu 25 Sep 2025 11:12:44 INFO epoch 21 training [time: 2.06s, train loss: 5.8282]
+Thu 25 Sep 2025 11:12:48 INFO epoch 21 evaluating [time: 1.53s, valid_score: 0.094200]
+Thu 25 Sep 2025 11:12:48 INFO valid result: 
+recall@10: 0.0601    recall@20: 0.0942    ndcg@10: 0.0326    ndcg@20: 0.0412    
+Thu 25 Sep 2025 11:12:48 INFO test result: 
+recall@10: 0.0623    recall@20: 0.0976    ndcg@10: 0.0338    ndcg@20: 0.0428    
+Thu 25 Sep 2025 11:12:50 INFO epoch 22 training [time: 2.01s, train loss: 5.6651]
+Thu 25 Sep 2025 11:12:53 INFO epoch 22 evaluating [time: 1.53s, valid_score: 0.094500]
+Thu 25 Sep 2025 11:12:53 INFO valid result: 
+recall@10: 0.0611    recall@20: 0.0945    ndcg@10: 0.0331    ndcg@20: 0.0415    
+Thu 25 Sep 2025 11:12:53 INFO test result: 
+recall@10: 0.0624    recall@20: 0.0990    ndcg@10: 0.0337    ndcg@20: 0.0431    
+Thu 25 Sep 2025 11:12:55 INFO epoch 23 training [time: 1.90s, train loss: 5.4614]
+Thu 25 Sep 2025 11:12:58 INFO epoch 23 evaluating [time: 1.53s, valid_score: 0.095300]
+Thu 25 Sep 2025 11:12:58 INFO valid result: 
+recall@10: 0.0608    recall@20: 0.0953    ndcg@10: 0.0332    ndcg@20: 0.0419    
+Thu 25 Sep 2025 11:12:58 INFO test result: 
+recall@10: 0.0628    recall@20: 0.0995    ndcg@10: 0.0339    ndcg@20: 0.0434    
+Thu 25 Sep 2025 11:12:58 INFO ██ DuGRec--Best validation results updated!!!
+Thu 25 Sep 2025 11:13:00 INFO epoch 24 training [time: 2.02s, train loss: 5.3647]
+Thu 25 Sep 2025 11:13:03 INFO epoch 24 evaluating [time: 1.53s, valid_score: 0.094200]
+Thu 25 Sep 2025 11:13:03 INFO valid result: 
+recall@10: 0.0614    recall@20: 0.0942    ndcg@10: 0.0334    ndcg@20: 0.0417    
+Thu 25 Sep 2025 11:13:03 INFO test result: 
+recall@10: 0.0625    recall@20: 0.0994    ndcg@10: 0.0342    ndcg@20: 0.0437    
+Thu 25 Sep 2025 11:13:05 INFO epoch 25 training [time: 2.02s, train loss: 5.2385]
+Thu 25 Sep 2025 11:13:08 INFO epoch 25 evaluating [time: 1.61s, valid_score: 0.096100]
+Thu 25 Sep 2025 11:13:08 INFO valid result: 
+recall@10: 0.0621    recall@20: 0.0961    ndcg@10: 0.0336    ndcg@20: 0.0422    
+Thu 25 Sep 2025 11:13:08 INFO test result: 
+recall@10: 0.0631    recall@20: 0.1000    ndcg@10: 0.0345    ndcg@20: 0.0440    
+Thu 25 Sep 2025 11:13:08 INFO ██ DuGRec--Best validation results updated!!!
+Thu 25 Sep 2025 11:13:10 INFO epoch 26 training [time: 2.32s, train loss: 5.1656]
+Thu 25 Sep 2025 11:13:13 INFO epoch 26 evaluating [time: 1.54s, valid_score: 0.097800]
+Thu 25 Sep 2025 11:13:13 INFO valid result: 
+recall@10: 0.0625    recall@20: 0.0978    ndcg@10: 0.0339    ndcg@20: 0.0428    
+Thu 25 Sep 2025 11:13:13 INFO test result: 
+recall@10: 0.0637    recall@20: 0.1006    ndcg@10: 0.0348    ndcg@20: 0.0442    
+Thu 25 Sep 2025 11:13:13 INFO ██ DuGRec--Best validation results updated!!!
+Thu 25 Sep 2025 11:13:15 INFO epoch 27 training [time: 2.22s, train loss: 5.0645]
+Thu 25 Sep 2025 11:13:19 INFO epoch 27 evaluating [time: 1.54s, valid_score: 0.096400]
+Thu 25 Sep 2025 11:13:19 INFO valid result: 
+recall@10: 0.0625    recall@20: 0.0964    ndcg@10: 0.0335    ndcg@20: 0.0421    
+Thu 25 Sep 2025 11:13:19 INFO test result: 
+recall@10: 0.0645    recall@20: 0.1008    ndcg@10: 0.0350    ndcg@20: 0.0443    
+Thu 25 Sep 2025 11:13:21 INFO epoch 28 training [time: 2.34s, train loss: 4.9714]
+Thu 25 Sep 2025 11:13:24 INFO epoch 28 evaluating [time: 1.54s, valid_score: 0.097400]
+Thu 25 Sep 2025 11:13:24 INFO valid result: 
+recall@10: 0.0634    recall@20: 0.0974    ndcg@10: 0.0339    ndcg@20: 0.0425    
+Thu 25 Sep 2025 11:13:24 INFO test result: 
+recall@10: 0.0654    recall@20: 0.1013    ndcg@10: 0.0353    ndcg@20: 0.0446    
+Thu 25 Sep 2025 11:13:26 INFO epoch 29 training [time: 2.23s, train loss: 4.9008]
+Thu 25 Sep 2025 11:13:29 INFO epoch 29 evaluating [time: 1.53s, valid_score: 0.097700]
+Thu 25 Sep 2025 11:13:29 INFO valid result: 
+recall@10: 0.0635    recall@20: 0.0977    ndcg@10: 0.0342    ndcg@20: 0.0429    
+Thu 25 Sep 2025 11:13:29 INFO test result: 
+recall@10: 0.0654    recall@20: 0.1015    ndcg@10: 0.0356    ndcg@20: 0.0449    
+Thu 25 Sep 2025 11:13:32 INFO epoch 30 training [time: 2.35s, train loss: 4.8551]
+Thu 25 Sep 2025 11:13:35 INFO epoch 30 evaluating [time: 1.63s, valid_score: 0.097500]
+Thu 25 Sep 2025 11:13:35 INFO valid result: 
+recall@10: 0.0641    recall@20: 0.0975    ndcg@10: 0.0343    ndcg@20: 0.0428    
+Thu 25 Sep 2025 11:13:35 INFO test result: 
+recall@10: 0.0647    recall@20: 0.1024    ndcg@10: 0.0354    ndcg@20: 0.0451    
+Thu 25 Sep 2025 11:13:37 INFO epoch 31 training [time: 2.33s, train loss: 4.7239]
+Thu 25 Sep 2025 11:13:40 INFO epoch 31 evaluating [time: 1.54s, valid_score: 0.098200]
+Thu 25 Sep 2025 11:13:40 INFO valid result: 
+recall@10: 0.0647    recall@20: 0.0982    ndcg@10: 0.0346    ndcg@20: 0.0431    
+Thu 25 Sep 2025 11:13:40 INFO test result: 
+recall@10: 0.0652    recall@20: 0.1028    ndcg@10: 0.0355    ndcg@20: 0.0452    
+Thu 25 Sep 2025 11:13:40 INFO ██ DuGRec--Best validation results updated!!!
+Thu 25 Sep 2025 11:13:42 INFO epoch 32 training [time: 2.04s, train loss: 4.6157]
+Thu 25 Sep 2025 11:13:46 INFO epoch 32 evaluating [time: 1.55s, valid_score: 0.098700]
+Thu 25 Sep 2025 11:13:46 INFO valid result: 
+recall@10: 0.0643    recall@20: 0.0987    ndcg@10: 0.0342    ndcg@20: 0.0429    
+Thu 25 Sep 2025 11:13:46 INFO test result: 
+recall@10: 0.0662    recall@20: 0.1025    ndcg@10: 0.0358    ndcg@20: 0.0451    
+Thu 25 Sep 2025 11:13:46 INFO ██ DuGRec--Best validation results updated!!!
+Thu 25 Sep 2025 11:13:48 INFO epoch 33 training [time: 1.98s, train loss: 4.5897]
+Thu 25 Sep 2025 11:13:51 INFO epoch 33 evaluating [time: 1.61s, valid_score: 0.098900]
+Thu 25 Sep 2025 11:13:51 INFO valid result: 
+recall@10: 0.0647    recall@20: 0.0989    ndcg@10: 0.0345    ndcg@20: 0.0433    
+Thu 25 Sep 2025 11:13:51 INFO test result: 
+recall@10: 0.0659    recall@20: 0.1036    ndcg@10: 0.0360    ndcg@20: 0.0457    
+Thu 25 Sep 2025 11:13:51 INFO ██ DuGRec--Best validation results updated!!!
+Thu 25 Sep 2025 11:13:53 INFO epoch 34 training [time: 1.91s, train loss: 4.5622]
+Thu 25 Sep 2025 11:13:56 INFO epoch 34 evaluating [time: 1.61s, valid_score: 0.100000]
+Thu 25 Sep 2025 11:13:56 INFO valid result: 
+recall@10: 0.0652    recall@20: 0.1000    ndcg@10: 0.0353    ndcg@20: 0.0441    
+Thu 25 Sep 2025 11:13:56 INFO test result: 
+recall@10: 0.0662    recall@20: 0.1040    ndcg@10: 0.0363    ndcg@20: 0.0460    
+Thu 25 Sep 2025 11:13:56 INFO ██ DuGRec--Best validation results updated!!!
+Thu 25 Sep 2025 11:13:58 INFO epoch 35 training [time: 1.98s, train loss: 4.4923]
+Thu 25 Sep 2025 11:14:01 INFO epoch 35 evaluating [time: 1.84s, valid_score: 0.099400]
+Thu 25 Sep 2025 11:14:01 INFO valid result: 
+recall@10: 0.0651    recall@20: 0.0994    ndcg@10: 0.0353    ndcg@20: 0.0441    
+Thu 25 Sep 2025 11:14:01 INFO test result: 
+recall@10: 0.0664    recall@20: 0.1050    ndcg@10: 0.0363    ndcg@20: 0.0462    
+Thu 25 Sep 2025 11:14:03 INFO epoch 36 training [time: 2.00s, train loss: 4.4423]
+Thu 25 Sep 2025 11:14:06 INFO epoch 36 evaluating [time: 1.52s, valid_score: 0.100100]
+Thu 25 Sep 2025 11:14:06 INFO valid result: 
+recall@10: 0.0647    recall@20: 0.1001    ndcg@10: 0.0348    ndcg@20: 0.0438    
+Thu 25 Sep 2025 11:14:06 INFO test result: 
+recall@10: 0.0670    recall@20: 0.1055    ndcg@10: 0.0364    ndcg@20: 0.0463    
+Thu 25 Sep 2025 11:14:06 INFO ██ DuGRec--Best validation results updated!!!
+Thu 25 Sep 2025 11:14:08 INFO epoch 37 training [time: 2.02s, train loss: 4.3453]
+Thu 25 Sep 2025 11:14:12 INFO epoch 37 evaluating [time: 1.61s, valid_score: 0.098500]
+Thu 25 Sep 2025 11:14:12 INFO valid result: 
+recall@10: 0.0647    recall@20: 0.0985    ndcg@10: 0.0351    ndcg@20: 0.0437    
+Thu 25 Sep 2025 11:14:12 INFO test result: 
+recall@10: 0.0668    recall@20: 0.1050    ndcg@10: 0.0362    ndcg@20: 0.0460    
+Thu 25 Sep 2025 11:14:14 INFO epoch 38 training [time: 2.05s, train loss: 4.3489]
+Thu 25 Sep 2025 11:14:17 INFO epoch 38 evaluating [time: 1.54s, valid_score: 0.099700]
+Thu 25 Sep 2025 11:14:17 INFO valid result: 
+recall@10: 0.0659    recall@20: 0.0997    ndcg@10: 0.0354    ndcg@20: 0.0440    
+Thu 25 Sep 2025 11:14:17 INFO test result: 
+recall@10: 0.0679    recall@20: 0.1056    ndcg@10: 0.0369    ndcg@20: 0.0465    
+Thu 25 Sep 2025 11:14:19 INFO epoch 39 training [time: 2.20s, train loss: 4.2766]
+Thu 25 Sep 2025 11:14:22 INFO epoch 39 evaluating [time: 1.55s, valid_score: 0.099500]
+Thu 25 Sep 2025 11:14:22 INFO valid result: 
+recall@10: 0.0655    recall@20: 0.0995    ndcg@10: 0.0355    ndcg@20: 0.0441    
+Thu 25 Sep 2025 11:14:22 INFO test result: 
+recall@10: 0.0675    recall@20: 0.1058    ndcg@10: 0.0367    ndcg@20: 0.0466    
+Thu 25 Sep 2025 11:14:24 INFO epoch 40 training [time: 2.35s, train loss: 4.2421]
+Thu 25 Sep 2025 11:14:27 INFO epoch 40 evaluating [time: 1.53s, valid_score: 0.099600]
+Thu 25 Sep 2025 11:14:27 INFO valid result: 
+recall@10: 0.0663    recall@20: 0.0996    ndcg@10: 0.0359    ndcg@20: 0.0443    
+Thu 25 Sep 2025 11:14:27 INFO test result: 
+recall@10: 0.0667    recall@20: 0.1054    ndcg@10: 0.0362    ndcg@20: 0.0462    
+Thu 25 Sep 2025 11:14:30 INFO epoch 41 training [time: 2.31s, train loss: 4.1854]
+Thu 25 Sep 2025 11:14:33 INFO epoch 41 evaluating [time: 1.54s, valid_score: 0.099400]
+Thu 25 Sep 2025 11:14:33 INFO valid result: 
+recall@10: 0.0667    recall@20: 0.0994    ndcg@10: 0.0361    ndcg@20: 0.0445    
+Thu 25 Sep 2025 11:14:33 INFO test result: 
+recall@10: 0.0672    recall@20: 0.1048    ndcg@10: 0.0368    ndcg@20: 0.0465    
+Thu 25 Sep 2025 11:14:35 INFO epoch 42 training [time: 2.34s, train loss: 4.1068]
+Thu 25 Sep 2025 11:14:38 INFO epoch 42 evaluating [time: 1.63s, valid_score: 0.100100]
+Thu 25 Sep 2025 11:14:38 INFO valid result: 
+recall@10: 0.0664    recall@20: 0.1001    ndcg@10: 0.0357    ndcg@20: 0.0443    
+Thu 25 Sep 2025 11:14:38 INFO test result: 
+recall@10: 0.0674    recall@20: 0.1051    ndcg@10: 0.0366    ndcg@20: 0.0463    
+Thu 25 Sep 2025 11:14:41 INFO epoch 43 training [time: 2.23s, train loss: 4.0855]
+Thu 25 Sep 2025 11:14:44 INFO epoch 43 evaluating [time: 1.52s, valid_score: 0.101000]
+Thu 25 Sep 2025 11:14:44 INFO valid result: 
+recall@10: 0.0667    recall@20: 0.1010    ndcg@10: 0.0359    ndcg@20: 0.0446    
+Thu 25 Sep 2025 11:14:44 INFO test result: 
+recall@10: 0.0678    recall@20: 0.1055    ndcg@10: 0.0368    ndcg@20: 0.0465    
+Thu 25 Sep 2025 11:14:44 INFO ██ DuGRec--Best validation results updated!!!
+Thu 25 Sep 2025 11:14:46 INFO epoch 44 training [time: 2.15s, train loss: 4.0563]
+Thu 25 Sep 2025 11:14:48 INFO epoch 44 evaluating [time: 1.12s, valid_score: 0.100600]
+Thu 25 Sep 2025 11:14:48 INFO valid result: 
+recall@10: 0.0668    recall@20: 0.1006    ndcg@10: 0.0358    ndcg@20: 0.0444    
+Thu 25 Sep 2025 11:14:48 INFO test result: 
+recall@10: 0.0674    recall@20: 0.1061    ndcg@10: 0.0370    ndcg@20: 0.0470    
+Thu 25 Sep 2025 11:14:50 INFO epoch 45 training [time: 2.23s, train loss: 4.0510]
+Thu 25 Sep 2025 11:14:53 INFO epoch 45 evaluating [time: 1.53s, valid_score: 0.101400]
+Thu 25 Sep 2025 11:14:53 INFO valid result: 
+recall@10: 0.0671    recall@20: 0.1014    ndcg@10: 0.0360    ndcg@20: 0.0447    
+Thu 25 Sep 2025 11:14:53 INFO test result: 
+recall@10: 0.0677    recall@20: 0.1063    ndcg@10: 0.0369    ndcg@20: 0.0469    
+Thu 25 Sep 2025 11:14:53 INFO ██ DuGRec--Best validation results updated!!!
+Thu 25 Sep 2025 11:14:56 INFO epoch 46 training [time: 2.25s, train loss: 4.0071]
+Thu 25 Sep 2025 11:14:58 INFO epoch 46 evaluating [time: 1.59s, valid_score: 0.102000]
+Thu 25 Sep 2025 11:14:58 INFO valid result: 
+recall@10: 0.0676    recall@20: 0.1020    ndcg@10: 0.0366    ndcg@20: 0.0453    
+Thu 25 Sep 2025 11:14:58 INFO test result: 
+recall@10: 0.0684    recall@20: 0.1055    ndcg@10: 0.0374    ndcg@20: 0.0470    
+Thu 25 Sep 2025 11:14:58 INFO ██ DuGRec--Best validation results updated!!!
+Thu 25 Sep 2025 11:15:01 INFO epoch 47 training [time: 2.19s, train loss: 3.9868]
+Thu 25 Sep 2025 11:15:04 INFO epoch 47 evaluating [time: 1.62s, valid_score: 0.102300]
+Thu 25 Sep 2025 11:15:04 INFO valid result: 
+recall@10: 0.0671    recall@20: 0.1023    ndcg@10: 0.0362    ndcg@20: 0.0452    
+Thu 25 Sep 2025 11:15:04 INFO test result: 
+recall@10: 0.0684    recall@20: 0.1058    ndcg@10: 0.0371    ndcg@20: 0.0467    
+Thu 25 Sep 2025 11:15:04 INFO ██ DuGRec--Best validation results updated!!!
+Thu 25 Sep 2025 11:15:06 INFO epoch 48 training [time: 2.03s, train loss: 3.9565]
+Thu 25 Sep 2025 11:15:09 INFO epoch 48 evaluating [time: 1.52s, valid_score: 0.101600]
+Thu 25 Sep 2025 11:15:09 INFO valid result: 
+recall@10: 0.0674    recall@20: 0.1016    ndcg@10: 0.0364    ndcg@20: 0.0451    
+Thu 25 Sep 2025 11:15:09 INFO test result: 
+recall@10: 0.0677    recall@20: 0.1060    ndcg@10: 0.0370    ndcg@20: 0.0468    
+Thu 25 Sep 2025 11:15:11 INFO epoch 49 training [time: 2.29s, train loss: 3.9437]
+Thu 25 Sep 2025 11:15:14 INFO epoch 49 evaluating [time: 1.53s, valid_score: 0.102000]
+Thu 25 Sep 2025 11:15:14 INFO valid result: 
+recall@10: 0.0675    recall@20: 0.1020    ndcg@10: 0.0365    ndcg@20: 0.0452    
+Thu 25 Sep 2025 11:15:14 INFO test result: 
+recall@10: 0.0679    recall@20: 0.1055    ndcg@10: 0.0370    ndcg@20: 0.0466    
+Thu 25 Sep 2025 11:15:17 INFO epoch 50 training [time: 2.32s, train loss: 3.8887]
+Thu 25 Sep 2025 11:15:20 INFO epoch 50 evaluating [time: 1.54s, valid_score: 0.100700]
+Thu 25 Sep 2025 11:15:20 INFO valid result: 
+recall@10: 0.0667    recall@20: 0.1007    ndcg@10: 0.0363    ndcg@20: 0.0450    
+Thu 25 Sep 2025 11:15:20 INFO test result: 
+recall@10: 0.0678    recall@20: 0.1057    ndcg@10: 0.0372    ndcg@20: 0.0470    
+Thu 25 Sep 2025 11:15:22 INFO epoch 51 training [time: 2.23s, train loss: 3.9110]
+Thu 25 Sep 2025 11:15:25 INFO epoch 51 evaluating [time: 1.53s, valid_score: 0.101700]
+Thu 25 Sep 2025 11:15:25 INFO valid result: 
+recall@10: 0.0667    recall@20: 0.1017    ndcg@10: 0.0363    ndcg@20: 0.0452    
+Thu 25 Sep 2025 11:15:25 INFO test result: 
+recall@10: 0.0690    recall@20: 0.1065    ndcg@10: 0.0374    ndcg@20: 0.0469    
+Thu 25 Sep 2025 11:15:27 INFO epoch 52 training [time: 2.35s, train loss: 3.8470]
+Thu 25 Sep 2025 11:15:30 INFO epoch 52 evaluating [time: 1.53s, valid_score: 0.102300]
+Thu 25 Sep 2025 11:15:30 INFO valid result: 
+recall@10: 0.0666    recall@20: 0.1023    ndcg@10: 0.0361    ndcg@20: 0.0451    
+Thu 25 Sep 2025 11:15:30 INFO test result: 
+recall@10: 0.0691    recall@20: 0.1053    ndcg@10: 0.0374    ndcg@20: 0.0467    
+Thu 25 Sep 2025 11:15:32 INFO epoch 53 training [time: 2.01s, train loss: 3.8561]
+Thu 25 Sep 2025 11:15:36 INFO epoch 53 evaluating [time: 1.53s, valid_score: 0.103300]
+Thu 25 Sep 2025 11:15:36 INFO valid result: 
+recall@10: 0.0671    recall@20: 0.1033    ndcg@10: 0.0366    ndcg@20: 0.0458    
+Thu 25 Sep 2025 11:15:36 INFO test result: 
+recall@10: 0.0689    recall@20: 0.1054    ndcg@10: 0.0376    ndcg@20: 0.0471    
+Thu 25 Sep 2025 11:15:36 INFO ██ DuGRec--Best validation results updated!!!
+Thu 25 Sep 2025 11:15:38 INFO epoch 54 training [time: 2.20s, train loss: 3.7713]
+Thu 25 Sep 2025 11:15:41 INFO epoch 54 evaluating [time: 1.62s, valid_score: 0.102200]
+Thu 25 Sep 2025 11:15:41 INFO valid result: 
+recall@10: 0.0674    recall@20: 0.1022    ndcg@10: 0.0365    ndcg@20: 0.0453    
+Thu 25 Sep 2025 11:15:41 INFO test result: 
+recall@10: 0.0692    recall@20: 0.1066    ndcg@10: 0.0374    ndcg@20: 0.0470    
+Thu 25 Sep 2025 11:15:43 INFO epoch 55 training [time: 2.24s, train loss: 3.7878]
+Thu 25 Sep 2025 11:15:46 INFO epoch 55 evaluating [time: 1.53s, valid_score: 0.102000]
+Thu 25 Sep 2025 11:15:46 INFO valid result: 
+recall@10: 0.0673    recall@20: 0.1020    ndcg@10: 0.0361    ndcg@20: 0.0449    
+Thu 25 Sep 2025 11:15:46 INFO test result: 
+recall@10: 0.0694    recall@20: 0.1055    ndcg@10: 0.0376    ndcg@20: 0.0469    
+Thu 25 Sep 2025 11:15:49 INFO epoch 56 training [time: 2.35s, train loss: 3.7755]
+Thu 25 Sep 2025 11:15:52 INFO epoch 56 evaluating [time: 1.64s, valid_score: 0.101700]
+Thu 25 Sep 2025 11:15:52 INFO valid result: 
+recall@10: 0.0667    recall@20: 0.1017    ndcg@10: 0.0364    ndcg@20: 0.0453    
+Thu 25 Sep 2025 11:15:52 INFO test result: 
+recall@10: 0.0701    recall@20: 0.1059    ndcg@10: 0.0378    ndcg@20: 0.0470    
+Thu 25 Sep 2025 11:15:54 INFO epoch 57 training [time: 2.08s, train loss: 3.7043]
+Thu 25 Sep 2025 11:15:57 INFO epoch 57 evaluating [time: 1.54s, valid_score: 0.102000]
+Thu 25 Sep 2025 11:15:57 INFO valid result: 
+recall@10: 0.0673    recall@20: 0.1020    ndcg@10: 0.0364    ndcg@20: 0.0453    
+Thu 25 Sep 2025 11:15:57 INFO test result: 
+recall@10: 0.0687    recall@20: 0.1063    ndcg@10: 0.0376    ndcg@20: 0.0473    
+Thu 25 Sep 2025 11:15:59 INFO epoch 58 training [time: 1.99s, train loss: 3.6992]
+Thu 25 Sep 2025 11:16:02 INFO epoch 58 evaluating [time: 1.53s, valid_score: 0.102900]
+Thu 25 Sep 2025 11:16:02 INFO valid result: 
+recall@10: 0.0678    recall@20: 0.1029    ndcg@10: 0.0365    ndcg@20: 0.0454    
+Thu 25 Sep 2025 11:16:02 INFO test result: 
+recall@10: 0.0692    recall@20: 0.1068    ndcg@10: 0.0377    ndcg@20: 0.0474    
+Thu 25 Sep 2025 11:16:04 INFO epoch 59 training [time: 1.94s, train loss: 3.7490]
+Thu 25 Sep 2025 11:16:07 INFO epoch 59 evaluating [time: 1.68s, valid_score: 0.102600]
+Thu 25 Sep 2025 11:16:07 INFO valid result: 
+recall@10: 0.0669    recall@20: 0.1026    ndcg@10: 0.0366    ndcg@20: 0.0456    
+Thu 25 Sep 2025 11:16:07 INFO test result: 
+recall@10: 0.0696    recall@20: 0.1068    ndcg@10: 0.0377    ndcg@20: 0.0473    
+Thu 25 Sep 2025 11:16:10 INFO epoch 60 training [time: 2.36s, train loss: 3.7201]
+Thu 25 Sep 2025 11:16:13 INFO epoch 60 evaluating [time: 1.59s, valid_score: 0.103100]
+Thu 25 Sep 2025 11:16:13 INFO valid result: 
+recall@10: 0.0673    recall@20: 0.1031    ndcg@10: 0.0366    ndcg@20: 0.0458    
+Thu 25 Sep 2025 11:16:13 INFO test result: 
+recall@10: 0.0694    recall@20: 0.1065    ndcg@10: 0.0379    ndcg@20: 0.0474    
+Thu 25 Sep 2025 11:16:15 INFO epoch 61 training [time: 2.20s, train loss: 3.6389]
+Thu 25 Sep 2025 11:16:18 INFO epoch 61 evaluating [time: 1.60s, valid_score: 0.102100]
+Thu 25 Sep 2025 11:16:18 INFO valid result: 
+recall@10: 0.0670    recall@20: 0.1021    ndcg@10: 0.0368    ndcg@20: 0.0457    
+Thu 25 Sep 2025 11:16:18 INFO test result: 
+recall@10: 0.0690    recall@20: 0.1064    ndcg@10: 0.0377    ndcg@20: 0.0473    
+Thu 25 Sep 2025 11:16:21 INFO epoch 62 training [time: 2.36s, train loss: 3.6109]
+Thu 25 Sep 2025 11:16:24 INFO epoch 62 evaluating [time: 1.62s, valid_score: 0.102800]
+Thu 25 Sep 2025 11:16:24 INFO valid result: 
+recall@10: 0.0672    recall@20: 0.1028    ndcg@10: 0.0366    ndcg@20: 0.0457    
+Thu 25 Sep 2025 11:16:24 INFO test result: 
+recall@10: 0.0692    recall@20: 0.1067    ndcg@10: 0.0376    ndcg@20: 0.0473    
+Thu 25 Sep 2025 11:16:26 INFO epoch 63 training [time: 2.28s, train loss: 3.6395]
+Thu 25 Sep 2025 11:16:29 INFO epoch 63 evaluating [time: 1.51s, valid_score: 0.102900]
+Thu 25 Sep 2025 11:16:29 INFO valid result: 
+recall@10: 0.0681    recall@20: 0.1029    ndcg@10: 0.0368    ndcg@20: 0.0457    
+Thu 25 Sep 2025 11:16:29 INFO test result: 
+recall@10: 0.0697    recall@20: 0.1072    ndcg@10: 0.0379    ndcg@20: 0.0476    
+Thu 25 Sep 2025 11:16:31 INFO epoch 64 training [time: 2.07s, train loss: 3.6413]
+Thu 25 Sep 2025 11:16:34 INFO epoch 64 evaluating [time: 1.61s, valid_score: 0.103800]
+Thu 25 Sep 2025 11:16:34 INFO valid result: 
+recall@10: 0.0686    recall@20: 0.1038    ndcg@10: 0.0371    ndcg@20: 0.0461    
+Thu 25 Sep 2025 11:16:34 INFO test result: 
+recall@10: 0.0699    recall@20: 0.1071    ndcg@10: 0.0381    ndcg@20: 0.0477    
+Thu 25 Sep 2025 11:16:34 INFO ██ DuGRec--Best validation results updated!!!
+Thu 25 Sep 2025 11:16:36 INFO epoch 65 training [time: 1.92s, train loss: 3.6229]
+Thu 25 Sep 2025 11:16:39 INFO epoch 65 evaluating [time: 1.52s, valid_score: 0.102000]
+Thu 25 Sep 2025 11:16:39 INFO valid result: 
+recall@10: 0.0677    recall@20: 0.1020    ndcg@10: 0.0368    ndcg@20: 0.0455    
+Thu 25 Sep 2025 11:16:39 INFO test result: 
+recall@10: 0.0698    recall@20: 0.1066    ndcg@10: 0.0380    ndcg@20: 0.0474    
+Thu 25 Sep 2025 11:16:42 INFO epoch 66 training [time: 2.29s, train loss: 3.6096]
+Thu 25 Sep 2025 11:16:45 INFO epoch 66 evaluating [time: 1.62s, valid_score: 0.102500]
+Thu 25 Sep 2025 11:16:45 INFO valid result: 
+recall@10: 0.0678    recall@20: 0.1025    ndcg@10: 0.0369    ndcg@20: 0.0458    
+Thu 25 Sep 2025 11:16:45 INFO test result: 
+recall@10: 0.0693    recall@20: 0.1072    ndcg@10: 0.0379    ndcg@20: 0.0476    
+Thu 25 Sep 2025 11:16:47 INFO epoch 67 training [time: 2.26s, train loss: 3.5793]
+Thu 25 Sep 2025 11:16:49 INFO epoch 67 evaluating [time: 1.11s, valid_score: 0.102800]
+Thu 25 Sep 2025 11:16:49 INFO valid result: 
+recall@10: 0.0688    recall@20: 0.1028    ndcg@10: 0.0375    ndcg@20: 0.0461    
+Thu 25 Sep 2025 11:16:49 INFO test result: 
+recall@10: 0.0696    recall@20: 0.1073    ndcg@10: 0.0383    ndcg@20: 0.0480    
+Thu 25 Sep 2025 11:16:51 INFO epoch 68 training [time: 2.22s, train loss: 3.5888]
+Thu 25 Sep 2025 11:16:54 INFO epoch 68 evaluating [time: 1.31s, valid_score: 0.103000]
+Thu 25 Sep 2025 11:16:54 INFO valid result: 
+recall@10: 0.0675    recall@20: 0.1030    ndcg@10: 0.0368    ndcg@20: 0.0458    
+Thu 25 Sep 2025 11:16:54 INFO test result: 
+recall@10: 0.0694    recall@20: 0.1065    ndcg@10: 0.0383    ndcg@20: 0.0478    
+Thu 25 Sep 2025 11:16:57 INFO epoch 69 training [time: 2.28s, train loss: 3.5837]
+Thu 25 Sep 2025 11:17:00 INFO epoch 69 evaluating [time: 1.55s, valid_score: 0.103600]
+Thu 25 Sep 2025 11:17:00 INFO valid result: 
+recall@10: 0.0679    recall@20: 0.1036    ndcg@10: 0.0369    ndcg@20: 0.0460    
+Thu 25 Sep 2025 11:17:00 INFO test result: 
+recall@10: 0.0695    recall@20: 0.1081    ndcg@10: 0.0385    ndcg@20: 0.0484    
+Thu 25 Sep 2025 11:17:02 INFO epoch 70 training [time: 2.27s, train loss: 3.5043]
+Thu 25 Sep 2025 11:17:05 INFO epoch 70 evaluating [time: 1.54s, valid_score: 0.103100]
+Thu 25 Sep 2025 11:17:05 INFO valid result: 
+recall@10: 0.0674    recall@20: 0.1031    ndcg@10: 0.0367    ndcg@20: 0.0458    
+Thu 25 Sep 2025 11:17:05 INFO test result: 
+recall@10: 0.0704    recall@20: 0.1081    ndcg@10: 0.0385    ndcg@20: 0.0482    
+Thu 25 Sep 2025 11:17:07 INFO epoch 71 training [time: 2.33s, train loss: 3.5195]
+Thu 25 Sep 2025 11:17:11 INFO epoch 71 evaluating [time: 1.67s, valid_score: 0.103500]
+Thu 25 Sep 2025 11:17:11 INFO valid result: 
+recall@10: 0.0683    recall@20: 0.1035    ndcg@10: 0.0371    ndcg@20: 0.0460    
+Thu 25 Sep 2025 11:17:11 INFO test result: 
+recall@10: 0.0700    recall@20: 0.1071    ndcg@10: 0.0385    ndcg@20: 0.0481    
+Thu 25 Sep 2025 11:17:13 INFO epoch 72 training [time: 2.23s, train loss: 3.5681]
+Thu 25 Sep 2025 11:17:16 INFO epoch 72 evaluating [time: 1.54s, valid_score: 0.103200]
+Thu 25 Sep 2025 11:17:16 INFO valid result: 
+recall@10: 0.0686    recall@20: 0.1032    ndcg@10: 0.0374    ndcg@20: 0.0462    
+Thu 25 Sep 2025 11:17:16 INFO test result: 
+recall@10: 0.0696    recall@20: 0.1073    ndcg@10: 0.0384    ndcg@20: 0.0481    
+Thu 25 Sep 2025 11:17:18 INFO epoch 73 training [time: 2.37s, train loss: 3.5287]
+Thu 25 Sep 2025 11:17:22 INFO epoch 73 evaluating [time: 1.54s, valid_score: 0.103900]
+Thu 25 Sep 2025 11:17:22 INFO valid result: 
+recall@10: 0.0689    recall@20: 0.1039    ndcg@10: 0.0371    ndcg@20: 0.0460    
+Thu 25 Sep 2025 11:17:22 INFO test result: 
+recall@10: 0.0700    recall@20: 0.1078    ndcg@10: 0.0387    ndcg@20: 0.0484    
+Thu 25 Sep 2025 11:17:22 INFO ██ DuGRec--Best validation results updated!!!
+Thu 25 Sep 2025 11:17:24 INFO epoch 74 training [time: 2.32s, train loss: 3.4885]
+Thu 25 Sep 2025 11:17:27 INFO epoch 74 evaluating [time: 1.55s, valid_score: 0.103600]
+Thu 25 Sep 2025 11:17:27 INFO valid result: 
+recall@10: 0.0692    recall@20: 0.1036    ndcg@10: 0.0375    ndcg@20: 0.0462    
+Thu 25 Sep 2025 11:17:27 INFO test result: 
+recall@10: 0.0698    recall@20: 0.1076    ndcg@10: 0.0384    ndcg@20: 0.0481    
+Thu 25 Sep 2025 11:17:29 INFO epoch 75 training [time: 2.29s, train loss: 3.4926]
+Thu 25 Sep 2025 11:17:32 INFO epoch 75 evaluating [time: 1.55s, valid_score: 0.103200]
+Thu 25 Sep 2025 11:17:32 INFO valid result: 
+recall@10: 0.0686    recall@20: 0.1032    ndcg@10: 0.0372    ndcg@20: 0.0460    
+Thu 25 Sep 2025 11:17:32 INFO test result: 
+recall@10: 0.0698    recall@20: 0.1068    ndcg@10: 0.0386    ndcg@20: 0.0481    
+Thu 25 Sep 2025 11:17:35 INFO epoch 76 training [time: 2.33s, train loss: 3.4891]
+Thu 25 Sep 2025 11:17:38 INFO epoch 76 evaluating [time: 1.88s, valid_score: 0.103600]
+Thu 25 Sep 2025 11:17:38 INFO valid result: 
+recall@10: 0.0680    recall@20: 0.1036    ndcg@10: 0.0368    ndcg@20: 0.0460    
+Thu 25 Sep 2025 11:17:38 INFO test result: 
+recall@10: 0.0705    recall@20: 0.1084    ndcg@10: 0.0386    ndcg@20: 0.0483    
+Thu 25 Sep 2025 11:17:40 INFO epoch 77 training [time: 2.10s, train loss: 3.5060]
+Thu 25 Sep 2025 11:17:43 INFO epoch 77 evaluating [time: 1.53s, valid_score: 0.103900]
+Thu 25 Sep 2025 11:17:43 INFO valid result: 
+recall@10: 0.0684    recall@20: 0.1039    ndcg@10: 0.0372    ndcg@20: 0.0462    
+Thu 25 Sep 2025 11:17:43 INFO test result: 
+recall@10: 0.0699    recall@20: 0.1079    ndcg@10: 0.0385    ndcg@20: 0.0482    
+Thu 25 Sep 2025 11:17:45 INFO epoch 78 training [time: 2.04s, train loss: 3.4983]
+Thu 25 Sep 2025 11:17:48 INFO epoch 78 evaluating [time: 1.54s, valid_score: 0.104500]
+Thu 25 Sep 2025 11:17:48 INFO valid result: 
+recall@10: 0.0681    recall@20: 0.1045    ndcg@10: 0.0372    ndcg@20: 0.0464    
+Thu 25 Sep 2025 11:17:48 INFO test result: 
+recall@10: 0.0709    recall@20: 0.1070    ndcg@10: 0.0387    ndcg@20: 0.0479    
+Thu 25 Sep 2025 11:17:48 INFO ██ DuGRec--Best validation results updated!!!
+Thu 25 Sep 2025 11:17:51 INFO epoch 79 training [time: 2.34s, train loss: 3.4638]
+Thu 25 Sep 2025 11:17:54 INFO epoch 79 evaluating [time: 1.54s, valid_score: 0.103600]
+Thu 25 Sep 2025 11:17:54 INFO valid result: 
+recall@10: 0.0693    recall@20: 0.1036    ndcg@10: 0.0372    ndcg@20: 0.0459    
+Thu 25 Sep 2025 11:17:54 INFO test result: 
+recall@10: 0.0702    recall@20: 0.1076    ndcg@10: 0.0386    ndcg@20: 0.0483    
+Thu 25 Sep 2025 11:17:56 INFO epoch 80 training [time: 2.32s, train loss: 3.4308]
+Thu 25 Sep 2025 11:18:00 INFO epoch 80 evaluating [time: 1.77s, valid_score: 0.104000]
+Thu 25 Sep 2025 11:18:00 INFO valid result: 
+recall@10: 0.0689    recall@20: 0.1040    ndcg@10: 0.0373    ndcg@20: 0.0462    
+Thu 25 Sep 2025 11:18:00 INFO test result: 
+recall@10: 0.0693    recall@20: 0.1082    ndcg@10: 0.0382    ndcg@20: 0.0481    
+Thu 25 Sep 2025 11:18:02 INFO epoch 81 training [time: 2.01s, train loss: 3.4135]
+Thu 25 Sep 2025 11:18:05 INFO epoch 81 evaluating [time: 1.52s, valid_score: 0.104500]
+Thu 25 Sep 2025 11:18:05 INFO valid result: 
+recall@10: 0.0682    recall@20: 0.1045    ndcg@10: 0.0371    ndcg@20: 0.0463    
+Thu 25 Sep 2025 11:18:05 INFO test result: 
+recall@10: 0.0702    recall@20: 0.1086    ndcg@10: 0.0386    ndcg@20: 0.0484    
+Thu 25 Sep 2025 11:18:07 INFO epoch 82 training [time: 2.33s, train loss: 3.4339]
+Thu 25 Sep 2025 11:18:10 INFO epoch 82 evaluating [time: 1.54s, valid_score: 0.104700]
+Thu 25 Sep 2025 11:18:10 INFO valid result: 
+recall@10: 0.0688    recall@20: 0.1047    ndcg@10: 0.0374    ndcg@20: 0.0465    
+Thu 25 Sep 2025 11:18:10 INFO test result: 
+recall@10: 0.0689    recall@20: 0.1069    ndcg@10: 0.0382    ndcg@20: 0.0480    
+Thu 25 Sep 2025 11:18:10 INFO ██ DuGRec--Best validation results updated!!!
+Thu 25 Sep 2025 11:18:12 INFO epoch 83 training [time: 2.30s, train loss: 3.4405]
+Thu 25 Sep 2025 11:18:15 INFO epoch 83 evaluating [time: 1.66s, valid_score: 0.103400]
+Thu 25 Sep 2025 11:18:15 INFO valid result: 
+recall@10: 0.0676    recall@20: 0.1034    ndcg@10: 0.0368    ndcg@20: 0.0459    
+Thu 25 Sep 2025 11:18:15 INFO test result: 
+recall@10: 0.0705    recall@20: 0.1078    ndcg@10: 0.0384    ndcg@20: 0.0479    
+Thu 25 Sep 2025 11:18:18 INFO epoch 84 training [time: 2.35s, train loss: 3.4229]
+Thu 25 Sep 2025 11:18:21 INFO epoch 84 evaluating [time: 1.77s, valid_score: 0.105000]
+Thu 25 Sep 2025 11:18:21 INFO valid result: 
+recall@10: 0.0685    recall@20: 0.1050    ndcg@10: 0.0374    ndcg@20: 0.0466    
+Thu 25 Sep 2025 11:18:21 INFO test result: 
+recall@10: 0.0698    recall@20: 0.1071    ndcg@10: 0.0384    ndcg@20: 0.0479    
+Thu 25 Sep 2025 11:18:21 INFO ██ DuGRec--Best validation results updated!!!
+Thu 25 Sep 2025 11:18:23 INFO epoch 85 training [time: 2.20s, train loss: 3.4139]
+Thu 25 Sep 2025 11:18:27 INFO epoch 85 evaluating [time: 1.74s, valid_score: 0.104600]
+Thu 25 Sep 2025 11:18:27 INFO valid result: 
+recall@10: 0.0684    recall@20: 0.1046    ndcg@10: 0.0369    ndcg@20: 0.0461    
+Thu 25 Sep 2025 11:18:27 INFO test result: 
+recall@10: 0.0700    recall@20: 0.1065    ndcg@10: 0.0384    ndcg@20: 0.0477    
+Thu 25 Sep 2025 11:18:29 INFO epoch 86 training [time: 2.03s, train loss: 3.3860]
+Thu 25 Sep 2025 11:18:32 INFO epoch 86 evaluating [time: 1.53s, valid_score: 0.103700]
+Thu 25 Sep 2025 11:18:32 INFO valid result: 
+recall@10: 0.0681    recall@20: 0.1037    ndcg@10: 0.0371    ndcg@20: 0.0462    
+Thu 25 Sep 2025 11:18:32 INFO test result: 
+recall@10: 0.0693    recall@20: 0.1082    ndcg@10: 0.0382    ndcg@20: 0.0482    
+Thu 25 Sep 2025 11:18:34 INFO epoch 87 training [time: 2.22s, train loss: 3.4003]
+Thu 25 Sep 2025 11:18:37 INFO epoch 87 evaluating [time: 1.54s, valid_score: 0.105300]
+Thu 25 Sep 2025 11:18:37 INFO valid result: 
+recall@10: 0.0685    recall@20: 0.1053    ndcg@10: 0.0370    ndcg@20: 0.0464    
+Thu 25 Sep 2025 11:18:37 INFO test result: 
+recall@10: 0.0707    recall@20: 0.1085    ndcg@10: 0.0388    ndcg@20: 0.0485    
+Thu 25 Sep 2025 11:18:37 INFO ██ DuGRec--Best validation results updated!!!
+Thu 25 Sep 2025 11:18:39 INFO epoch 88 training [time: 2.06s, train loss: 3.3861]
+Thu 25 Sep 2025 11:18:43 INFO epoch 88 evaluating [time: 1.65s, valid_score: 0.103700]
+Thu 25 Sep 2025 11:18:43 INFO valid result: 
+recall@10: 0.0681    recall@20: 0.1037    ndcg@10: 0.0371    ndcg@20: 0.0462    
+Thu 25 Sep 2025 11:18:43 INFO test result: 
+recall@10: 0.0692    recall@20: 0.1089    ndcg@10: 0.0383    ndcg@20: 0.0485    
+Thu 25 Sep 2025 11:18:45 INFO epoch 89 training [time: 2.03s, train loss: 3.4046]
+Thu 25 Sep 2025 11:18:48 INFO epoch 89 evaluating [time: 1.54s, valid_score: 0.104500]
+Thu 25 Sep 2025 11:18:48 INFO valid result: 
+recall@10: 0.0692    recall@20: 0.1045    ndcg@10: 0.0378    ndcg@20: 0.0468    
+Thu 25 Sep 2025 11:18:48 INFO test result: 
+recall@10: 0.0698    recall@20: 0.1075    ndcg@10: 0.0383    ndcg@20: 0.0480    
+Thu 25 Sep 2025 11:18:50 INFO epoch 90 training [time: 2.24s, train loss: 3.3780]
+Thu 25 Sep 2025 11:18:53 INFO epoch 90 evaluating [time: 1.54s, valid_score: 0.104400]
+Thu 25 Sep 2025 11:18:53 INFO valid result: 
+recall@10: 0.0681    recall@20: 0.1044    ndcg@10: 0.0372    ndcg@20: 0.0465    
+Thu 25 Sep 2025 11:18:53 INFO test result: 
+recall@10: 0.0705    recall@20: 0.1082    ndcg@10: 0.0385    ndcg@20: 0.0482    
+Thu 25 Sep 2025 11:18:55 INFO epoch 91 training [time: 1.79s, train loss: 3.3291]
+Thu 25 Sep 2025 11:18:57 INFO epoch 91 evaluating [time: 1.24s, valid_score: 0.104400]
+Thu 25 Sep 2025 11:18:57 INFO valid result: 
+recall@10: 0.0688    recall@20: 0.1044    ndcg@10: 0.0375    ndcg@20: 0.0465    
+Thu 25 Sep 2025 11:18:57 INFO test result: 
+recall@10: 0.0708    recall@20: 0.1082    ndcg@10: 0.0386    ndcg@20: 0.0482    
+Thu 25 Sep 2025 11:18:59 INFO epoch 92 training [time: 1.96s, train loss: 3.3411]
+Thu 25 Sep 2025 11:19:02 INFO epoch 92 evaluating [time: 1.54s, valid_score: 0.104700]
+Thu 25 Sep 2025 11:19:02 INFO valid result: 
+recall@10: 0.0687    recall@20: 0.1047    ndcg@10: 0.0371    ndcg@20: 0.0463    
+Thu 25 Sep 2025 11:19:02 INFO test result: 
+recall@10: 0.0697    recall@20: 0.1088    ndcg@10: 0.0384    ndcg@20: 0.0484    
+Thu 25 Sep 2025 11:19:04 INFO epoch 93 training [time: 2.23s, train loss: 3.3551]
+Thu 25 Sep 2025 11:19:08 INFO epoch 93 evaluating [time: 1.85s, valid_score: 0.104400]
+Thu 25 Sep 2025 11:19:08 INFO valid result: 
+recall@10: 0.0692    recall@20: 0.1044    ndcg@10: 0.0374    ndcg@20: 0.0464    
+Thu 25 Sep 2025 11:19:08 INFO test result: 
+recall@10: 0.0702    recall@20: 0.1088    ndcg@10: 0.0386    ndcg@20: 0.0485    
+Thu 25 Sep 2025 11:19:10 INFO epoch 94 training [time: 2.36s, train loss: 3.3335]
+Thu 25 Sep 2025 11:19:13 INFO epoch 94 evaluating [time: 1.54s, valid_score: 0.104700]
+Thu 25 Sep 2025 11:19:13 INFO valid result: 
+recall@10: 0.0696    recall@20: 0.1047    ndcg@10: 0.0378    ndcg@20: 0.0467    
+Thu 25 Sep 2025 11:19:13 INFO test result: 
+recall@10: 0.0700    recall@20: 0.1082    ndcg@10: 0.0386    ndcg@20: 0.0484    
+Thu 25 Sep 2025 11:19:15 INFO epoch 95 training [time: 2.09s, train loss: 3.3559]
+Thu 25 Sep 2025 11:19:18 INFO epoch 95 evaluating [time: 1.65s, valid_score: 0.105700]
+Thu 25 Sep 2025 11:19:18 INFO valid result: 
+recall@10: 0.0692    recall@20: 0.1057    ndcg@10: 0.0374    ndcg@20: 0.0466    
+Thu 25 Sep 2025 11:19:18 INFO test result: 
+recall@10: 0.0701    recall@20: 0.1084    ndcg@10: 0.0388    ndcg@20: 0.0486    
+Thu 25 Sep 2025 11:19:18 INFO ██ DuGRec--Best validation results updated!!!
+Thu 25 Sep 2025 11:19:21 INFO epoch 96 training [time: 2.32s, train loss: 3.3400]
+Thu 25 Sep 2025 11:19:24 INFO epoch 96 evaluating [time: 1.54s, valid_score: 0.105200]
+Thu 25 Sep 2025 11:19:24 INFO valid result: 
+recall@10: 0.0689    recall@20: 0.1052    ndcg@10: 0.0375    ndcg@20: 0.0467    
+Thu 25 Sep 2025 11:19:24 INFO test result: 
+recall@10: 0.0699    recall@20: 0.1074    ndcg@10: 0.0389    ndcg@20: 0.0485    
+Thu 25 Sep 2025 11:19:26 INFO epoch 97 training [time: 1.87s, train loss: 3.3270]
+Thu 25 Sep 2025 11:19:28 INFO epoch 97 evaluating [time: 1.43s, valid_score: 0.105200]
+Thu 25 Sep 2025 11:19:28 INFO valid result: 
+recall@10: 0.0685    recall@20: 0.1052    ndcg@10: 0.0372    ndcg@20: 0.0465    
+Thu 25 Sep 2025 11:19:28 INFO test result: 
+recall@10: 0.0694    recall@20: 0.1081    ndcg@10: 0.0384    ndcg@20: 0.0483    
+Thu 25 Sep 2025 11:19:30 INFO epoch 98 training [time: 1.78s, train loss: 3.3220]
+Thu 25 Sep 2025 11:19:33 INFO epoch 98 evaluating [time: 1.66s, valid_score: 0.106500]
+Thu 25 Sep 2025 11:19:33 INFO valid result: 
+recall@10: 0.0701    recall@20: 0.1065    ndcg@10: 0.0378    ndcg@20: 0.0470    
+Thu 25 Sep 2025 11:19:33 INFO test result: 
+recall@10: 0.0706    recall@20: 0.1088    ndcg@10: 0.0386    ndcg@20: 0.0484    
+Thu 25 Sep 2025 11:19:33 INFO ██ DuGRec--Best validation results updated!!!
+Thu 25 Sep 2025 11:19:36 INFO epoch 99 training [time: 2.34s, train loss: 3.3138]
+Thu 25 Sep 2025 11:19:38 INFO epoch 99 evaluating [time: 1.19s, valid_score: 0.104200]
+Thu 25 Sep 2025 11:19:38 INFO valid result: 
+recall@10: 0.0698    recall@20: 0.1042    ndcg@10: 0.0377    ndcg@20: 0.0465    
+Thu 25 Sep 2025 11:19:38 INFO test result: 
+recall@10: 0.0708    recall@20: 0.1080    ndcg@10: 0.0391    ndcg@20: 0.0487    
+Thu 25 Sep 2025 11:19:40 INFO epoch 100 training [time: 1.99s, train loss: 3.2844]
+Thu 25 Sep 2025 11:19:43 INFO epoch 100 evaluating [time: 1.64s, valid_score: 0.104600]
+Thu 25 Sep 2025 11:19:43 INFO valid result: 
+recall@10: 0.0699    recall@20: 0.1046    ndcg@10: 0.0379    ndcg@20: 0.0467    
+Thu 25 Sep 2025 11:19:43 INFO test result: 
+recall@10: 0.0712    recall@20: 0.1076    ndcg@10: 0.0390    ndcg@20: 0.0483    
+Thu 25 Sep 2025 11:19:45 INFO epoch 101 training [time: 2.05s, train loss: 3.2734]
+Thu 25 Sep 2025 11:19:48 INFO epoch 101 evaluating [time: 1.53s, valid_score: 0.105300]
+Thu 25 Sep 2025 11:19:48 INFO valid result: 
+recall@10: 0.0695    recall@20: 0.1053    ndcg@10: 0.0377    ndcg@20: 0.0468    
+Thu 25 Sep 2025 11:19:48 INFO test result: 
+recall@10: 0.0704    recall@20: 0.1086    ndcg@10: 0.0390    ndcg@20: 0.0488    
+Thu 25 Sep 2025 11:19:50 INFO epoch 102 training [time: 2.11s, train loss: 3.2932]
+Thu 25 Sep 2025 11:19:54 INFO epoch 102 evaluating [time: 1.52s, valid_score: 0.105200]
+Thu 25 Sep 2025 11:19:54 INFO valid result: 
+recall@10: 0.0690    recall@20: 0.1052    ndcg@10: 0.0375    ndcg@20: 0.0467    
+Thu 25 Sep 2025 11:19:54 INFO test result: 
+recall@10: 0.0710    recall@20: 0.1083    ndcg@10: 0.0390    ndcg@20: 0.0486    
+Thu 25 Sep 2025 11:19:56 INFO epoch 103 training [time: 2.27s, train loss: 3.2676]
+Thu 25 Sep 2025 11:19:59 INFO epoch 103 evaluating [time: 1.54s, valid_score: 0.104900]
+Thu 25 Sep 2025 11:19:59 INFO valid result: 
+recall@10: 0.0687    recall@20: 0.1049    ndcg@10: 0.0376    ndcg@20: 0.0468    
+Thu 25 Sep 2025 11:19:59 INFO test result: 
+recall@10: 0.0707    recall@20: 0.1078    ndcg@10: 0.0390    ndcg@20: 0.0485    
+Thu 25 Sep 2025 11:20:01 INFO epoch 104 training [time: 2.34s, train loss: 3.2784]
+Thu 25 Sep 2025 11:20:04 INFO epoch 104 evaluating [time: 1.56s, valid_score: 0.105000]
+Thu 25 Sep 2025 11:20:04 INFO valid result: 
+recall@10: 0.0695    recall@20: 0.1050    ndcg@10: 0.0378    ndcg@20: 0.0468    
+Thu 25 Sep 2025 11:20:04 INFO test result: 
+recall@10: 0.0711    recall@20: 0.1083    ndcg@10: 0.0390    ndcg@20: 0.0485    
+Thu 25 Sep 2025 11:20:07 INFO epoch 105 training [time: 2.30s, train loss: 3.2717]
+Thu 25 Sep 2025 11:20:10 INFO epoch 105 evaluating [time: 1.66s, valid_score: 0.105100]
+Thu 25 Sep 2025 11:20:10 INFO valid result: 
+recall@10: 0.0693    recall@20: 0.1051    ndcg@10: 0.0377    ndcg@20: 0.0469    
+Thu 25 Sep 2025 11:20:10 INFO test result: 
+recall@10: 0.0715    recall@20: 0.1092    ndcg@10: 0.0392    ndcg@20: 0.0489    
+Thu 25 Sep 2025 11:20:12 INFO epoch 106 training [time: 2.20s, train loss: 3.2928]
+Thu 25 Sep 2025 11:20:15 INFO epoch 106 evaluating [time: 1.59s, valid_score: 0.105500]
+Thu 25 Sep 2025 11:20:15 INFO valid result: 
+recall@10: 0.0696    recall@20: 0.1055    ndcg@10: 0.0376    ndcg@20: 0.0467    
+Thu 25 Sep 2025 11:20:15 INFO test result: 
+recall@10: 0.0704    recall@20: 0.1093    ndcg@10: 0.0388    ndcg@20: 0.0488    
+Thu 25 Sep 2025 11:20:17 INFO epoch 107 training [time: 2.24s, train loss: 3.2677]
+Thu 25 Sep 2025 11:20:20 INFO epoch 107 evaluating [time: 1.52s, valid_score: 0.104800]
+Thu 25 Sep 2025 11:20:20 INFO valid result: 
+recall@10: 0.0689    recall@20: 0.1048    ndcg@10: 0.0374    ndcg@20: 0.0466    
+Thu 25 Sep 2025 11:20:20 INFO test result: 
+recall@10: 0.0715    recall@20: 0.1095    ndcg@10: 0.0391    ndcg@20: 0.0488    
+Thu 25 Sep 2025 11:20:22 INFO epoch 108 training [time: 1.88s, train loss: 3.2585]
+Thu 25 Sep 2025 11:20:25 INFO epoch 108 evaluating [time: 1.54s, valid_score: 0.105600]
+Thu 25 Sep 2025 11:20:25 INFO valid result: 
+recall@10: 0.0695    recall@20: 0.1056    ndcg@10: 0.0376    ndcg@20: 0.0468    
+Thu 25 Sep 2025 11:20:25 INFO test result: 
+recall@10: 0.0713    recall@20: 0.1088    ndcg@10: 0.0393    ndcg@20: 0.0489    
+Thu 25 Sep 2025 11:20:27 INFO epoch 109 training [time: 1.95s, train loss: 3.2262]
+Thu 25 Sep 2025 11:20:31 INFO epoch 109 evaluating [time: 1.54s, valid_score: 0.105000]
+Thu 25 Sep 2025 11:20:31 INFO valid result: 
+recall@10: 0.0689    recall@20: 0.1050    ndcg@10: 0.0377    ndcg@20: 0.0469    
+Thu 25 Sep 2025 11:20:31 INFO test result: 
+recall@10: 0.0714    recall@20: 0.1094    ndcg@10: 0.0391    ndcg@20: 0.0488    
+Thu 25 Sep 2025 11:20:33 INFO epoch 110 training [time: 2.12s, train loss: 3.2262]
+Thu 25 Sep 2025 11:20:36 INFO epoch 110 evaluating [time: 1.53s, valid_score: 0.105600]
+Thu 25 Sep 2025 11:20:36 INFO valid result: 
+recall@10: 0.0694    recall@20: 0.1056    ndcg@10: 0.0377    ndcg@20: 0.0469    
+Thu 25 Sep 2025 11:20:36 INFO test result: 
+recall@10: 0.0717    recall@20: 0.1090    ndcg@10: 0.0392    ndcg@20: 0.0488    
+Thu 25 Sep 2025 11:20:38 INFO epoch 111 training [time: 2.02s, train loss: 3.2150]
+Thu 25 Sep 2025 11:20:41 INFO epoch 111 evaluating [time: 1.52s, valid_score: 0.105200]
+Thu 25 Sep 2025 11:20:41 INFO valid result: 
+recall@10: 0.0685    recall@20: 0.1052    ndcg@10: 0.0379    ndcg@20: 0.0472    
+Thu 25 Sep 2025 11:20:41 INFO test result: 
+recall@10: 0.0714    recall@20: 0.1096    ndcg@10: 0.0392    ndcg@20: 0.0490    
+Thu 25 Sep 2025 11:20:43 INFO epoch 112 training [time: 2.34s, train loss: 3.2375]
+Thu 25 Sep 2025 11:20:46 INFO epoch 112 evaluating [time: 1.65s, valid_score: 0.105300]
+Thu 25 Sep 2025 11:20:46 INFO valid result: 
+recall@10: 0.0698    recall@20: 0.1053    ndcg@10: 0.0382    ndcg@20: 0.0472    
+Thu 25 Sep 2025 11:20:46 INFO test result: 
+recall@10: 0.0714    recall@20: 0.1084    ndcg@10: 0.0388    ndcg@20: 0.0483    
+Thu 25 Sep 2025 11:20:49 INFO epoch 113 training [time: 2.35s, train loss: 3.2476]
+Thu 25 Sep 2025 11:20:52 INFO epoch 113 evaluating [time: 1.54s, valid_score: 0.105400]
+Thu 25 Sep 2025 11:20:52 INFO valid result: 
+recall@10: 0.0686    recall@20: 0.1054    ndcg@10: 0.0378    ndcg@20: 0.0471    
+Thu 25 Sep 2025 11:20:52 INFO test result: 
+recall@10: 0.0715    recall@20: 0.1086    ndcg@10: 0.0392    ndcg@20: 0.0487    
+Thu 25 Sep 2025 11:20:54 INFO epoch 114 training [time: 2.36s, train loss: 3.2367]
+Thu 25 Sep 2025 11:20:57 INFO epoch 114 evaluating [time: 1.75s, valid_score: 0.105400]
+Thu 25 Sep 2025 11:20:57 INFO valid result: 
+recall@10: 0.0688    recall@20: 0.1054    ndcg@10: 0.0379    ndcg@20: 0.0472    
+Thu 25 Sep 2025 11:20:57 INFO test result: 
+recall@10: 0.0720    recall@20: 0.1091    ndcg@10: 0.0392    ndcg@20: 0.0487    
+Thu 25 Sep 2025 11:20:59 INFO epoch 115 training [time: 2.13s, train loss: 3.2308]
+Thu 25 Sep 2025 11:21:03 INFO epoch 115 evaluating [time: 1.54s, valid_score: 0.105700]
+Thu 25 Sep 2025 11:21:03 INFO valid result: 
+recall@10: 0.0704    recall@20: 0.1057    ndcg@10: 0.0384    ndcg@20: 0.0474    
+Thu 25 Sep 2025 11:21:03 INFO test result: 
+recall@10: 0.0717    recall@20: 0.1081    ndcg@10: 0.0393    ndcg@20: 0.0486    
+Thu 25 Sep 2025 11:21:05 INFO epoch 116 training [time: 2.28s, train loss: 3.2362]
+Thu 25 Sep 2025 11:21:08 INFO epoch 116 evaluating [time: 1.53s, valid_score: 0.105600]
+Thu 25 Sep 2025 11:21:08 INFO valid result: 
+recall@10: 0.0695    recall@20: 0.1056    ndcg@10: 0.0379    ndcg@20: 0.0471    
+Thu 25 Sep 2025 11:21:08 INFO test result: 
+recall@10: 0.0716    recall@20: 0.1078    ndcg@10: 0.0390    ndcg@20: 0.0483    
+Thu 25 Sep 2025 11:21:10 INFO epoch 117 training [time: 2.26s, train loss: 3.2145]
+Thu 25 Sep 2025 11:21:13 INFO epoch 117 evaluating [time: 1.63s, valid_score: 0.105200]
+Thu 25 Sep 2025 11:21:13 INFO valid result: 
+recall@10: 0.0693    recall@20: 0.1052    ndcg@10: 0.0380    ndcg@20: 0.0472    
+Thu 25 Sep 2025 11:21:13 INFO test result: 
+recall@10: 0.0707    recall@20: 0.1098    ndcg@10: 0.0389    ndcg@20: 0.0489    
+Thu 25 Sep 2025 11:21:16 INFO epoch 118 training [time: 2.26s, train loss: 3.2163]
+Thu 25 Sep 2025 11:21:19 INFO epoch 118 evaluating [time: 1.52s, valid_score: 0.104600]
+Thu 25 Sep 2025 11:21:19 INFO valid result: 
+recall@10: 0.0697    recall@20: 0.1046    ndcg@10: 0.0381    ndcg@20: 0.0470    
+Thu 25 Sep 2025 11:21:19 INFO test result: 
+recall@10: 0.0716    recall@20: 0.1082    ndcg@10: 0.0391    ndcg@20: 0.0485    
+Thu 25 Sep 2025 11:21:21 INFO epoch 119 training [time: 2.27s, train loss: 3.2037]
+Thu 25 Sep 2025 11:21:24 INFO epoch 119 evaluating [time: 1.52s, valid_score: 0.105200]
+Thu 25 Sep 2025 11:21:24 INFO valid result: 
+recall@10: 0.0696    recall@20: 0.1052    ndcg@10: 0.0386    ndcg@20: 0.0476    
+Thu 25 Sep 2025 11:21:24 INFO test result: 
+recall@10: 0.0720    recall@20: 0.1081    ndcg@10: 0.0393    ndcg@20: 0.0485    
+Thu 25 Sep 2025 11:21:26 INFO epoch 120 training [time: 2.27s, train loss: 3.1794]
+Thu 25 Sep 2025 11:21:29 INFO epoch 120 evaluating [time: 1.53s, valid_score: 0.105400]
+Thu 25 Sep 2025 11:21:29 INFO valid result: 
+recall@10: 0.0687    recall@20: 0.1054    ndcg@10: 0.0379    ndcg@20: 0.0472    
+Thu 25 Sep 2025 11:21:29 INFO test result: 
+recall@10: 0.0713    recall@20: 0.1088    ndcg@10: 0.0393    ndcg@20: 0.0489    
+Thu 25 Sep 2025 11:21:32 INFO epoch 121 training [time: 2.26s, train loss: 3.2229]
+Thu 25 Sep 2025 11:21:35 INFO epoch 121 evaluating [time: 1.54s, valid_score: 0.104800]
+Thu 25 Sep 2025 11:21:35 INFO valid result: 
+recall@10: 0.0691    recall@20: 0.1048    ndcg@10: 0.0380    ndcg@20: 0.0471    
+Thu 25 Sep 2025 11:21:35 INFO test result: 
+recall@10: 0.0707    recall@20: 0.1104    ndcg@10: 0.0389    ndcg@20: 0.0491    
+Thu 25 Sep 2025 11:21:37 INFO epoch 122 training [time: 2.28s, train loss: 3.1967]
+Thu 25 Sep 2025 11:21:40 INFO epoch 122 evaluating [time: 1.63s, valid_score: 0.105300]
+Thu 25 Sep 2025 11:21:40 INFO valid result: 
+recall@10: 0.0691    recall@20: 0.1053    ndcg@10: 0.0380    ndcg@20: 0.0472    
+Thu 25 Sep 2025 11:21:40 INFO test result: 
+recall@10: 0.0711    recall@20: 0.1097    ndcg@10: 0.0392    ndcg@20: 0.0491    
+Thu 25 Sep 2025 11:21:42 INFO epoch 123 training [time: 2.26s, train loss: 3.1994]
+Thu 25 Sep 2025 11:21:45 INFO epoch 123 evaluating [time: 1.53s, valid_score: 0.105400]
+Thu 25 Sep 2025 11:21:45 INFO valid result: 
+recall@10: 0.0688    recall@20: 0.1054    ndcg@10: 0.0378    ndcg@20: 0.0471    
+Thu 25 Sep 2025 11:21:45 INFO test result: 
+recall@10: 0.0721    recall@20: 0.1098    ndcg@10: 0.0392    ndcg@20: 0.0489    
+Thu 25 Sep 2025 11:21:48 INFO epoch 124 training [time: 2.26s, train loss: 3.2004]
+Thu 25 Sep 2025 11:21:51 INFO epoch 124 evaluating [time: 1.63s, valid_score: 0.105300]
+Thu 25 Sep 2025 11:21:51 INFO valid result: 
+recall@10: 0.0685    recall@20: 0.1053    ndcg@10: 0.0378    ndcg@20: 0.0472    
+Thu 25 Sep 2025 11:21:51 INFO test result: 
+recall@10: 0.0713    recall@20: 0.1102    ndcg@10: 0.0391    ndcg@20: 0.0491    
+Thu 25 Sep 2025 11:21:53 INFO epoch 125 training [time: 2.27s, train loss: 3.1792]
+Thu 25 Sep 2025 11:21:56 INFO epoch 125 evaluating [time: 1.52s, valid_score: 0.105800]
+Thu 25 Sep 2025 11:21:56 INFO valid result: 
+recall@10: 0.0686    recall@20: 0.1058    ndcg@10: 0.0382    ndcg@20: 0.0476    
+Thu 25 Sep 2025 11:21:56 INFO test result: 
+recall@10: 0.0718    recall@20: 0.1094    ndcg@10: 0.0393    ndcg@20: 0.0489    
+Thu 25 Sep 2025 11:21:58 INFO epoch 126 training [time: 2.32s, train loss: 3.1581]
+Thu 25 Sep 2025 11:22:02 INFO epoch 126 evaluating [time: 1.54s, valid_score: 0.105700]
+Thu 25 Sep 2025 11:22:02 INFO valid result: 
+recall@10: 0.0682    recall@20: 0.1057    ndcg@10: 0.0379    ndcg@20: 0.0475    
+Thu 25 Sep 2025 11:22:02 INFO test result: 
+recall@10: 0.0721    recall@20: 0.1102    ndcg@10: 0.0396    ndcg@20: 0.0494    
+Thu 25 Sep 2025 11:22:04 INFO epoch 127 training [time: 2.03s, train loss: 3.1571]
+Thu 25 Sep 2025 11:22:07 INFO epoch 127 evaluating [time: 1.52s, valid_score: 0.105700]
+Thu 25 Sep 2025 11:22:07 INFO valid result: 
+recall@10: 0.0686    recall@20: 0.1057    ndcg@10: 0.0380    ndcg@20: 0.0474    
+Thu 25 Sep 2025 11:22:07 INFO test result: 
+recall@10: 0.0722    recall@20: 0.1094    ndcg@10: 0.0393    ndcg@20: 0.0489    
+Thu 25 Sep 2025 11:22:09 INFO epoch 128 training [time: 2.03s, train loss: 3.1727]
+Thu 25 Sep 2025 11:22:11 INFO epoch 128 evaluating [time: 1.24s, valid_score: 0.105600]
+Thu 25 Sep 2025 11:22:11 INFO valid result: 
+recall@10: 0.0692    recall@20: 0.1056    ndcg@10: 0.0382    ndcg@20: 0.0474    
+Thu 25 Sep 2025 11:22:11 INFO test result: 
+recall@10: 0.0716    recall@20: 0.1097    ndcg@10: 0.0391    ndcg@20: 0.0489    
+Thu 25 Sep 2025 11:22:13 INFO epoch 129 training [time: 1.97s, train loss: 3.1929]
+Thu 25 Sep 2025 11:22:16 INFO epoch 129 evaluating [time: 1.67s, valid_score: 0.104700]
+Thu 25 Sep 2025 11:22:16 INFO valid result: 
+recall@10: 0.0688    recall@20: 0.1047    ndcg@10: 0.0379    ndcg@20: 0.0470    
+Thu 25 Sep 2025 11:22:16 INFO test result: 
+recall@10: 0.0716    recall@20: 0.1093    ndcg@10: 0.0388    ndcg@20: 0.0485    
+Thu 25 Sep 2025 11:22:18 INFO epoch 130 training [time: 1.87s, train loss: 3.2021]
+Thu 25 Sep 2025 11:22:21 INFO epoch 130 evaluating [time: 1.75s, valid_score: 0.105600]
+Thu 25 Sep 2025 11:22:21 INFO valid result: 
+recall@10: 0.0692    recall@20: 0.1056    ndcg@10: 0.0383    ndcg@20: 0.0475    
+Thu 25 Sep 2025 11:22:21 INFO test result: 
+recall@10: 0.0725    recall@20: 0.1097    ndcg@10: 0.0394    ndcg@20: 0.0489    
+Thu 25 Sep 2025 11:22:23 INFO epoch 131 training [time: 2.00s, train loss: 3.1361]
+Thu 25 Sep 2025 11:22:27 INFO epoch 131 evaluating [time: 1.55s, valid_score: 0.105400]
+Thu 25 Sep 2025 11:22:27 INFO valid result: 
+recall@10: 0.0697    recall@20: 0.1054    ndcg@10: 0.0382    ndcg@20: 0.0473    
+Thu 25 Sep 2025 11:22:27 INFO test result: 
+recall@10: 0.0713    recall@20: 0.1100    ndcg@10: 0.0391    ndcg@20: 0.0490    
+Thu 25 Sep 2025 11:22:29 INFO epoch 132 training [time: 2.19s, train loss: 3.1516]
+Thu 25 Sep 2025 11:22:32 INFO epoch 132 evaluating [time: 1.58s, valid_score: 0.105600]
+Thu 25 Sep 2025 11:22:32 INFO valid result: 
+recall@10: 0.0695    recall@20: 0.1056    ndcg@10: 0.0383    ndcg@20: 0.0475    
+Thu 25 Sep 2025 11:22:32 INFO test result: 
+recall@10: 0.0717    recall@20: 0.1093    ndcg@10: 0.0395    ndcg@20: 0.0492    
+Thu 25 Sep 2025 11:22:34 INFO epoch 133 training [time: 2.12s, train loss: 3.1451]
+Thu 25 Sep 2025 11:22:37 INFO epoch 133 evaluating [time: 1.55s, valid_score: 0.105600]
+Thu 25 Sep 2025 11:22:37 INFO valid result: 
+recall@10: 0.0691    recall@20: 0.1056    ndcg@10: 0.0377    ndcg@20: 0.0469    
+Thu 25 Sep 2025 11:22:37 INFO test result: 
+recall@10: 0.0714    recall@20: 0.1095    ndcg@10: 0.0393    ndcg@20: 0.0490    
+Thu 25 Sep 2025 11:22:39 INFO epoch 134 training [time: 2.11s, train loss: 3.1201]
+Thu 25 Sep 2025 11:22:43 INFO epoch 134 evaluating [time: 1.88s, valid_score: 0.105200]
+Thu 25 Sep 2025 11:22:43 INFO valid result: 
+recall@10: 0.0690    recall@20: 0.1052    ndcg@10: 0.0380    ndcg@20: 0.0472    
+Thu 25 Sep 2025 11:22:43 INFO test result: 
+recall@10: 0.0728    recall@20: 0.1089    ndcg@10: 0.0398    ndcg@20: 0.0490    
+Thu 25 Sep 2025 11:22:45 INFO epoch 135 training [time: 2.12s, train loss: 3.1298]
+Thu 25 Sep 2025 11:22:48 INFO epoch 135 evaluating [time: 1.54s, valid_score: 0.105500]
+Thu 25 Sep 2025 11:22:48 INFO valid result: 
+recall@10: 0.0691    recall@20: 0.1055    ndcg@10: 0.0379    ndcg@20: 0.0472    
+Thu 25 Sep 2025 11:22:48 INFO test result: 
+recall@10: 0.0713    recall@20: 0.1087    ndcg@10: 0.0392    ndcg@20: 0.0489    
+Thu 25 Sep 2025 11:22:50 INFO epoch 136 training [time: 2.34s, train loss: 3.1250]
+Thu 25 Sep 2025 11:22:54 INFO epoch 136 evaluating [time: 1.62s, valid_score: 0.105900]
+Thu 25 Sep 2025 11:22:54 INFO valid result: 
+recall@10: 0.0699    recall@20: 0.1059    ndcg@10: 0.0381    ndcg@20: 0.0473    
+Thu 25 Sep 2025 11:22:54 INFO test result: 
+recall@10: 0.0717    recall@20: 0.1099    ndcg@10: 0.0394    ndcg@20: 0.0492    
+Thu 25 Sep 2025 11:22:56 INFO epoch 137 training [time: 2.36s, train loss: 3.1109]
+Thu 25 Sep 2025 11:22:59 INFO epoch 137 evaluating [time: 1.55s, valid_score: 0.106400]
+Thu 25 Sep 2025 11:22:59 INFO valid result: 
+recall@10: 0.0687    recall@20: 0.1064    ndcg@10: 0.0378    ndcg@20: 0.0474    
+Thu 25 Sep 2025 11:22:59 INFO test result: 
+recall@10: 0.0720    recall@20: 0.1089    ndcg@10: 0.0398    ndcg@20: 0.0492    
+Thu 25 Sep 2025 11:23:01 INFO epoch 138 training [time: 2.15s, train loss: 3.1106]
+Thu 25 Sep 2025 11:23:04 INFO epoch 138 evaluating [time: 1.53s, valid_score: 0.106200]
+Thu 25 Sep 2025 11:23:04 INFO valid result: 
+recall@10: 0.0692    recall@20: 0.1062    ndcg@10: 0.0378    ndcg@20: 0.0472    
+Thu 25 Sep 2025 11:23:04 INFO test result: 
+recall@10: 0.0725    recall@20: 0.1091    ndcg@10: 0.0396    ndcg@20: 0.0490    
+Thu 25 Sep 2025 11:23:07 INFO epoch 139 training [time: 2.33s, train loss: 3.0981]
+Thu 25 Sep 2025 11:23:10 INFO epoch 139 evaluating [time: 1.55s, valid_score: 0.106500]
+Thu 25 Sep 2025 11:23:10 INFO valid result: 
+recall@10: 0.0692    recall@20: 0.1065    ndcg@10: 0.0379    ndcg@20: 0.0474    
+Thu 25 Sep 2025 11:23:10 INFO test result: 
+recall@10: 0.0721    recall@20: 0.1095    ndcg@10: 0.0395    ndcg@20: 0.0491    
+Thu 25 Sep 2025 11:23:10 INFO +++++Finished training, best eval result in epoch 98
+Thu 25 Sep 2025 11:23:10 INFO best valid result: recall@10: 0.0701    recall@20: 0.1065    ndcg@10: 0.0378    ndcg@20: 0.0470    
+Thu 25 Sep 2025 11:23:10 INFO test result: recall@10: 0.0706    recall@20: 0.1088    ndcg@10: 0.0386    ndcg@20: 0.0484    
+Thu 25 Sep 2025 11:23:10 INFO ████Current BEST████:
+Parameters: ['reg_weight', 'weight_decay', 'decay_weight', 'alpha_item_co', 'clu_lambda', 'cli_lambda', 'gpert_lambda', 'lambda_spec', 'seed']=(0.001, 0.0001, 0.9, 0.2, 0.0001, 1e-05, 0.0001, 0.1, 999),
+Valid: recall@10: 0.0695    recall@20: 0.1068    ndcg@10: 0.0380    ndcg@20: 0.0475    ,
+Test: recall@10: 0.0734    recall@20: 0.1103    ndcg@10: 0.0402    ndcg@20: 0.0497    
+
+
+
+Thu 25 Sep 2025 11:23:10 INFO 
+============All Over=====================
+Thu 25 Sep 2025 11:23:10 INFO Parameters: ['reg_weight', 'weight_decay', 'decay_weight', 'alpha_item_co', 'clu_lambda', 'cli_lambda', 'gpert_lambda', 'lambda_spec', 'seed']=(0.001, 0.0001, 0.9, 0.2, 0.0001, 1e-05, 0.0001, 0.1, 999),
+ best valid: recall@10: 0.0695    recall@20: 0.1068    ndcg@10: 0.0380    ndcg@20: 0.0475    ,
+ best test: recall@10: 0.0734    recall@20: 0.1103    ndcg@10: 0.0402    ndcg@20: 0.0497    
+Thu 25 Sep 2025 11:23:10 INFO Parameters: ['reg_weight', 'weight_decay', 'decay_weight', 'alpha_item_co', 'clu_lambda', 'cli_lambda', 'gpert_lambda', 'lambda_spec', 'seed']=(0.001, 0.0001, 0.99, 0.2, 0.0001, 1e-05, 0.0001, 0.1, 999),
+ best valid: recall@10: 0.0701    recall@20: 0.1065    ndcg@10: 0.0378    ndcg@20: 0.0470    ,
+ best test: recall@10: 0.0706    recall@20: 0.1088    ndcg@10: 0.0386    ndcg@20: 0.0484    
+Thu 25 Sep 2025 11:23:10 INFO 
+
+█████████████ BEST ████████████████
+Thu 25 Sep 2025 11:23:10 INFO 	Parameters: ['reg_weight', 'weight_decay', 'decay_weight', 'alpha_item_co', 'clu_lambda', 'cli_lambda', 'gpert_lambda', 'lambda_spec', 'seed']=(0.001, 0.0001, 0.9, 0.2, 0.0001, 1e-05, 0.0001, 0.1, 999),
+Valid: recall@10: 0.0695    recall@20: 0.1068    ndcg@10: 0.0380    ndcg@20: 0.0475    ,
+Test: recall@10: 0.0734    recall@20: 0.1103    ndcg@10: 0.0402    ndcg@20: 0.0497    
+
+
