@@ -24,7 +24,7 @@ Install all requirements with ``pip install -r requirements.txt``.
 
 ## Download data
 
-Put the Baby, Clothing, and Sports datasets and other required data into the folder ``SuCoRec/data`` by downloading from this link [Google Drive](https://drive.google.com/drive/folders/1BxObpWApHbGx9jCQGc8z52cV3t9_NE0f?usp=sharing).
+Put the Baby, Clothing, and Sports datasets and other required data into the folder ``CPPRec/data`` by downloading from this link [Google Drive](https://drive.google.com/drive/folders/1BxObpWApHbGx9jCQGc8z52cV3t9_NE0f?usp=sharing).
 
 ## 3. Training on a local server using PyCharm.
 
@@ -43,5 +43,6 @@ You may specify other parameters in CMD or config with `configs/model/*.yaml` an
 
 
 ## Acknowledgement
+
 
 The structure of this code is  based on [MMRec](https://github.com/enoche/MMRec). Thank for their work.
