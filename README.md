@@ -28,11 +28,11 @@ Put the Baby, Clothing, and Sports datasets and other required data into the fol
 
 ## 3. Training on a local server using PyCharm.
 
-Run SuCoRec by ``python main.py`` with the default dataset as Baby. Specific dataset selection can be modified in `main.py`.
+Run DugRec by ``python main.py`` with the default dataset as Baby. Specific dataset selection can be modified in `main.py`.
 
 ## 4. Training on a local server using Git Bash.
 
-Run SuCoRec by ``train.\`` with the default dataset is Baby. Specific dataset selection can be modified in `train.py`.
+Run DugRec by ``train.\`` with the default dataset is Baby. Specific dataset selection can be modified in `train.py`.
 
 
 
@@ -46,3 +46,4 @@ You may specify other parameters in CMD or config with `configs/model/*.yaml` an
 
 
 The structure of this code is  based on [MMRec](https://github.com/enoche/MMRec). Thank for their work.
+
